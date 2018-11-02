@@ -1,0 +1,402 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Text Formatting &#8212; Pygame Zero 1.2 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installing Pygame Zero" href="installation.html" />
+    <link rel="prev" title="Objets pré-définis" href="builtins.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="text-formatting">
+<h1>Text Formatting<a class="headerlink" href="#text-formatting" title="Permalink to this headline">¶</a></h1>
+<p>The <a class="reference internal" href="builtins.html#screen"><span class="std std-ref">Screen</span></a>’s <code class="docutils literal notranslate"><span class="pre">draw.text()</span></code> method has a very rich set of methods for
+position and formatting of text. Some examples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Text color&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">)</span>
+<span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Font name and size&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">fontname</span><span class="o">=</span><span class="s2">&quot;Boogaloo&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+<span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Positioned text&quot;</span><span class="p">,</span> <span class="n">topright</span><span class="o">=</span><span class="p">(</span><span class="mi">840</span><span class="p">,</span> <span class="mi">20</span><span class="p">))</span>
+<span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Allow me to demonstrate wrapped text.&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">90</span><span class="p">,</span> <span class="mi">210</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mi">180</span><span class="p">,</span> <span class="n">lineheight</span><span class="o">=</span><span class="mf">1.5</span><span class="p">)</span>
+<span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Outlined text&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">70</span><span class="p">),</span> <span class="n">owidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ocolor</span><span class="o">=</span><span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">))</span>
+<span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Drop shadow&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">640</span><span class="p">,</span> <span class="mi">110</span><span class="p">),</span> <span class="n">shadow</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span> <span class="n">scolor</span><span class="o">=</span><span class="s2">&quot;#202020&quot;</span><span class="p">)</span>
+<span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Color gradient&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">540</span><span class="p">,</span> <span class="mi">170</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">gcolor</span><span class="o">=</span><span class="s2">&quot;purple&quot;</span><span class="p">)</span>
+<span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Transparency&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="mi">240</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;Vertical text&quot;</span><span class="p">,</span> <span class="n">midleft</span><span class="o">=</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="mi">440</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="mi">90</span><span class="p">)</span>
+<span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;All together now:</span><span class="se">\n</span><span class="s2">Combining the above options&quot;</span><span class="p">,</span>
+    <span class="n">midbottom</span><span class="o">=</span><span class="p">(</span><span class="mi">427</span><span class="p">,</span><span class="mi">460</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mi">360</span><span class="p">,</span> <span class="n">fontname</span><span class="o">=</span><span class="s2">&quot;Boogaloo&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">48</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="s2">&quot;#AAFF00&quot;</span><span class="p">,</span> <span class="n">gcolor</span><span class="o">=</span><span class="s2">&quot;#66AA00&quot;</span><span class="p">,</span> <span class="n">owidth</span><span class="o">=</span><span class="mf">1.5</span><span class="p">,</span> <span class="n">ocolor</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.8</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In its simplest usage, <code class="docutils literal notranslate"><span class="pre">screen.draw.text</span></code> requires the string you want to
+draw, and the position. You can either do this by passing coordinates as the
+second argument (which is the top left of where the text will appear), or use
+the positioning keyword arguments (described later):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">screen.draw.text</span></code> takes many optional keyword arguments, described below.</p>
+<div class="section" id="font-name-and-size">
+<h2>Font name and size<a class="headerlink" href="#font-name-and-size" title="Permalink to this headline">¶</a></h2>
+<p>Fonts are loaded from a directory named <code class="docutils literal notranslate"><span class="pre">fonts</span></code>, in a similar way to the
+handling of images and sounds. Fonts must be in <code class="docutils literal notranslate"><span class="pre">.ttf</span></code> format. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">fontname</span><span class="o">=</span><span class="s2">&quot;Viga&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">32</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Keyword arguments:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">fontname</span></code>: filename of the font to draw. By default, use the system font.</li>
+<li><code class="docutils literal notranslate"><span class="pre">fontsize</span></code>: size of the font to use, in pixels. Defaults to <code class="docutils literal notranslate"><span class="pre">24</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">antialias</span></code>: whether to render with antialiasing. Defaults to <code class="docutils literal notranslate"><span class="pre">True</span></code>.</li>
+</ul>
+</div>
+<div class="section" id="color-and-background-color">
+<h2>Color and background color<a class="headerlink" href="#color-and-background-color" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">),</span> <span class="n">background</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Keyword arguments:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">color</span></code>: foreground color to use. Defaults to <code class="docutils literal notranslate"><span class="pre">white</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">background</span></code>: background color to use. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">color</span></code> (as well as <code class="docutils literal notranslate"><span class="pre">background</span></code>, <code class="docutils literal notranslate"><span class="pre">ocolor</span></code>, <code class="docutils literal notranslate"><span class="pre">scolor</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">gcolor</span></code>) can be an (r, g, b) sequence such as <code class="docutils literal notranslate"><span class="pre">(255,127,0)</span></code>, a
+<code class="docutils literal notranslate"><span class="pre">pygame.Color</span></code> object, a color name such as <code class="docutils literal notranslate"><span class="pre">&quot;orange&quot;</span></code>, an HTML hex
+color string such as <code class="docutils literal notranslate"><span class="pre">&quot;#FF7F00&quot;</span></code>, or a string representing a hex color
+number such as <code class="docutils literal notranslate"><span class="pre">&quot;0xFF7F00&quot;</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">background</span></code> can also be <code class="docutils literal notranslate"><span class="pre">None</span></code>, in which case the background is
+transparent. Unlike <code class="docutils literal notranslate"><span class="pre">pygame.font.Font.render</span></code>, it’s generally not more
+efficient to set a background color when calling <code class="docutils literal notranslate"><span class="pre">screen.draw.text</span></code>. So only
+specify a background color if you actually want one.</p>
+<p>Colors with alpha transparency are not supported (except for the special
+case of invisible text with outlines or drop shadows - see below). See
+the <code class="docutils literal notranslate"><span class="pre">alpha</span></code> keyword argument for transparency.</p>
+</div>
+<div class="section" id="positioning">
+<h2>Positioning<a class="headerlink" href="#positioning" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="n">centery</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">right</span><span class="o">=</span><span class="mi">300</span><span class="p">)</span>
+<span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="n">midtop</span><span class="o">=</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Keyword arguments:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">top</span> <span class="n">left</span> <span class="n">bottom</span> <span class="n">right</span>
+<span class="n">topleft</span> <span class="n">bottomleft</span> <span class="n">topright</span> <span class="n">bottomright</span>
+<span class="n">midtop</span> <span class="n">midleft</span> <span class="n">midbottom</span> <span class="n">midright</span>
+<span class="n">center</span> <span class="n">centerx</span> <span class="n">centery</span>
+</pre></div>
+</div>
+<p>Positioning keyword arguments behave like the corresponding properties
+of <code class="docutils literal notranslate"><span class="pre">pygame.Rect</span></code>. Either specify two arguments, corresponding to the
+horizontal and vertical positions of the box, or a single argument that
+specifies both.</p>
+<p>If the position is overspecified (e.g. both <code class="docutils literal notranslate"><span class="pre">left</span></code> and <code class="docutils literal notranslate"><span class="pre">right</span></code> are
+given), then extra specifications will be (arbitrarily but
+deterministically) discarded. For constrained text, see the section on
+<code class="docutils literal notranslate"><span class="pre">screen.draw.textbox</span></code> below.</p>
+</div>
+<div class="section" id="word-wrap">
+<h2>Word wrap<a class="headerlink" href="#word-wrap" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;splitting</span><span class="se">\n</span><span class="s2">lines&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;splitting lines&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">width</span><span class="o">=</span><span class="mi">60</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Keyword arguments:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">width</span></code>: maximum width of the text to draw, in pixels. Defaults to
+<code class="docutils literal notranslate"><span class="pre">None</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">widthem</span></code>: maximum width of the text to draw, in font-based em
+units. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">lineheight</span></code>: vertical spacing between lines, in units of the
+font’s default line height. Defaults to <code class="docutils literal notranslate"><span class="pre">1.0</span></code>.</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">screen.draw.text</span></code> will always wrap lines at newline (<code class="docutils literal notranslate"><span class="pre">\n</span></code>) characters. If
+<code class="docutils literal notranslate"><span class="pre">width</span></code> or <code class="docutils literal notranslate"><span class="pre">widthem</span></code> is set, it will also try to wrap lines in order
+to keep each line shorter than the given width. The text is not
+guaranteed to be within the given width, because wrapping only occurs at
+space characters, so if a single word is too long to fit on a line, it
+will not be broken up. Outline and drop shadow are also not accounted
+for, so they may extend beyond the given width.</p>
+<p>You can prevent wrapping on a particular space with non-breaking space
+characters (<code class="docutils literal notranslate"><span class="pre">\u00A0</span></code>).</p>
+</div>
+<div class="section" id="text-alignment">
+<h2>Text alignment<a class="headerlink" href="#text-alignment" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;hello</span><span class="se">\n</span><span class="s2">world&quot;</span><span class="p">,</span> <span class="n">bottomright</span><span class="o">=</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">400</span><span class="p">),</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;left&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Keyword argument:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">align</span></code>: horizontal positioning of lines with respect to each
+other. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">align</span></code> determines how lines are positioned horizontally with respect
+to each other, when more than one line is drawn. Valid values for
+<code class="docutils literal notranslate"><span class="pre">align</span></code> are the strings <code class="docutils literal notranslate"><span class="pre">&quot;left&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;center&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;right&quot;</span></code>, a
+numerical value between <code class="docutils literal notranslate"><span class="pre">0.0</span></code> (for left alignment) and <code class="docutils literal notranslate"><span class="pre">1.0</span></code> (for
+right alignment), or <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">align</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the alignment is determined based on other arguments,
+in a way that should be what you want most of the time. It depends on any
+positioning arguments (<code class="docutils literal notranslate"><span class="pre">topleft</span></code>, <code class="docutils literal notranslate"><span class="pre">centerx</span></code>, etc.), <code class="docutils literal notranslate"><span class="pre">anchor</span></code>, and finally
+defaults to <code class="docutils literal notranslate"><span class="pre">&quot;left&quot;</span></code>. I suggest you generally trust the default alignment,
+and only specify <code class="docutils literal notranslate"><span class="pre">align</span></code> if something doesn’t look right.</p>
+</div>
+<div class="section" id="outline">
+<h2>Outline<a class="headerlink" href="#outline" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">owidth</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ocolor</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Keyword arguments:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">owidth</span></code>: outline thickness, in outline units. Defaults to
+<code class="docutils literal notranslate"><span class="pre">None</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">ocolor</span></code>: outline color. Defaults to <code class="docutils literal notranslate"><span class="pre">&quot;black&quot;</span></code>.</li>
+</ul>
+<p>The text will be outlined if <code class="docutils literal notranslate"><span class="pre">owidth</span></code> is specified. The outlining is a
+crude manual method, and will probably look bad at large sizes. The
+units of <code class="docutils literal notranslate"><span class="pre">owidth</span></code> are chosen so that <code class="docutils literal notranslate"><span class="pre">1.0</span></code> is a good typical value
+for outlines. Specifically, they’re the font size divided by 24.</p>
+<p>As a special case, setting <code class="docutils literal notranslate"><span class="pre">color</span></code> to a transparent value (e.g.
+<code class="docutils literal notranslate"><span class="pre">(0,0,0,0)</span></code>) while using outilnes will cause the text to be invisible,
+giving a hollow outline. (This feature is not compatible with
+<code class="docutils literal notranslate"><span class="pre">gcolor</span></code>.)</p>
+<p>Valid values for <code class="docutils literal notranslate"><span class="pre">ocolor</span></code> are the same as for <code class="docutils literal notranslate"><span class="pre">color</span></code>.</p>
+</div>
+<div class="section" id="drop-shadow">
+<h2>Drop shadow<a class="headerlink" href="#drop-shadow" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">shadow</span><span class="o">=</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="mf">1.0</span><span class="p">),</span> <span class="n">scolor</span><span class="o">=</span><span class="s2">&quot;blue&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Keyword arguments:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">shadow</span></code>: (x,y) values representing the drop shadow offset, in
+shadow units. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</li>
+<li><code class="docutils literal notranslate"><span class="pre">scolor</span></code>: drop shadow color. Defaults to <code class="docutils literal notranslate"><span class="pre">&quot;black&quot;</span></code>.</li>
+</ul>
+<p>The text will have a drop shadow if <code class="docutils literal notranslate"><span class="pre">shadow</span></code> is specified. It must be
+set to a 2-element sequence representing the x and y offsets of the drop
+shadow, which can be positive, negative, or 0. For example,
+<code class="docutils literal notranslate"><span class="pre">shadow=(1.0,1.0)</span></code> corresponds to a shadow down and to the right of
+the text. <code class="docutils literal notranslate"><span class="pre">shadow=(0,-1.2)</span></code> corresponds to a shadow higher than the
+text.</p>
+<p>The units of <code class="docutils literal notranslate"><span class="pre">shadow</span></code> are chosen so that <code class="docutils literal notranslate"><span class="pre">1.0</span></code> is a good typical
+value for the offset. Specifically, they’re the font size divided by 18.</p>
+<p>As a special case, setting <code class="docutils literal notranslate"><span class="pre">color</span></code> to a transparent value (e.g.
+<code class="docutils literal notranslate"><span class="pre">(0,0,0,0)</span></code>) while using drop shadow will cause the text to be
+invisible, giving a hollow shadow. (This feature is not compatible with
+<code class="docutils literal notranslate"><span class="pre">gcolor</span></code>.)</p>
+<p>Valid values for <code class="docutils literal notranslate"><span class="pre">scolor</span></code> are the same as for <code class="docutils literal notranslate"><span class="pre">color</span></code>.</p>
+</div>
+<div class="section" id="gradient-color">
+<h2>Gradient color<a class="headerlink" href="#gradient-color" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;black&quot;</span><span class="p">,</span> <span class="n">gcolor</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Keyword argument:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">gcolor</span></code>: Lower gradient stop color. Defaults to <code class="docutils literal notranslate"><span class="pre">None</span></code>.</li>
+</ul>
+<p>Specify <code class="docutils literal notranslate"><span class="pre">gcolor</span></code> to color the text with a vertical color gradient. The
+text’s color will be <code class="docutils literal notranslate"><span class="pre">color</span></code> at the top and <code class="docutils literal notranslate"><span class="pre">gcolor</span></code> at the bottom.
+Positioning of the gradient stops and orientation of the gradient are
+hard coded and cannot be specified.</p>
+<p>Requries <code class="docutils literal notranslate"><span class="pre">pygame.surfarray</span></code> module, which uses numpy or Numeric
+library.</p>
+</div>
+<div class="section" id="alpha-transparency">
+<h2>Alpha transparency<a class="headerlink" href="#alpha-transparency" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Keyword argument:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">alpha</span></code>: alpha transparency value, between 0 and 1. Defaults to
+<code class="docutils literal notranslate"><span class="pre">1.0</span></code>.</li>
+</ul>
+<p>In order to maximize reuse of cached transparent surfaces, the value of
+<code class="docutils literal notranslate"><span class="pre">alpha</span></code> is rounded.</p>
+<p>Requires <code class="docutils literal notranslate"><span class="pre">pygame.surfarray</span></code> module, which uses numpy or Numeric
+library.</p>
+</div>
+<div class="section" id="anchored-positioning">
+<h2>Anchored positioning<a class="headerlink" href="#anchored-positioning" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">anchor</span><span class="o">=</span><span class="p">(</span><span class="mf">0.3</span><span class="p">,</span><span class="mf">0.7</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Keyword argument:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">anchor</span></code>: a length-2 sequence of horizontal and vertical anchor
+fractions. Defaults to <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">0.0)</span></code>.</li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">anchor</span></code> specifies how the text is anchored to the given position,
+when no positioning keyword arguments are passed. The two values in
+<code class="docutils literal notranslate"><span class="pre">anchor</span></code> can take arbitrary values between <code class="docutils literal notranslate"><span class="pre">0.0</span></code> and <code class="docutils literal notranslate"><span class="pre">1.0</span></code>. An
+<code class="docutils literal notranslate"><span class="pre">anchor</span></code> value of <code class="docutils literal notranslate"><span class="pre">(0,0)</span></code>, the default, means that the given
+position is the top left of the text. A value of <code class="docutils literal notranslate"><span class="pre">(1,1)</span></code> means the
+given position is the bottom right of the text.</p>
+</div>
+<div class="section" id="rotation">
+<h2>Rotation<a class="headerlink" href="#rotation" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">text</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">angle</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Keyword argument:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">angle</span></code>: counterclockwise rotation angle in degrees. Defaults to
+<code class="docutils literal notranslate"><span class="pre">0</span></code>.</li>
+</ul>
+<p>Positioning of rotated surfaces is tricky. When drawing rotated text, the
+anchor point, the position you actually specify, remains fixed, and the text
+rotates around it. For instance, if you specify the top left of the text to be
+at <code class="docutils literal notranslate"><span class="pre">(100,</span> <span class="pre">100)</span></code> with an angle of <code class="docutils literal notranslate"><span class="pre">90</span></code>, then the Surface will actually be
+drawn so that its bottom left is at <code class="docutils literal notranslate"><span class="pre">(100,</span> <span class="pre">100)</span></code>.</p>
+<p>If you find that confusing, try specifying the center. If you anchor the
+text at the center, then the center will remain fixed, no matter how you
+rotate it.</p>
+<p>In order to maximize reuse of cached rotated surfaces, the value of
+<code class="docutils literal notranslate"><span class="pre">angle</span></code> is rounded to the nearest multiple of 3 degrees.</p>
+</div>
+<div class="section" id="constrained-text">
+<h2>Constrained text<a class="headerlink" href="#constrained-text" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">textbox</span><span class="p">(</span><span class="s2">&quot;hello world&quot;</span><span class="p">,</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">screen.draw.textbox</span></code> requires two arguments: the text to be drawn, and a
+<code class="docutils literal notranslate"><span class="pre">pygame.Rect</span></code> or a <code class="docutils literal notranslate"><span class="pre">Rect</span></code>-like object to stay within. The font size
+will be chosen to be as large as possible while staying within the box.
+Other than <code class="docutils literal notranslate"><span class="pre">fontsize</span></code> and positional arguments, you can pass all the
+same keyword arguments to <code class="docutils literal notranslate"><span class="pre">screen.draw.textbox</span></code> as to <code class="docutils literal notranslate"><span class="pre">screen.draw.text</span></code>.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.svg" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">Pygame Zero</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction à Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from-scratch.html">Migrer depuis Scratch</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Event Hooks</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="builtins.html">Objets pré-définis</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="builtins.html#screen">Screen</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Text Formatting</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="builtins.html#rect">Rect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtins.html#resource-loading">Resource Loading</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtins.html#music">Music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtins.html#clock">Clock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtins.html#actors">Actors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtins.html#the-keyboard">The Keyboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtins.html#animations">Animations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="builtins.html#tone-generator">Tone Generator</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="repl.html">Using the REPL (Read-Evaluate-Print Loop)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ide-mode.html">Running Pygame Zero in IDLE and other IDEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other-libs.html">Other libraries like Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="stickers.html">Laptop Stickers</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles of Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Pygame Zero</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  <li><a href="builtins.html">Objets pré-définis</a><ul>
+      <li>Previous: <a href="builtins.html" title="previous chapter">Objets pré-définis</a></li>
+      <li>Next: <a href="installation.html" title="next chapter">Installing Pygame Zero</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Daniel Pope.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

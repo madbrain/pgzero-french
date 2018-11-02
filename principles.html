@@ -1,0 +1,196 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Principles of Pygame Zero &#8212; Pygame Zero 1.2 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Contributing to Pygame Zero" href="contributing.html" />
+    <link rel="prev" title="Roadmap" href="roadmap.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="principles-of-pygame-zero">
+<h1>Principles of Pygame Zero<a class="headerlink" href="#principles-of-pygame-zero" title="Permalink to this headline">¶</a></h1>
+<p>Please read the following carefully before contributing.</p>
+<p>Because Pygame Zero is aimed at beginners we must take extra care to avoid
+introducting hurdles for programmers who have not yet learned to deal with
+them.</p>
+<div class="section" id="make-it-accessible">
+<span id="accessibility"></span><h2>Make it accessible<a class="headerlink" href="#make-it-accessible" title="Permalink to this headline">¶</a></h2>
+<p>The main aim of Pygame Zero is to be accessible to beginner programmers.
+The design of the API is, of course, influenced by this.</p>
+<p>This also applies to things like hardware requirements: Pygame Zero chose
+originally to support only keyboard and mouse input, in order to be accessible
+to any user.</p>
+</div>
+<div class="section" id="be-conservative">
+<h2>Be conservative<a class="headerlink" href="#be-conservative" title="Permalink to this headline">¶</a></h2>
+<p>Early in the development of Pygame Zero, Richard and I (Daniel) went backwards
+and forwards over various features. We put them in, tried them and took them
+out again.</p>
+<p>Features should be rejected if they are too experimental, or if they might
+cause confusion.</p>
+<p>This also applies to things like OS support: we disallow filenames that are
+not likely to be compatible across operating systems.</p>
+</div>
+<div class="section" id="just-work">
+<h2>Just Work<a class="headerlink" href="#just-work" title="Permalink to this headline">¶</a></h2>
+<p>Pygame Zero wraps Pygame almost completely - but we don’t expose all the
+features. We expose only the features that work really well without extra fuss,
+and hide some of the other features that work less well or need extra steps.</p>
+</div>
+<div class="section" id="minimise-runtime-cost">
+<h2>Minimise runtime cost<a class="headerlink" href="#minimise-runtime-cost" title="Permalink to this headline">¶</a></h2>
+<p>At the end of the day, Pygame Zero is a games framework and performance is an
+issue.</p>
+<p>Doing expensive checking every frame to catch a potential pitfall is not really
+acceptable. Instead, we might check at start up time, or check only when an
+exception is raised to diagnose it and report more information.</p>
+</div>
+<div class="section" id="error-clearly">
+<h2>Error clearly<a class="headerlink" href="#error-clearly" title="Permalink to this headline">¶</a></h2>
+<p>When exceptions are thrown by Pygame Zero, they should have clear error
+messages that explain the problem.</p>
+</div>
+<div class="section" id="document-well">
+<h2>Document well<a class="headerlink" href="#document-well" title="Permalink to this headline">¶</a></h2>
+<p>Like all projects, Pygame Zero needs good documentation. Pull requests are more
+likely to be accepted if they include the necessary documentation.</p>
+<p>Try to avoid complicated sentences and technical terms in the documentation, so
+that it is more easily readable by inexperienced programmers.</p>
+</div>
+<div class="section" id="minimise-breaking-changes">
+<h2>Minimise breaking changes<a class="headerlink" href="#minimise-breaking-changes" title="Permalink to this headline">¶</a></h2>
+<p>In educational environments, users don’t always have control of the version of
+a library they use. They don’t know how to install or upgrade to the latest
+version.</p>
+<p>It is more important to get the features right first time than in many other
+projects.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.svg" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">Pygame Zero</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction à Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from-scratch.html">Migrer depuis Scratch</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Event Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builtins.html">Objets pré-définis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="repl.html">Using the REPL (Read-Evaluate-Print Loop)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ide-mode.html">Running Pygame Zero in IDLE and other IDEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other-libs.html">Other libraries like Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="stickers.html">Laptop Stickers</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Principles of Pygame Zero</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#make-it-accessible">Make it accessible</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#be-conservative">Be conservative</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#just-work">Just Work</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#minimise-runtime-cost">Minimise runtime cost</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#error-clearly">Error clearly</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#document-well">Document well</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#minimise-breaking-changes">Minimise breaking changes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Pygame Zero</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="roadmap.html" title="previous chapter">Roadmap</a></li>
+      <li>Next: <a href="contributing.html" title="next chapter">Contributing to Pygame Zero</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Daniel Pope.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

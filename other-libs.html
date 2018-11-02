@@ -1,0 +1,205 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Other libraries like Pygame Zero &#8212; Pygame Zero 1.2 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Changelog" href="changelog.html" />
+    <link rel="prev" title="Running Pygame Zero in IDLE and other IDEs" href="ide-mode.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="other-libraries-like-pygame-zero">
+<h1>Other libraries like Pygame Zero<a class="headerlink" href="#other-libraries-like-pygame-zero" title="Permalink to this headline">¶</a></h1>
+<p>Pygame Zero started a trend for Python “zero” libraries. Our friends have
+created these great libraries. Some of these can be combined with Pygame Zero!</p>
+<div class="section" id="network-zero">
+<h2>Network Zero<a class="headerlink" href="#network-zero" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://networkzero.readthedocs.io">Network Zero</a> makes it simpler to have several machines or several processes
+on one machine discovering each other and talking across a network.</p>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">If you want to use Network Zero with Pygame Zero, make sure you don’t let
+it <strong>block</strong> (stop everything while waiting for messages). This will
+interrupt Pygame Zero so that it stops animating the screen or even
+responding to input.  Always set the <code class="docutils literal notranslate"><span class="pre">wait_for_s</span></code> or <code class="docutils literal notranslate"><span class="pre">wait_for_reply_s</span></code>
+options to <code class="docutils literal notranslate"><span class="pre">0</span></code> seconds.</p>
+</div>
+</div>
+<div class="section" id="gui-zero">
+<h2>GUI Zero<a class="headerlink" href="#gui-zero" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://lawsie.github.io/guizero/">GUI Zero</a> is a library for creating Graphical User Interfaces (GUIs) with
+windows, buttons, sliders, textboxes and so on.</p>
+<p>Because GUI Zero and Pygame Zero both provide different approaches for drawing
+to the screen, they are not usable together.</p>
+</div>
+<div class="section" id="gpio-zero">
+<h2>GPIO Zero<a class="headerlink" href="#gpio-zero" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://gpiozero.readthedocs.io/">GPIO Zero</a> is a library for controlling devices connected to the General
+Purpose Input/Output (GPIO) pins on a <a class="reference external" href="https://www.raspberrypi.org/">Raspberry Pi</a>.</p>
+<p>GPIO Zero generally runs in its own thread, meaning that it will usually work
+very well with Pygame Zero.</p>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">When copying GPIO Zero examples, do not copy the <code class="docutils literal notranslate"><span class="pre">time.sleep()</span></code> function
+calls or <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">True:</span></code> loops, as these will stop Pygame Zero animating
+the screen or responding to input. Use <a class="reference internal" href="builtins.html#clock"><span class="std std-ref">Clock</span></a> functions instead to
+call functions periodically, or the <a class="reference internal" href="hooks.html#update" title="update"><code class="xref py py-func docutils literal notranslate"><span class="pre">update()</span></code></a> function to check a
+value every frame.</p>
+</div>
+</div>
+<div class="section" id="adventurelib">
+<h2>Adventurelib<a class="headerlink" href="#adventurelib" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://adventurelib.readthedocs.io/">Adventurelib</a> is a library for creating making text-based games easier to
+write (and which doesn’t do everything for you!).</p>
+<p>Writing text-based games requires a very different set of skills to writing
+graphical games. Adventurelib is pitched at a slightly more advanced level of
+Python programmer than Pygame Zero.</p>
+<p>Adventurelib cannot currently be combined with Pygame Zero.</p>
+</div>
+<div class="section" id="blue-dot">
+<h2>Blue Dot<a class="headerlink" href="#blue-dot" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://bluedot.readthedocs.io/">Blue Dot</a> allows you to control your Raspberry Pi projects wirelessly using
+an Android device as a Bluetooth remote.</p>
+<p>Blue Dot generally runs in its own thread, meaning that it will usually work
+very well with Pygame Zero.</p>
+<div class="admonition caution">
+<p class="first admonition-title">Caution</p>
+<p class="last">Avoid <code class="docutils literal notranslate"><span class="pre">time.sleep()</span></code> function calls, <code class="docutils literal notranslate"><span class="pre">while</span> <span class="pre">True:</span></code> loops and Blue Dot’s
+blocking <code class="docutils literal notranslate"><span class="pre">wait_for_press</span></code> and <code class="docutils literal notranslate"><span class="pre">wait_for_release</span></code> methods, as these will
+stop Pygame Zero animating the screen or responding to input. Use
+<a class="reference internal" href="builtins.html#clock"><span class="std std-ref">Clock</span></a> functions instead to call functions periodically, or the
+<a class="reference internal" href="hooks.html#update" title="update"><code class="xref py py-func docutils literal notranslate"><span class="pre">update()</span></code></a> function to check a value every frame.</p>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p>Know of another library that belongs here?</p>
+<p class="last"><a class="reference external" href="https://github.com/lordmauve/pgzero/issues/new">Open an issue</a> on the
+issue tracker to let us know!</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.svg" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">Pygame Zero</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction à Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from-scratch.html">Migrer depuis Scratch</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Event Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builtins.html">Objets pré-définis</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="repl.html">Using the REPL (Read-Evaluate-Print Loop)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ide-mode.html">Running Pygame Zero in IDLE and other IDEs</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Other libraries like Pygame Zero</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#network-zero">Network Zero</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gui-zero">GUI Zero</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gpio-zero">GPIO Zero</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adventurelib">Adventurelib</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#blue-dot">Blue Dot</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="stickers.html">Laptop Stickers</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles of Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Pygame Zero</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="ide-mode.html" title="previous chapter">Running Pygame Zero in IDLE and other IDEs</a></li>
+      <li>Next: <a href="changelog.html" title="next chapter">Changelog</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Daniel Pope.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

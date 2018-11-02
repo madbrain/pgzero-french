@@ -1,0 +1,179 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Using the REPL (Read-Evaluate-Print Loop) &#8212; Pygame Zero 1.2 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Running Pygame Zero in IDLE and other IDEs" href="ide-mode.html" />
+    <link rel="prev" title="Installing Pygame Zero" href="installation.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="using-the-repl-read-evaluate-print-loop">
+<h1>Using the REPL (Read-Evaluate-Print Loop)<a class="headerlink" href="#using-the-repl-read-evaluate-print-loop" title="Permalink to this headline">¶</a></h1>
+<p>The REPL allows you to interact with a running Pygame Zero game using Python
+commands. As you type it will offer suggestions based on variables that exist
+in your program. This can be useful for debugging your game or tuning how difficult it is.</p>
+<img alt="_images/repl.png" src="_images/repl.png" />
+<p>REPL is short for a Read-Evaluate-Print Loop; it means:</p>
+<ol class="arabic simple">
+<li><strong>Read</strong> a line of code typed by you</li>
+<li><strong>Evaluate</strong> the code</li>
+<li><strong>Print</strong> the result</li>
+<li><strong>Loop</strong> back to step 1!</li>
+</ol>
+<p>This is an <em>optional feature</em> that may need to <a class="reference internal" href="installation.html#install-repl"><span class="std std-ref">be installed</span></a> if it was not originally installed with Pygame Zero. If you try
+using the REPL, Pygame Zero will let you know if it is not installed.</p>
+<div class="section" id="running-a-pygame-zero-program-with-the-repl">
+<h2>Running a Pygame Zero program with the REPL<a class="headerlink" href="#running-a-pygame-zero-program-with-the-repl" title="Permalink to this headline">¶</a></h2>
+<p>If you normally run your Pygame Zero program using the terminal, add <code class="docutils literal notranslate"><span class="pre">--repl</span></code>
+to the command line when running <code class="docutils literal notranslate"><span class="pre">pgzrun</span></code>. For example, if your game is in
+a file called <code class="docutils literal notranslate"><span class="pre">mygame.py</span></code>, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pgzrun</span> <span class="o">--</span><span class="n">repl</span> <span class="n">mygame</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="using-the-repl">
+<h2>Using the REPL<a class="headerlink" href="#using-the-repl" title="Permalink to this headline">¶</a></h2>
+<p>Python code that you type at the REPL is evaluated as if you had typed it into
+your game file.</p>
+<p>For example, if your game file contains the code</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alien</span> <span class="o">=</span> <span class="n">Actor</span><span class="p">(</span><span class="s1">&#39;alien&#39;</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">54</span><span class="p">,</span> <span class="mi">60</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">draw</span><span class="p">():</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">alien</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Then at the REPL you could type <code class="docutils literal notranslate"><span class="pre">alien</span></code> to see the alien object:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">alien</span>
+<span class="go">&lt;Actor &#39;alien&#39; pos=(54, 60)&gt;</span>
+</pre></div>
+</div>
+<p>You can set attributes on the <code class="docutils literal notranslate"><span class="pre">alien</span></code> object and see it move:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">alien</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">90</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.svg" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">Pygame Zero</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction à Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from-scratch.html">Migrer depuis Scratch</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Event Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builtins.html">Objets pré-définis</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Pygame Zero</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Using the REPL (Read-Evaluate-Print Loop)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#running-a-pygame-zero-program-with-the-repl">Running a Pygame Zero program with the REPL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-the-repl">Using the REPL</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ide-mode.html">Running Pygame Zero in IDLE and other IDEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other-libs.html">Other libraries like Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="stickers.html">Laptop Stickers</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles of Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Pygame Zero</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="installation.html" title="previous chapter">Installing Pygame Zero</a></li>
+      <li>Next: <a href="ide-mode.html" title="next chapter">Running Pygame Zero in IDLE and other IDEs</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Daniel Pope.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

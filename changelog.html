@@ -1,0 +1,244 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Changelog &#8212; Pygame Zero 1.2 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Laptop Stickers" href="stickers.html" />
+    <link rel="prev" title="Other libraries like Pygame Zero" href="other-libs.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="changelog">
+<h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id1">
+<h2>1.2 - 2018-02-24<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>New: <a class="reference internal" href="builtins.html#rotation"><span class="std std-ref">Actors can be rotated</span></a> by assigning to <code class="docutils literal notranslate"><span class="pre">actor.angle</span></code></li>
+<li>New: Actors now have <a class="reference internal" href="builtins.html#Actor.angle_to" title="Actor.angle_to"><code class="xref py py-meth docutils literal notranslate"><span class="pre">angle_to()</span></code></a> and
+<a class="reference internal" href="builtins.html#Actor.distance_to" title="Actor.distance_to"><code class="xref py py-meth docutils literal notranslate"><span class="pre">distance_to()</span></code></a> methods.</li>
+<li>New: Actors are no longer subclasses of Rect, though they provide the same
+methods/properties. However they are now provided with floating point
+precision.</li>
+<li>New: <code class="docutils literal notranslate"><span class="pre">tone.play()</span></code> function to allow playing musical notes.</li>
+<li>New: <code class="docutils literal notranslate"><span class="pre">pgzrun.go()</span></code> to allow running Pygame Zero from an IDE (see
+<a class="reference internal" href="ide-mode.html"><span class="doc">Running Pygame Zero in IDLE and other IDEs</span></a>).</li>
+<li>New: show joypad icon by default</li>
+<li>Examples: add Asteroids example game (thanks to Ian Salmons)</li>
+<li>Examples: add Flappy Bird example game</li>
+<li>Examples: add Tetra example game (thanks to David Bern)</li>
+<li>Docs: Add a logo, fonts and colours to the documentation.</li>
+<li>Docs: Documentation for the <a class="reference internal" href="builtins.html#anchor"><span class="std std-ref">anchor point system for Actors</span></a></li>
+<li>Docs: Add <a class="reference internal" href="from-scratch.html"><span class="doc">Migrer depuis Scratch</span></a> documentation</li>
+<li>Fix: <code class="docutils literal notranslate"><span class="pre">on_mouse_move()</span></code> did not correctly handle the <code class="docutils literal notranslate"><span class="pre">buttons</span></code> parameter.</li>
+<li>Fix: Error message when resource not found incorrectly named last extension
+searched.</li>
+<li>Fix: Drawing wrapped text would cause crashes.</li>
+<li>Fix: <a class="reference internal" href="builtins.html#animate" title="animate"><code class="xref py py-func docutils literal notranslate"><span class="pre">animate()</span></code></a> now replaces animations of the same property, rather
+than creating two animations which fight.</li>
+<li>Updated ptext to a revision as of 2016-11-17.</li>
+<li>Removed: removed undocumented British English <code class="docutils literal notranslate"><span class="pre">centrex</span></code>, <code class="docutils literal notranslate"><span class="pre">centrey</span></code>,
+<code class="docutils literal notranslate"><span class="pre">centre</span></code> attribute aliases on ZRect (because they are not Rect-compatible).</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>1.1 - 2015-08-03<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Added a spell checker that will point out hook or parameter names that have
+been misspelled when the program starts.</li>
+<li>New ZRect built-in class, API compatible with Rect, but which accepts
+coordinates with floating point precision.</li>
+<li>Refactor of built-in <code class="docutils literal notranslate"><span class="pre">keyboard</span></code> object to fix attribute case consistency.
+This also allows querying key state by <code class="docutils literal notranslate"><span class="pre">keys</span></code> constants, eg.
+<code class="docutils literal notranslate"><span class="pre">keyboard[keys.LEFT]</span></code>.</li>
+<li>Provide much better information when sound files are in an unsupported
+format.</li>
+<li><code class="docutils literal notranslate"><span class="pre">screen.blit()</span></code> now accepts an image name string as well as a Surface
+object, for consistency with Actor.</li>
+<li>Fixed a bug with non-focusable windows and other event bugs when running in
+a virtualenv on Mac OS X.</li>
+<li>Actor can now be positioned by any of its border points (eg. <code class="docutils literal notranslate"><span class="pre">topleft</span></code>,
+<code class="docutils literal notranslate"><span class="pre">midright</span></code>) directly in the constructor.</li>
+<li>Added additional example games in the <code class="docutils literal notranslate"><span class="pre">examples/</span></code> directory.</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>1.0.2 - 2015-06-04<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Fix: ensure compatibility with Python 3.2</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>1.0.1 - 2015-05-31<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>This is a bugfix release.</p>
+<ul>
+<li><p class="first">Fix: Actor is now positioned to the top left of the window if <code class="docutils literal notranslate"><span class="pre">pos</span></code> is
+unspecified, rather than appearing partially off-screen.</p>
+</li>
+<li><p class="first">Fix: repeating clock events can now unschedule/reschedule themselves</p>
+<p>Previously a callback that tried to unschedule itself would have had no
+effect, because after the callback returns it was rescheduled by the clock.</p>
+<p>This applies also to <code class="docutils literal notranslate"><span class="pre">schedule_unique</span></code>.</p>
+</li>
+<li><p class="first">Fix: runner now correctly displays tracebacks from user code</p>
+</li>
+<li><p class="first">New: Eliminate redraws when nothing has changed</p>
+<p>Redraws will now happen only if:</p>
+<blockquote>
+<div><ul class="simple">
+<li>The screen has not yet been drawn</li>
+<li>You have defined an update() function</li>
+<li>An input event has been fired</li>
+<li>The clock has dispatched an event</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>1.0 - 2015-05-29<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">New: Added <code class="docutils literal notranslate"><span class="pre">anchor</span></code> parameter to Actor, offering control over where its
+<code class="docutils literal notranslate"><span class="pre">pos</span></code> attribute refers to. By default it now refers to the center.</p>
+</li>
+<li><p class="first">New: Added Ctrl-Q/⌘-Q as a hard-coded keyboard shortcut to exit a game.</p>
+</li>
+<li><p class="first">New: <code class="docutils literal notranslate"><span class="pre">on_mouse_*</span></code> and <code class="docutils literal notranslate"><span class="pre">on_key_*</span></code> receive <code class="docutils literal notranslate"><span class="pre">IntEnum</span></code> values as <code class="docutils literal notranslate"><span class="pre">button</span></code>
+and <code class="docutils literal notranslate"><span class="pre">key</span></code> parameters, respectively. This simplifies debugging and enables
+usage like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">button</span> <span class="ow">is</span> <span class="n">button</span><span class="o">.</span><span class="n">LEFT</span><span class="p">:</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div>
+<div class="section" id="beta1-2015-05-19">
+<h2>1.0beta1 - 2015-05-19<a class="headerlink" href="#beta1-2015-05-19" title="Permalink to this headline">¶</a></h2>
+<p>Initial public (preview) release.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.svg" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">Pygame Zero</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction à Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from-scratch.html">Migrer depuis Scratch</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Event Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builtins.html">Objets pré-définis</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="repl.html">Using the REPL (Read-Evaluate-Print Loop)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ide-mode.html">Running Pygame Zero in IDLE and other IDEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other-libs.html">Other libraries like Pygame Zero</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">1.2 - 2018-02-24</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">1.1 - 2015-08-03</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">1.0.2 - 2015-06-04</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">1.0.1 - 2015-05-31</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">1.0 - 2015-05-29</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#beta1-2015-05-19">1.0beta1 - 2015-05-19</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="stickers.html">Laptop Stickers</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles of Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Pygame Zero</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="other-libs.html" title="previous chapter">Other libraries like Pygame Zero</a></li>
+      <li>Next: <a href="stickers.html" title="next chapter">Laptop Stickers</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Daniel Pope.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

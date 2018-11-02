@@ -1,0 +1,268 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Contributing to Pygame Zero &#8212; Pygame Zero 1.2 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Principles of Pygame Zero" href="principles.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="contributing-to-pygame-zero">
+<h1>Contributing to Pygame Zero<a class="headerlink" href="#contributing-to-pygame-zero" title="Permalink to this headline">¶</a></h1>
+<p>The Pygame Zero project is hosted on GitHub:</p>
+<blockquote>
+<div><a class="reference external" href="https://github.com/lordmauve/pgzero">https://github.com/lordmauve/pgzero</a></div></blockquote>
+<div class="section" id="reporting-an-bug-or-request">
+<span id="report-issue"></span><h2>Reporting an bug or request<a class="headerlink" href="#reporting-an-bug-or-request" title="Permalink to this headline">¶</a></h2>
+<p>You can report bugs, or request features that you think should be in Pygame
+Zero, using the <a class="reference external" href="https://github.com/lordmauve/pgzero/issues">Github issue tracker</a>.</p>
+<p>Here are some things to bear in mind before you do this:</p>
+<ul class="simple">
+<li>It might not just be you! You should check if someone has already reported
+the issue by searching through the existing issues - both open and closed.</li>
+<li>The developers need to know what version of Pygame Zero you are using, and
+what operating system you are running (Windows, Mac, Linux etc) and version
+(Windows 10, Ubuntu 16.04, etc).</li>
+</ul>
+</div>
+<div class="section" id="how-to-do-a-pull-request">
+<h2>How to do a pull request<a class="headerlink" href="#how-to-do-a-pull-request" title="Permalink to this headline">¶</a></h2>
+<p>You can make changes to Pygame Zero by creating a pull request.</p>
+<p>It’s a good idea to <a class="reference internal" href="#report-issue"><span class="std std-ref">report an issue</span></a> first, so that we can
+discuss whether your change makes sense.</p>
+<p>Github has <a class="reference external" href="https://help.github.com/articles/creating-a-pull-request/">help on how to create a pull request</a>, but here’s the quick
+version:</p>
+<ol class="arabic">
+<li><p class="first">Make sure you are logged into Github.</p>
+</li>
+<li><p class="first">Go to the <a class="reference external" href="https://github.com/lordmauve/pgzero">Github page for Pygame Zero</a>.</p>
+</li>
+<li><p class="first">Click “Fork” to create your own fork of the repository.</p>
+</li>
+<li><p class="first">Clone this fork to your own computer:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git clone git@github.com:yourusername/pgzero.git
+</pre></div>
+</div>
+<p>Remember to change <code class="docutils literal notranslate"><span class="pre">yourusername</span></code> to your Github username.</p>
+</li>
+<li><p class="first">Create a branch in which to do your changes. Pick a branch name that
+describes the change you want to make.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git checkout -b my-new-branch master
+</pre></div>
+</div>
+</li>
+<li><p class="first">Make the changes you want.</p>
+</li>
+<li><p class="first">Add the files that you want to commit:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git add pgzero
+</pre></div>
+</div>
+</li>
+<li><p class="first">Commit the files with a clear commit message:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git commit -m &quot;Fixed issue #42 by renaming parameters&quot;
+</pre></div>
+</div>
+<p>You can do steps 6 to 8 as many times as you want until you’re happy.</p>
+</li>
+<li><p class="first">Push the commit back to your fork.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git push --set-upstream origin my-new-branch
+</pre></div>
+</div>
+</li>
+<li><p class="first">Go to the Github page for your fork, and click on the “Create pull request”
+button.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="development-installation">
+<h2>Development installation<a class="headerlink" href="#development-installation" title="Permalink to this headline">¶</a></h2>
+<p>It’s possible to create a locally-editable install using pip. From the root directory of the checked out source, run:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>pip3 install --editable .
+</pre></div>
+</div>
+<p>The installed version will now reflect any local changes you make.</p>
+<p>Alternatively, if you don’t want to install it at all, it may be run with:</p>
+<blockquote>
+<div>python3 -m pgzero &lt;name of pgzero script&gt;</div></blockquote>
+<p>For example:</p>
+<blockquote>
+<div>python3 -m pgzero examples/basic/demo1.py</div></blockquote>
+</div>
+<div class="section" id="how-to-run-tests">
+<h2>How to run tests<a class="headerlink" href="#how-to-run-tests" title="Permalink to this headline">¶</a></h2>
+<p>The tests can be run with</p>
+<blockquote>
+<div>python3 setup.py test</div></blockquote>
+</div>
+<div class="section" id="helping-to-translate-the-documentation">
+<span id="translating"></span><h2>Helping to translate the documentation<a class="headerlink" href="#helping-to-translate-the-documentation" title="Permalink to this headline">¶</a></h2>
+<p>Pygame Zero’s APIs will always be English, but we can bring Pygame Zero to more
+users around the world if the documentation is available in their language.</p>
+<p>If you are fluent in another language, please consider contributing by
+translating all or part of the documentation.</p>
+<p>The documentation is written in <a class="reference external" href="http://www.sphinx-doc.org/en/master/rest.html">reStructuredText</a>, which is a text-based markup
+language for technical documentation. As much as possible, the existing
+formatting should be preserved. reStructuredText isn’t too difficult once you
+get used to it.</p>
+<p>Creating a translation is done by creating a separate repository on Github with
+a copy of the documentation, rewritten (at least in part) into the language you
+would like to support. One advantage of this is that you can work on
+translations at your own pace, without having to submit pull requests back to
+the <code class="docutils literal notranslate"><span class="pre">pgzero</span></code> project itself. Please see the <a class="reference external" href="https://docs.readthedocs.io/en/latest/localization.html#project-with-multiple-translations">translation guide</a> on Read The
+Docs for details.</p>
+<p>If this sounds like something you could tackle, here’s how you might go about
+it:</p>
+<ol class="arabic simple">
+<li>First, open an issue on the <a class="reference external" href="https://github.com/lordmauve/pgzero/issues/new">pgzero issue tracker</a>. You should search for
+an existing issue covering the translation you want to do, before opening a
+new one. This will help ensure that you don’t do translation work that has
+already been done by someone else (perhaps you can collaborate instead).</li>
+<li>Create a new Github repository under your user, called pgzero-<em>language</em>,
+eg. <code class="docutils literal notranslate"><span class="pre">pgzero-spanish</span></code> if you’re going to translate into Spanish.</li>
+<li>Clone the repository to your own computer.</li>
+<li>Download the Pygame Zero <code class="docutils literal notranslate"><span class="pre">doc/</span></code> directory and commit it in your project.
+You can do this by extracting them from <a class="reference external" href="https://github.com/lordmauve/pgzero/archive/master.zip">repository ZIP file</a>. You only
+need the <code class="docutils literal notranslate"><span class="pre">doc/</span></code> directory from the ZIP file. You can delete the other
+files.</li>
+<li>Now, work through the .rst files in the docs directory, translating, using
+your preferred editor. You should commit regularly, and push your commits to
+Github.</li>
+<li>Post a link to your repository as a comment in the Github issue you created
+in step 1. You can do this as soon as you have some progress to show; this
+will help people collaborate with you on the translation if they are
+interested.</li>
+<li><a class="reference external" href="https://docs.readthedocs.io/en/latest/getting_started.html#import-your-docs">Set up the documentation to build on Read The Docs</a>. Again, post a
+comment on the Github issue when you have this working.</li>
+<li>We can then link up the new, translated documentation with the Pygame Zero
+documentation.</li>
+</ol>
+<p>Note that Pygame Zero will have updates, and the documentation will be changed
+accordingly. Using Git it is possible to see a diff of what changed in the
+English documentation, so that you can make corresponding changes in the
+translated documentation.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.svg" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">Pygame Zero</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction à Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from-scratch.html">Migrer depuis Scratch</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Event Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builtins.html">Objets pré-définis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="repl.html">Using the REPL (Read-Evaluate-Print Loop)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ide-mode.html">Running Pygame Zero in IDLE and other IDEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other-libs.html">Other libraries like Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="stickers.html">Laptop Stickers</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles of Pygame Zero</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Contributing to Pygame Zero</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#reporting-an-bug-or-request">Reporting an bug or request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-do-a-pull-request">How to do a pull request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#development-installation">Development installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-run-tests">How to run tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#helping-to-translate-the-documentation">Helping to translate the documentation</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="principles.html" title="previous chapter">Principles of Pygame Zero</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Daniel Pope.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

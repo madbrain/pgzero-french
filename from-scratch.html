@@ -1,0 +1,385 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Migrer depuis Scratch &#8212; Pygame Zero 1.2 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Event Hooks" href="hooks.html" />
+    <link rel="prev" title="Introduction à Pygame Zero" href="introduction.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="migrer-depuis-scratch">
+<h1>Migrer depuis Scratch<a class="headerlink" href="#migrer-depuis-scratch" title="Permalink to this headline">¶</a></h1>
+<p>Ce tutoriel compare une réalisation de Flappy Bird écrite en Scratch
+avec une écrite avec Pygame Zero. Les programmes Scratch et Pygame Zero sont
+en une certaine mesure très similaires.</p>
+<p>La <a class="reference external" href="https://github.com/lordmauve/pgzero/blob/master/examples/flappybird/flappybird.py">version Pygame Zero</a> peut être trouvée dans le dépôt de Pygame Zero.</p>
+<p>Tu peux aussi télécharger la <a class="reference external" href="https://github.com/lordmauve/pgzero/raw/master/examples/flappybird/Flappy%20Bird.sb">version Scratch</a> depuis le même dépôt.</p>
+<p>La version Pygame Zero inclue la gestion du score, qui est omise dans les exemples de code
+de cette page afin de simplifier la comparaison.</p>
+<p>Le code Python montré ci-dessous est réorganisé pour plus de clarté au travers des exemples.</p>
+<div class="section" id="la-scene">
+<h2>La scène<a class="headerlink" href="#la-scene" title="Permalink to this headline">¶</a></h2>
+<p>Voici comment la scène est organisée dans le programme Scratch:</p>
+<img alt="_images/flappybird-stage.png" src="_images/flappybird-stage.png" />
+<p>Il y a juste trois objets à part l’arrière plan: l’oiseau et les tuyaux du haut et du bas.</p>
+<p>Cela correspond au programme Pygame Zero, en définissant ces objets à l’aide d’acteurs (<code class="docutils literal notranslate"><span class="pre">Actors</span></code>):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">bird</span> <span class="o">=</span> <span class="n">Actor</span><span class="p">(</span><span class="s1">&#39;bird1&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">75</span><span class="p">,</span> <span class="mi">200</span><span class="p">))</span>
+<span class="n">pipe_top</span> <span class="o">=</span> <span class="n">Actor</span><span class="p">(</span><span class="s1">&#39;top&#39;</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="s1">&#39;bottom&#39;</span><span class="p">))</span>
+<span class="n">pipe_bottom</span> <span class="o">=</span> <span class="n">Actor</span><span class="p">(</span><span class="s1">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;left&#39;</span><span class="p">,</span> <span class="s1">&#39;top&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Avec Pygame Zero, nous devons nous assurer de dessiner ces objets. En général
+cela donne un peu plus de flexibilité sur la façon de dessiner la scène:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw</span><span class="p">():</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="s1">&#39;background&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="n">pipe_top</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+    <span class="n">pipe_bottom</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+    <span class="n">bird</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="le-mouvement-des-tuyaux">
+<h2>Le mouvement des tuyaux<a class="headerlink" href="#le-mouvement-des-tuyaux" title="Permalink to this headline">¶</a></h2>
+<p>Les tuyaux se déplacent à une vitesse constante indépendante de l’oiseau.
+Quand ils disparaissent du bord gauche de l’écran, ils réapparaissent à droite
+et leur position verticale change aléatoirement.</p>
+<p>En Scratch, cela peut être obtenu en créant deux scripts différents pour les tuyaux
+du haut et du bas.</p>
+<img alt="_images/flappybird-top-start.png" src="_images/flappybird-top-start.png" />
+<img alt="_images/flappybird-bottom-start.png" src="_images/flappybird-bottom-start.png" />
+<p>Pour résumer ce qui se passe ici:</p>
+<ul class="simple">
+<li>La condition <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">position</span> <span class="pre">&lt;</span> <span class="pre">-240</span></code> est vrai quand un tuyau disparait à gauche
+de l’écran et c’est ce qui déclenche la remise à zéro des tuyaux.</li>
+<li>La variable <code class="docutils literal notranslate"><span class="pre">pipe_height</span></code> est utilisée pour coordonner les deux tuyaux. Parce que
+l’espace entre eux doit rester le même, nous ne pouvons pas choisir les deux hauteurs
+aléatoirement. Donc un script contient la logique nécéssaire et pas l’autre.</li>
+<li>La ligne <code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">y</span> <span class="pre">position</span> <span class="pre">to</span> <span class="pre">pipe</span> <span class="pre">height</span> <span class="pre">+/-</span> <span class="pre">230</span></code> place un tuyaux au-dessus de
+<code class="docutils literal notranslate"><span class="pre">pipe_height</span></code> et l’autre en dessous <code class="docutils literal notranslate"><span class="pre">pipe_height</span></code>.</li>
+</ul>
+<p>Ce code devient bien plus simple avec Pygame Zero. Nous pouvons écrire une seule fonction
+qui met à jour les deux tuyaux. En fait, je l’ai découpé d’une façon différente pout montrer
+clairement que les traitements se font pour les deux tuyaux en même temps:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">WIDTH</span> <span class="o">=</span> <span class="mi">400</span>
+<span class="n">HEIGHT</span> <span class="o">=</span> <span class="mi">708</span>
+<span class="n">GAP</span> <span class="o">=</span> <span class="mi">130</span>
+<span class="n">SPEED</span> <span class="o">=</span> <span class="mi">3</span>
+
+<span class="k">def</span> <span class="nf">reset_pipes</span><span class="p">():</span>
+    <span class="n">pipe_gap_y</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="n">HEIGHT</span> <span class="o">-</span> <span class="mi">200</span><span class="p">)</span>
+    <span class="n">pipe_top</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">WIDTH</span><span class="p">,</span> <span class="n">pipe_gap_y</span> <span class="o">-</span> <span class="n">GAP</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">pipe_bottom</span><span class="o">.</span><span class="n">pos</span> <span class="o">=</span> <span class="p">(</span><span class="n">WIDTH</span><span class="p">,</span> <span class="n">pipe_gap_y</span> <span class="o">+</span> <span class="n">GAP</span> <span class="o">//</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">update_pipes</span><span class="p">():</span>
+    <span class="n">pipe_top</span><span class="o">.</span><span class="n">left</span> <span class="o">-=</span> <span class="n">SPEED</span>
+    <span class="n">pipe_bottom</span><span class="o">.</span><span class="n">left</span> <span class="o">-=</span> <span class="n">SPEED</span>
+    <span class="k">if</span> <span class="n">pipe_top</span><span class="o">.</span><span class="n">right</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">reset_pipes</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Une petite différence ici est que j’extrais les valeurs que je compte réutiliser
+sous la forme de “constantes”, écrite en MAJUSCULE. Cela me permet de les changer à un seul endroit
+lorsque je veux ajuster le jeu. Par exemple dans le code au dessus, je pourrais élargir ou rétrécir
+l’espacement entre les deux tuyaux seulement en changeant <code class="docutils literal notranslate"><span class="pre">GAP</span></code>.</p>
+<p>La plus grosse différence est qu’il n’y a pas de <code class="docutils literal notranslate"><span class="pre">boucler</span> <span class="pre">indéfiniment</span></code> dans le code Python.
+C’est la grosse différence entre Scratch et la plupart des languages de programmation textuel:
+vous devez mettre à jour le jeu d’un pas d’animation et ensuite retourner.
+Retourner donne à Pygame Zero la chance de faire des chose comme traiter
+les entrées ou redessiner l’écran. Boucler indéfiniment et le jeu resterait juste bloqué,
+donc toute boucle doit se finir rapidement.</p>
+<p>Pygame Zero appelle la fonction <code class="docutils literal notranslate"><span class="pre">update()</span></code> quand il veux que tu mettes à jour
+l’animation d’un pas, donc nous avons juste besoin d’appeler <code class="docutils literal notranslate"><span class="pre">update_pipes()</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
+   <span class="n">update_pipes</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="l-oiseau">
+<h2>L’oiseau<a class="headerlink" href="#l-oiseau" title="Permalink to this headline">¶</a></h2>
+<p>Le schéma décrit ci-dessus sur comment traduire Scratch en programme Python
+s’applique aussi pour le comportement de l’oiseau. Regardons d’abord le code Python cette fois.</p>
+<p>Le code de mise à jour de l’oiseau est organisé en une fonction appelée
+<code class="docutils literal notranslate"><span class="pre">update_bird()</span></code>. La première chose que cette fonction contient est le code de gestion
+des déplacement de l’oiseau selon la gravité:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GRAVITY</span> <span class="o">=</span> <span class="mf">0.3</span>
+
+<span class="c1"># Initial state of the bird</span>
+<span class="n">bird</span><span class="o">.</span><span class="n">dead</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">bird</span><span class="o">.</span><span class="n">vy</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="k">def</span> <span class="nf">update_bird</span><span class="p">():</span>
+    <span class="n">uy</span> <span class="o">=</span> <span class="n">bird</span><span class="o">.</span><span class="n">vy</span>
+    <span class="n">bird</span><span class="o">.</span><span class="n">vy</span> <span class="o">+=</span> <span class="n">GRAVITY</span>
+    <span class="n">bird</span><span class="o">.</span><span class="n">y</span> <span class="o">+=</span> <span class="n">bird</span><span class="o">.</span><span class="n">vy</span>
+    <span class="n">bird</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="mi">75</span>
+</pre></div>
+</div>
+<p>Voici une formule simple de gravité:</p>
+<ul class="simple">
+<li>Gravité signifie <strong>accélération constante vers le bas</strong>.</li>
+<li>Accélération est une variation de <strong>vitesse</strong>.</li>
+<li>Vitesse est une variation de <strong>position</strong>.</li>
+</ul>
+<p>Pour representer cela, nous avons besoin d’une variable <code class="docutils literal notranslate"><span class="pre">bird.vy</span></code> qui est la vitesse
+de l’oiseau dans la direction <code class="docutils literal notranslate"><span class="pre">y</span></code>. C’est une nouvelle variable que nous définissons,
+pas quelque chose que Pygame Zero nous fournit.</p>
+<ul class="simple">
+<li>Gravité signifie accélération constante vers le bas: <code class="docutils literal notranslate"><span class="pre">GRAVITY</span></code> est supérieure à 0.</li>
+<li>L’accélération est une variation de vitesse: <code class="docutils literal notranslate"><span class="pre">GRAVITY</span></code> est ajoutée à <code class="docutils literal notranslate"><span class="pre">bird.vy</span></code></li>
+<li>La vitesse est une variation de position: <code class="docutils literal notranslate"><span class="pre">bird.vy</span></code> est ajoutée à <code class="docutils literal notranslate"><span class="pre">bird.y</span></code></li>
+</ul>
+<p>Note que l’oiseau ne bouge pas horizontalement! Sa position <code class="docutils literal notranslate"><span class="pre">x</span></code> reste à 75
+tout au long du jeu. Nous simulons le mouvement horizontal en déplaçant les tuyaux vers lui.
+Ça donne l’impression d’une caméra se déplaçant en suivant l’oiseau. Donc il n’y a pas
+besoin d’une variable <code class="docutils literal notranslate"><span class="pre">vx</span></code> dans le jeu.</p>
+<p>La section suivante fait battre l’oiseau des ailes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="n">bird</span><span class="o">.</span><span class="n">dead</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">bird</span><span class="o">.</span><span class="n">vy</span> <span class="o">&lt;</span> <span class="o">-</span><span class="mi">3</span><span class="p">:</span>
+        <span class="n">bird</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="s1">&#39;bird2&#39;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">bird</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="s1">&#39;bird1&#39;</span>
+</pre></div>
+</div>
+<p>Cela vérifie que l’oiseau se déplace vers le haut ou le bas. Nous affichons l’image <code class="docutils literal notranslate"><span class="pre">bird2</span></code>
+s’il se déplace vers le haut et sinon l’image <code class="docutils literal notranslate"><span class="pre">bird1</span></code>. (-3 a été choisi
+après plusieurs essais pour faire que tout cela est l’air convainquant).</p>
+<p>La section suivante vérifie si l’oiseau a percuté un tuyau:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="n">bird</span><span class="o">.</span><span class="n">colliderect</span><span class="p">(</span><span class="n">pipe_top</span><span class="p">)</span> <span class="ow">or</span> <span class="n">bird</span><span class="o">.</span><span class="n">colliderect</span><span class="p">(</span><span class="n">pipe_bottom</span><span class="p">):</span>
+    <span class="n">bird</span><span class="o">.</span><span class="n">dead</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="n">bird</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="s1">&#39;birddead&#39;</span>
+</pre></div>
+</div>
+<p>Si c’est le cas, nous positionnons <code class="docutils literal notranslate"><span class="pre">bird.dead</span></code> à <code class="docutils literal notranslate"><span class="pre">True</span></code>. C’est une <strong>valeur booléenne</strong> signifiant qu’elle
+vaut soit vrai (<code class="docutils literal notranslate"><span class="pre">True</span></code>) soit faux (<code class="docutils literal notranslate"><span class="pre">False</span></code>). Nous pouvons utiliser cela pour facilement vérifier si l’oiseau est en vie.
+Si ce n’est pas le cas, il ne répondra plus aux commandes du joueur.</p>
+<p>Et la section finale vérifie si l’oiseau est arrivé en dehors en bas (ou en haut)
+de l’écran du jeu. Si c’est le cas, il réinitialise l’oiseau:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="ow">not</span> <span class="mi">0</span> <span class="o">&lt;</span> <span class="n">bird</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">720</span><span class="p">:</span>
+    <span class="n">bird</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="mi">200</span>
+    <span class="n">bird</span><span class="o">.</span><span class="n">dead</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">bird</span><span class="o">.</span><span class="n">vy</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">reset_pipes</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Que fait <code class="docutils literal notranslate"><span class="pre">reset_pipes()</span></code> ici ? Comme j’ai organisé le code des tuyaux en
+une fonction séparée, je peux juste l’appeler à tout moment lorsque je veux réinitialiser les tuyaux.
+Dans ce cas, cela fait un jeu plus intéressant car il laisse une chance au joueur
+de réagir quand l’oiseau est réinitialisé à sa position d’origine.</p>
+<p>Encore une fois, cela doit être appelé à chaque <em>frame</em>, donc nous l’ajoutons à <code class="docutils literal notranslate"><span class="pre">update()</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
+   <span class="n">update_walls</span><span class="p">()</span>
+   <span class="n">update_bird</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>La dernière partie du code de l’oiseau est celle qui permet de répondre aux commandes du joueur.
+Quand nous pressons une touche, l’oiseau bat des ailes vers le haut. Pygame Zero va appeler
+la fonction <code class="docutils literal notranslate"><span class="pre">on_key_down()</span></code> - si vous l’avez définie - dès qu’une touche est pressée:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">FLAP_VELOCITY</span> <span class="o">=</span> <span class="o">-</span><span class="mf">6.5</span>
+
+<span class="k">def</span> <span class="nf">on_key_down</span><span class="p">():</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">bird</span><span class="o">.</span><span class="n">dead</span><span class="p">:</span>
+        <span class="n">bird</span><span class="o">.</span><span class="n">vy</span> <span class="o">=</span> <span class="n">FLAP_VELOCITY</span>
+</pre></div>
+</div>
+<p>Ici, si l’oiseau n’est pas mort, nous définissons <code class="docutils literal notranslate"><span class="pre">vy</span></code> avec un nombre négatif :
+dans Pygame Zero cela signifie qu’il commence à se déplacer vers le haut.</p>
+<p>Tu devrais être capable de trouver pleins de similitudes entre le code Python et
+ce code Scratch:</p>
+<img alt="_images/flappybird-bird-start.png" src="_images/flappybird-bird-start.png" />
+<img alt="_images/flappybird-bird-space.png" src="_images/flappybird-bird-space.png" />
+<p>Les grosses différence entre Scratch et Pygame Zero sont les suivantes:</p>
+<ul class="simple">
+<li>Tu ne peut pas boucler indéfiniment avec Pygame Zero - met à jour juste pour un pas et retourne.</li>
+<li>Les coordonnées sont différentes. Dans Pygame Zero, le coin en haut à gauche de l’écran est
+<code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">0,</span> <span class="pre">y</span> <span class="pre">=</span> <span class="pre">0</span></code>. La direction <code class="docutils literal notranslate"><span class="pre">x</span></code> va de gauche à droite comme avant, mais
+<code class="docutils literal notranslate"><span class="pre">y</span></code> va vers le bas de l’écran! C’est pour cela que <code class="docutils literal notranslate"><span class="pre">GRAVITY</span></code> est un nombre positif et
+<code class="docutils literal notranslate"><span class="pre">FLAP_VELOCITY</span></code> est un nombre négatif dans le code Python.</li>
+<li><code class="docutils literal notranslate"><span class="pre">bird.dead</span></code> est un booléen, donc nous pouvons écrire du code comme <code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">not</span> <span class="pre">bird.dead</span></code>
+au lieu de <code class="docutils literal notranslate"><span class="pre">dead</span> <span class="pre">=</span> <span class="pre">0</span></code> en Scratch.</li>
+</ul>
+</div>
+<div class="section" id="resume">
+<h2>Résumé<a class="headerlink" href="#resume" title="Permalink to this headline">¶</a></h2>
+<p>Beaucoup des concepts disponibles dans Scratch se traduisent directement dans Pygame Zero.</p>
+<p>Voici quelques points de comparaison:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="39%" />
+<col width="61%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Dans Scratch</th>
+<th class="head">Dans Pygame Zero</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">change</span> <span class="pre">y</span> <span class="pre">by</span> <span class="pre">1</span></code> (up)</td>
+<td><code class="docutils literal notranslate"><span class="pre">bird.y</span> <span class="pre">-=</span> <span class="pre">1</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">change</span> <span class="pre">y</span> <span class="pre">by</span> <span class="pre">-1</span></code> (down)</td>
+<td><code class="docutils literal notranslate"><span class="pre">bird.y</span> <span class="pre">+=</span> <span class="pre">1</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">costume</span> <span class="pre">to</span> <span class="pre">&lt;name&gt;</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">bird.image</span> <span class="pre">=</span> <span class="pre">'name'</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">dead</span> <span class="pre">=</span> <span class="pre">0</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">not</span> <span class="pre">bird.dead:</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">set</span> <span class="pre">dead</span> <span class="pre">to</span> <span class="pre">0</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">bird.dead</span> <span class="pre">=</span> <span class="pre">False</span></code></td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">touching</span> <span class="pre">Top?</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">bird.colliderect(pipe_top)</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">When</span> <span class="pre">Flag</span> <span class="pre">clicked</span></code>…
+<code class="docutils literal notranslate"><span class="pre">forever</span></code></td>
+<td>Put code into the <code class="docutils literal notranslate"><span class="pre">update()</span></code> function.</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal notranslate"><span class="pre">When</span> <span class="pre">[any]</span> <span class="pre">key</span> <span class="pre">pressed</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">def</span> <span class="pre">on_key_down():</span></code></td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal notranslate"><span class="pre">pick</span> <span class="pre">random</span> <span class="pre">a</span> <span class="pre">to</span> <span class="pre">b</span></code></td>
+<td><code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">random</span></code> to load the <code class="docutils literal notranslate"><span class="pre">random</span></code>
+module, then <code class="docutils literal notranslate"><span class="pre">random.randint(a,</span> <span class="pre">b)</span></code></td>
+</tr>
+<tr class="row-odd"><td>(0, 0) is the centre of
+the stage</td>
+<td>(0, 0) is the top-left of the window</td>
+</tr>
+</tbody>
+</table>
+<p>Dans certains cas, le code est plus simple en Python car il peut être organisé
+de façon à être plus simple à comprendre à la lecture.</p>
+<p>La puissance des acteurs de Pygame Zero fait aussi que la manipulation des coordonnées est plus simple.
+Nous pouvons utiliser les positions ancre (<code class="docutils literal notranslate"><span class="pre">anchor</span></code>) pour positionner les tuyaux et nous avons été capable
+de voir si un tuyau était en dehors de l’écran en vérifiant <code class="docutils literal notranslate"><span class="pre">pipe_top.right</span> <span class="pre">&lt;</span> <span class="pre">0</span></code> plutôt que
+<code class="docutils literal notranslate"><span class="pre">if</span> <span class="pre">x</span> <span class="pre">position</span> <span class="pre">&lt;</span> <span class="pre">-240</span></code>.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.svg" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">Pygame Zero</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction à Pygame Zero</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Migrer depuis Scratch</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#la-scene">La scène</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#le-mouvement-des-tuyaux">Le mouvement des tuyaux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#l-oiseau">L’oiseau</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resume">Résumé</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Event Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builtins.html">Objets pré-définis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="repl.html">Using the REPL (Read-Evaluate-Print Loop)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ide-mode.html">Running Pygame Zero in IDLE and other IDEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other-libs.html">Other libraries like Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="stickers.html">Laptop Stickers</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles of Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Pygame Zero</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="introduction.html" title="previous chapter">Introduction à Pygame Zero</a></li>
+      <li>Next: <a href="hooks.html" title="next chapter">Event Hooks</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Daniel Pope.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

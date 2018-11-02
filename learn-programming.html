@@ -1,0 +1,288 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Learn programming with Pygame Zero &#8212; Pygame Zero 1.2 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="learn-programming-with-pygame-zero">
+<h1>Learn programming with Pygame Zero<a class="headerlink" href="#learn-programming-with-pygame-zero" title="Permalink to this headline">¶</a></h1>
+<p>Let’s start at the beginning. This tutorial is for those with no programming
+experience whatsoever. We’re going to learn to make a simple but perhaps fun
+game.</p>
+<p>I’m going to assume Pygame Zero is installed already and you know how to use
+a text editor.</p>
+</div>
+<div class="section" id="creating-a-blank-file">
+<h1>Creating a blank file<a class="headerlink" href="#creating-a-blank-file" title="Permalink to this headline">¶</a></h1>
+<p>First, create an empty file called “fishfrenzy.py” by creating a new, empty
+file in your editor and saving it as “fishfrenzy.py” in a new directory.</p>
+<p>Verify that this runs and creates a blank window by running</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">the_directory_you_created</span>
+<span class="n">pgzrun</span> <span class="n">fishfrenzy</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>How you run this may depend on your editor, shell, or loads of other things.</p>
+<p>If this step failed, then you may be in the wrong directory, or Python or
+Pygame Zero may not be installed correctly - or hundreds of other things. In
+many ways this is the hardest step, because it’s beyond the scope of this
+tutorial to explain things, given how many different configurations there are:
+what operating system you are running, what version of Python, what version of
+Pygame Zero.</p>
+<p>But with any luck you can get it to work! If you see a blank “Pygame Zero Game”
+window, we’re good to move on.</p>
+<div class="section" id="really-stuck">
+<h2>Really stuck?<a class="headerlink" href="#really-stuck" title="Permalink to this headline">¶</a></h2>
+<p>You can get into a support chat room by going to</p>
+<p><a class="reference external" href="http://webchat.freenode.net?randomnick=1&amp;channels=%23%23learnpython&amp;uio=d4">http://webchat.freenode.net?randomnick=1&amp;channels=%23%23learnpython&amp;uio=d4</a></p>
+</div>
+</div>
+<div class="section" id="functions">
+<h1>Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
+<p>Let’s begin for real.</p>
+<p>In most programming languages we program by defining a series of steps that the
+computer will carry out for us, like a <strong>recipe</strong>. In bakery, you might have
+a recipe like:</p>
+<blockquote>
+<div><p><strong>Cake Recipe</strong></p>
+<ul class="simple">
+<li>Add flour to the bowl</li>
+<li>Add sugar to the bowl</li>
+<li>Add butter to the bowl</li>
+<li>Add an egg to the bowl</li>
+<li>Whisk the ingredients</li>
+<li>Pour into a cake tin</li>
+<li>Bake it</li>
+</ul>
+</div></blockquote>
+<p>… and so on. (Don’t try this recipe. I am not a chef.)</p>
+<p>A game among programmers is to imagine how this would look as a program in an
+imaginary computer that understood whatever instructions you could name (this
+is called <strong>pseudocode</strong> - because it looks like code, but it doesn’t actually
+work). If we translated this recipe into Python, it would look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">cake_recipe</span><span class="p">():</span>
+    <span class="n">bowl</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">flour</span><span class="p">)</span>
+    <span class="n">bowl</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">sugar</span><span class="p">)</span>
+    <span class="n">bowl</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">butter</span><span class="p">)</span>
+    <span class="n">bowl</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">egg</span><span class="p">)</span>
+    <span class="n">whisk</span><span class="p">(</span><span class="n">bowl</span><span class="p">)</span>
+    <span class="n">cake_tin</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">bowl</span><span class="o">.</span><span class="n">get_contents</span><span class="p">())</span>
+    <span class="n">bake</span><span class="p">(</span><span class="n">cake_tin</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>That’s pretty similar, isn’t it? We’ve had to spell the names of some of the
+words differently, but basically, each line of the program is equivalent to one
+line of the recipe - one “action”.</p>
+<p>The top line with <code class="docutils literal notranslate"><span class="pre">def</span></code> is defining a recipe called <code class="docutils literal notranslate"><span class="pre">cake_recipe</span></code>, and all
+of the other lines are steps in the recipe. And in fact - because they all use
+parentheses - they refer to other recipes that the computer might know.</p>
+<p>So, let’s write a real recipe in Pygame Zero. In your editor, let’s write a
+<code class="docutils literal notranslate"><span class="pre">draw</span></code> recipe. Pygame Zero knows how to call a function called <code class="docutils literal notranslate"><span class="pre">draw</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw</span><span class="p">():</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">circle</span><span class="p">((</span><span class="mi">400</span><span class="p">,</span> <span class="mi">300</span><span class="p">),</span> <span class="mi">30</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">,</span> <span class="mi">255</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Run it with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pgzrun</span> <span class="n">fishfrenzy</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Did it work? Do you see the circle? On my screen it looks like this:</p>
+<img alt="_images/circle.png" src="_images/circle.png" />
+<p>If Pygame Zero didn’t show a window, or showed a window that disappeared
+straight away, look at the error message it displayed:</p>
+<ul class="simple">
+<li><code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code> - Probably means you are missing a parenthesis or your
+indentation doesn’t match mine. Note how each step of the function has to be
+aligned with each other, but indented <strong>more</strong> than the <code class="docutils literal notranslate"><span class="pre">def</span></code> at the top.</li>
+<li><code class="docutils literal notranslate"><span class="pre">AttributeError</span></code> or <code class="docutils literal notranslate"><span class="pre">NameError</span></code> - You probably mispelled something.</li>
+<li><code class="docutils literal notranslate"><span class="pre">TypeError</span></code> - did you put some of the parentheses in the wrong places?</li>
+</ul>
+<p>If the window appears, but nothing happens, did you misspell “draw”? Or any of
+the numbers?</p>
+<p>Check carefully if it doesn’t work first time and you should be able to get it
+to work after a few attempts.</p>
+<p>So we created a recipe that includes two steps:</p>
+<ol class="arabic">
+<li><p class="first">Clear the screen to black</p>
+</li>
+<li><p class="first">Draw a circle on the screen:</p>
+<blockquote>
+<div><ul class="simple">
+<li>At the middle <code class="docutils literal notranslate"><span class="pre">(400,</span> <span class="pre">300)</span></code>. These are coordinates for the center of the
+circle, in pixels from the left then pixels from the top.</li>
+<li>Of radius <code class="docutils literal notranslate"><span class="pre">30</span></code> pixels.</li>
+<li>And draw it in white, which is written as three numbers, red, green and
+blue: <code class="docutils literal notranslate"><span class="pre">(255,</span> <span class="pre">255,</span> <span class="pre">255)</span></code>. White is an equal mix of red, green and blue,
+and <code class="docutils literal notranslate"><span class="pre">255</span></code> is the most you can have.</li>
+</ul>
+</div></blockquote>
+</li>
+</ol>
+<p>You can play with all of these numbers.</p>
+<div class="section" id="diversion-local-and-global-variables">
+<h2>Diversion: Local and Global Variables<a class="headerlink" href="#diversion-local-and-global-variables" title="Permalink to this headline">¶</a></h2>
+<p>Suppose we wrote the following code:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RED</span> <span class="o">=</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">GREEN</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">0</span>
+
+<span class="n">bg</span> <span class="o">=</span> <span class="n">RED</span>
+
+<span class="k">def</span> <span class="nf">draw</span><span class="p">():</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">bg</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on_mouse_down</span><span class="p">():</span>
+    <span class="n">bg</span> <span class="o">=</span> <span class="n">GREEN</span>
+
+<span class="k">def</span> <span class="nf">on_mouse_up</span><span class="p">():</span>
+    <span class="n">bg</span> <span class="o">=</span> <span class="n">RED</span>
+</pre></div>
+</div>
+<p>In some languages, this would work: the screen would change to green
+when the mouse button was pressed, and change back to red when the button is
+released.</p>
+<p>This code doesn’t work in Python. If you try it, you will not see the screen
+change to green. Why?</p>
+<p>When you assign with the <code class="docutils literal notranslate"><span class="pre">=</span></code> operator inside a function, as at line 10 (and
+line 13), you create a “local” variable called <code class="docutils literal notranslate"><span class="pre">bg</span></code> that exists only with the
+function. The <code class="docutils literal notranslate"><span class="pre">bg</span></code> we want to change is in the global scope. It’s actually
+a very sensible feature; you don’t want to</p>
+<p>The fix is to declare in <code class="docutils literal notranslate"><span class="pre">on_mouse_down()</span></code> and <code class="docutils literal notranslate"><span class="pre">on_mouse_up()</span></code> that we
+want to modify the global variable, not create a new local variable. We do
+this with the <code class="docutils literal notranslate"><span class="pre">global</span></code> statement. The correct code in Pygame Zero is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RED</span> <span class="o">=</span> <span class="mi">150</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">GREEN</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">0</span>
+
+<span class="n">bg</span> <span class="o">=</span> <span class="n">RED</span>
+
+<span class="k">def</span> <span class="nf">draw</span><span class="p">():</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span><span class="n">bg</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on_mouse_down</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">bg</span>
+    <span class="n">bg</span> <span class="o">=</span> <span class="n">GREEN</span>
+
+<span class="k">def</span> <span class="nf">on_mouse_up</span><span class="p">():</span>
+    <span class="k">global</span> <span class="n">bg</span>
+    <span class="n">bg</span> <span class="o">=</span> <span class="n">RED</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.svg" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">Pygame Zero</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction à Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from-scratch.html">Migrer depuis Scratch</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Event Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="builtins.html">Objets pré-définis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="repl.html">Using the REPL (Read-Evaluate-Print Loop)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ide-mode.html">Running Pygame Zero in IDLE and other IDEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other-libs.html">Other libraries like Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="stickers.html">Laptop Stickers</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles of Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Pygame Zero</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Daniel Pope.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

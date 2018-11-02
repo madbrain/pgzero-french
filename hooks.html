@@ -1,0 +1,1149 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Event Hooks &#8212; Pygame Zero 1.2 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Objets pré-définis" href="builtins.html" />
+    <link rel="prev" title="Migrer depuis Scratch" href="from-scratch.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="event-hooks">
+<h1>Event Hooks<a class="headerlink" href="#event-hooks" title="Permalink to this headline">¶</a></h1>
+<p>Pygame Zero will automatically pick up and call event hooks that you define.
+This approach saves you from having to implement the event loop machinery
+yourself.</p>
+<div class="section" id="game-loop-hooks">
+<h2>Game Loop Hooks<a class="headerlink" href="#game-loop-hooks" title="Permalink to this headline">¶</a></h2>
+<p>A typical game loop looks a bit like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">game_has_not_ended</span><span class="p">():</span>
+    <span class="n">process_input</span><span class="p">()</span>
+    <span class="n">update</span><span class="p">()</span>
+    <span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Input processing is a bit more complicated, but Pygame Zero allows you to
+easily define the <code class="docutils literal notranslate"><span class="pre">update()</span></code> and <code class="docutils literal notranslate"><span class="pre">draw()</span></code> functions within your game
+module.</p>
+<dl class="function">
+<dt id="draw">
+<code class="descname">draw</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#draw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by Pygame Zero when it needs to redraw your game window.</p>
+<p><code class="docutils literal notranslate"><span class="pre">draw()</span></code> must take no arguments.</p>
+<p>Pygame Zero attempts to work out when the game screen needs to be redrawn
+to avoid redrawing if nothing has changed. On each step of the game loop
+it will draw the screen in the following situations:</p>
+<ul class="simple">
+<li>If you have defined an <code class="docutils literal notranslate"><span class="pre">update()</span></code> function (see below).</li>
+<li>If a clock event fires.</li>
+<li>If an input event has been triggered.</li>
+</ul>
+<p>One way this can catch you out is if you attempt to modify or animate
+something within the draw function. For example, this code is wrong: the
+alien is not guaranteed to continue moving across the screen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw</span><span class="p">():</span>
+    <span class="n">alien</span><span class="o">.</span><span class="n">left</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="n">alien</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>The correct code uses <code class="docutils literal notranslate"><span class="pre">update()</span></code> to modify or animate things and draw
+simply to paint the screen:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw</span><span class="p">():</span>
+    <span class="n">alien</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
+    <span class="n">alien</span><span class="o">.</span><span class="n">left</span> <span class="o">+=</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="function">
+<dt id="update">
+<code class="descname">update</code><span class="sig-paren">(</span><em>) or update(dt</em><span class="sig-paren">)</span><a class="headerlink" href="#update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called by Pygame Zero to step your game logic. This will be called
+repeatedly, 60 times a second.</p>
+<p>There are two different approaches to writing an update function.</p>
+<p>In simple games you can assume a small time step (a fraction of a second)
+has elapsed between each call to <code class="docutils literal notranslate"><span class="pre">update()</span></code>. Perhaps you don’t even care
+how big that time step is: you can just move objects by a fixed number of
+pixels per frame (or accelerate them by a fixed constant, etc.)</p>
+<p>A more advanced approach is to base your movement and physics calculations
+on the actual amount of time that has elapsed between calls. This can give
+smoother animation, but the calculations involved can be harder and you
+must take more care to avoid unpredictable behaviour when the time steps
+grow larger.</p>
+<p>To use a time-based approach, you can change the update function to take a
+single parameter. If your update function takes an argument, Pygame Zero
+will pass it the elapsed time in seconds. You can use this to scale your
+movement calculations.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="event-handling-hooks">
+<h2>Event Handling Hooks<a class="headerlink" href="#event-handling-hooks" title="Permalink to this headline">¶</a></h2>
+<p>Similar to the game loop hooks, your Pygame Zero program can respond to input
+events by defining functions with specific names.</p>
+<p>Somewhat like in the case of <code class="docutils literal notranslate"><span class="pre">update()</span></code>, Pygame Zero will inspect your
+event handler functions to determine how to call them. So you don’t need to
+make your handler functions take arguments. For example, Pygame Zero will
+be happy to call any of these variations of an <code class="docutils literal notranslate"><span class="pre">on_mouse_down</span></code> function:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_mouse_down</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mouse button clicked&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on_mouse_down</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mouse button clicked at&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on_mouse_down</span><span class="p">(</span><span class="n">button</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mouse button&quot;</span><span class="p">,</span> <span class="n">button</span><span class="p">,</span> <span class="s2">&quot;clicked&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">on_mouse_down</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">button</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mouse button&quot;</span><span class="p">,</span> <span class="n">button</span><span class="p">,</span> <span class="s2">&quot;clicked at&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>It does this by looking at the names of the parameters, so they must be spelled
+exactly as above. Each event hook has a different set of parameters that you
+can use, as described below.</p>
+<dl class="function">
+<dt id="on_mouse_down">
+<code class="descname">on_mouse_down</code><span class="sig-paren">(</span><span class="optional">[</span><em>pos</em><span class="optional">]</span><span class="optional">[</span>, <em>button</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#on_mouse_down" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a mouse button is depressed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pos</strong> – A tuple (x, y) that gives the location of the mouse pointer
+when the button was pressed.</li>
+<li><strong>button</strong> – A <a class="reference internal" href="#mouse" title="mouse"><code class="xref py py-class docutils literal notranslate"><span class="pre">mouse</span></code></a> enum value indicating the button that was
+pressed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="on_mouse_up">
+<code class="descname">on_mouse_up</code><span class="sig-paren">(</span><span class="optional">[</span><em>pos</em><span class="optional">]</span><span class="optional">[</span>, <em>button</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#on_mouse_up" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a mouse button is released.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pos</strong> – A tuple (x, y) that gives the location of the mouse pointer
+when the button was released.</li>
+<li><strong>button</strong> – A <a class="reference internal" href="#mouse" title="mouse"><code class="xref py py-class docutils literal notranslate"><span class="pre">mouse</span></code></a> enum value indicating the button that was
+released.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="on_mouse_move">
+<code class="descname">on_mouse_move</code><span class="sig-paren">(</span><span class="optional">[</span><em>pos</em><span class="optional">]</span><span class="optional">[</span>, <em>rel</em><span class="optional">]</span><span class="optional">[</span>, <em>buttons</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#on_mouse_move" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when the mouse is moved.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>pos</strong> – A tuple (x, y) that gives the location that the mouse pointer
+moved to.</li>
+<li><strong>rel</strong> – A tuple (delta_x, delta_y) that represent the change in the
+mouse pointer’s position.</li>
+<li><strong>buttons</strong> – A set of <a class="reference internal" href="#mouse" title="mouse"><code class="xref py py-class docutils literal notranslate"><span class="pre">mouse</span></code></a> enum values indicating the buttons
+that were depressed during the move.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<p>To handle mouse drags, use code such as the following:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_mouse_move</span><span class="p">(</span><span class="n">rel</span><span class="p">,</span> <span class="n">buttons</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">mouse</span><span class="o">.</span><span class="n">LEFT</span> <span class="ow">in</span> <span class="n">buttons</span><span class="p">:</span>
+        <span class="c1"># the mouse was dragged, do something with `rel`</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<dl class="function">
+<dt id="on_key_down">
+<code class="descname">on_key_down</code><span class="sig-paren">(</span><span class="optional">[</span><em>key</em><span class="optional">]</span><span class="optional">[</span>, <em>mod</em><span class="optional">]</span><span class="optional">[</span>, <em>unicode</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#on_key_down" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a key is depressed.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> – An integer indicating the key that was pressed (see
+<a class="reference internal" href="#buttons-and-keys"><span class="std std-ref">below</span></a>).</li>
+<li><strong>unicode</strong> – Where relevant, the character that was typed. Not all keys
+will result in printable characters - many may be control
+characters. In the event that a key doesn’t correspond to
+a Unicode character, this will be the empty string.</li>
+<li><strong>mod</strong> – A bitmask of modifier keys that were depressed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="on_key_up">
+<code class="descname">on_key_up</code><span class="sig-paren">(</span><span class="optional">[</span><em>key</em><span class="optional">]</span><span class="optional">[</span>, <em>mod</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#on_key_up" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a key is released.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>key</strong> – An integer indicating the key that was released (see
+<a class="reference internal" href="#buttons-and-keys"><span class="std std-ref">below</span></a>).</li>
+<li><strong>mod</strong> – A bitmask of modifier keys that were depressed.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="on_music_end">
+<code class="descname">on_music_end</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#on_music_end" title="Permalink to this definition">¶</a></dt>
+<dd><p>Called when a <a class="reference internal" href="builtins.html#music"><span class="std std-ref">music track</span></a> finishes.</p>
+<p>Note that this will not be called if the track is configured to loop.</p>
+</dd></dl>
+
+<div class="section" id="buttons-and-keys">
+<span id="id1"></span><h3>Buttons and Keys<a class="headerlink" href="#buttons-and-keys" title="Permalink to this headline">¶</a></h3>
+<p>Built-in objects <code class="docutils literal notranslate"><span class="pre">mouse</span></code> and <code class="docutils literal notranslate"><span class="pre">keys</span></code> can be used to determine which buttons
+or keys were pressed in the above events.</p>
+<p>Note that mouse scrollwheel events appear as button presses with the below
+<code class="docutils literal notranslate"><span class="pre">WHEEL_UP</span></code>/<code class="docutils literal notranslate"><span class="pre">WHEEL_DOWN</span></code> button constants.</p>
+<dl class="class">
+<dt id="mouse">
+<em class="property">class </em><code class="descname">mouse</code><a class="headerlink" href="#mouse" title="Permalink to this definition">¶</a></dt>
+<dd><p>A built-in enumeration of buttons that can be received by the
+<code class="docutils literal notranslate"><span class="pre">on_mouse_*</span></code> handlers.</p>
+<dl class="attribute">
+<dt id="mouse.LEFT">
+<code class="descname">LEFT</code><a class="headerlink" href="#mouse.LEFT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mouse.MIDDLE">
+<code class="descname">MIDDLE</code><a class="headerlink" href="#mouse.MIDDLE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mouse.RIGHT">
+<code class="descname">RIGHT</code><a class="headerlink" href="#mouse.RIGHT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mouse.WHEEL_UP">
+<code class="descname">WHEEL_UP</code><a class="headerlink" href="#mouse.WHEEL_UP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="mouse.WHEEL_DOWN">
+<code class="descname">WHEEL_DOWN</code><a class="headerlink" href="#mouse.WHEEL_DOWN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="keys">
+<em class="property">class </em><code class="descname">keys</code><a class="headerlink" href="#keys" title="Permalink to this definition">¶</a></dt>
+<dd><p>A built-in enumeration of keys that can be received by the <code class="docutils literal notranslate"><span class="pre">on_key_*</span></code>
+handlers.</p>
+<dl class="attribute">
+<dt id="keys.BACKSPACE">
+<code class="descname">BACKSPACE</code><a class="headerlink" href="#keys.BACKSPACE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.TAB">
+<code class="descname">TAB</code><a class="headerlink" href="#keys.TAB" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.CLEAR">
+<code class="descname">CLEAR</code><a class="headerlink" href="#keys.CLEAR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.RETURN">
+<code class="descname">RETURN</code><a class="headerlink" href="#keys.RETURN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.PAUSE">
+<code class="descname">PAUSE</code><a class="headerlink" href="#keys.PAUSE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.ESCAPE">
+<code class="descname">ESCAPE</code><a class="headerlink" href="#keys.ESCAPE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.SPACE">
+<code class="descname">SPACE</code><a class="headerlink" href="#keys.SPACE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.EXCLAIM">
+<code class="descname">EXCLAIM</code><a class="headerlink" href="#keys.EXCLAIM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.QUOTEDBL">
+<code class="descname">QUOTEDBL</code><a class="headerlink" href="#keys.QUOTEDBL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.HASH">
+<code class="descname">HASH</code><a class="headerlink" href="#keys.HASH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.DOLLAR">
+<code class="descname">DOLLAR</code><a class="headerlink" href="#keys.DOLLAR" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.AMPERSAND">
+<code class="descname">AMPERSAND</code><a class="headerlink" href="#keys.AMPERSAND" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.QUOTE">
+<code class="descname">QUOTE</code><a class="headerlink" href="#keys.QUOTE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.LEFTPAREN">
+<code class="descname">LEFTPAREN</code><a class="headerlink" href="#keys.LEFTPAREN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.RIGHTPAREN">
+<code class="descname">RIGHTPAREN</code><a class="headerlink" href="#keys.RIGHTPAREN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.ASTERISK">
+<code class="descname">ASTERISK</code><a class="headerlink" href="#keys.ASTERISK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.PLUS">
+<code class="descname">PLUS</code><a class="headerlink" href="#keys.PLUS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.COMMA">
+<code class="descname">COMMA</code><a class="headerlink" href="#keys.COMMA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.MINUS">
+<code class="descname">MINUS</code><a class="headerlink" href="#keys.MINUS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.PERIOD">
+<code class="descname">PERIOD</code><a class="headerlink" href="#keys.PERIOD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.SLASH">
+<code class="descname">SLASH</code><a class="headerlink" href="#keys.SLASH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.K_0">
+<code class="descname">K_0</code><a class="headerlink" href="#keys.K_0" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.K_1">
+<code class="descname">K_1</code><a class="headerlink" href="#keys.K_1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.K_2">
+<code class="descname">K_2</code><a class="headerlink" href="#keys.K_2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.K_3">
+<code class="descname">K_3</code><a class="headerlink" href="#keys.K_3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.K_4">
+<code class="descname">K_4</code><a class="headerlink" href="#keys.K_4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.K_5">
+<code class="descname">K_5</code><a class="headerlink" href="#keys.K_5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.K_6">
+<code class="descname">K_6</code><a class="headerlink" href="#keys.K_6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.K_7">
+<code class="descname">K_7</code><a class="headerlink" href="#keys.K_7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.K_8">
+<code class="descname">K_8</code><a class="headerlink" href="#keys.K_8" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.K_9">
+<code class="descname">K_9</code><a class="headerlink" href="#keys.K_9" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.COLON">
+<code class="descname">COLON</code><a class="headerlink" href="#keys.COLON" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.SEMICOLON">
+<code class="descname">SEMICOLON</code><a class="headerlink" href="#keys.SEMICOLON" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.LESS">
+<code class="descname">LESS</code><a class="headerlink" href="#keys.LESS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.EQUALS">
+<code class="descname">EQUALS</code><a class="headerlink" href="#keys.EQUALS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.GREATER">
+<code class="descname">GREATER</code><a class="headerlink" href="#keys.GREATER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.QUESTION">
+<code class="descname">QUESTION</code><a class="headerlink" href="#keys.QUESTION" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.AT">
+<code class="descname">AT</code><a class="headerlink" href="#keys.AT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.LEFTBRACKET">
+<code class="descname">LEFTBRACKET</code><a class="headerlink" href="#keys.LEFTBRACKET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.BACKSLASH">
+<code class="descname">BACKSLASH</code><a class="headerlink" href="#keys.BACKSLASH" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.RIGHTBRACKET">
+<code class="descname">RIGHTBRACKET</code><a class="headerlink" href="#keys.RIGHTBRACKET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.CARET">
+<code class="descname">CARET</code><a class="headerlink" href="#keys.CARET" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.UNDERSCORE">
+<code class="descname">UNDERSCORE</code><a class="headerlink" href="#keys.UNDERSCORE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.BACKQUOTE">
+<code class="descname">BACKQUOTE</code><a class="headerlink" href="#keys.BACKQUOTE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.A">
+<code class="descname">A</code><a class="headerlink" href="#keys.A" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.B">
+<code class="descname">B</code><a class="headerlink" href="#keys.B" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.C">
+<code class="descname">C</code><a class="headerlink" href="#keys.C" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.D">
+<code class="descname">D</code><a class="headerlink" href="#keys.D" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.E">
+<code class="descname">E</code><a class="headerlink" href="#keys.E" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.F">
+<code class="descname">F</code><a class="headerlink" href="#keys.F" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.G">
+<code class="descname">G</code><a class="headerlink" href="#keys.G" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.H">
+<code class="descname">H</code><a class="headerlink" href="#keys.H" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.I">
+<code class="descname">I</code><a class="headerlink" href="#keys.I" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.J">
+<code class="descname">J</code><a class="headerlink" href="#keys.J" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.K">
+<code class="descname">K</code><a class="headerlink" href="#keys.K" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.L">
+<code class="descname">L</code><a class="headerlink" href="#keys.L" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.M">
+<code class="descname">M</code><a class="headerlink" href="#keys.M" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.N">
+<code class="descname">N</code><a class="headerlink" href="#keys.N" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.O">
+<code class="descname">O</code><a class="headerlink" href="#keys.O" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.P">
+<code class="descname">P</code><a class="headerlink" href="#keys.P" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.Q">
+<code class="descname">Q</code><a class="headerlink" href="#keys.Q" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.R">
+<code class="descname">R</code><a class="headerlink" href="#keys.R" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.S">
+<code class="descname">S</code><a class="headerlink" href="#keys.S" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.T">
+<code class="descname">T</code><a class="headerlink" href="#keys.T" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.U">
+<code class="descname">U</code><a class="headerlink" href="#keys.U" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.V">
+<code class="descname">V</code><a class="headerlink" href="#keys.V" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.W">
+<code class="descname">W</code><a class="headerlink" href="#keys.W" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.X">
+<code class="descname">X</code><a class="headerlink" href="#keys.X" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.Y">
+<code class="descname">Y</code><a class="headerlink" href="#keys.Y" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.Z">
+<code class="descname">Z</code><a class="headerlink" href="#keys.Z" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.DELETE">
+<code class="descname">DELETE</code><a class="headerlink" href="#keys.DELETE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.KP0">
+<code class="descname">KP0</code><a class="headerlink" href="#keys.KP0" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.KP1">
+<code class="descname">KP1</code><a class="headerlink" href="#keys.KP1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.KP2">
+<code class="descname">KP2</code><a class="headerlink" href="#keys.KP2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.KP3">
+<code class="descname">KP3</code><a class="headerlink" href="#keys.KP3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.KP4">
+<code class="descname">KP4</code><a class="headerlink" href="#keys.KP4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.KP5">
+<code class="descname">KP5</code><a class="headerlink" href="#keys.KP5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.KP6">
+<code class="descname">KP6</code><a class="headerlink" href="#keys.KP6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.KP7">
+<code class="descname">KP7</code><a class="headerlink" href="#keys.KP7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.KP8">
+<code class="descname">KP8</code><a class="headerlink" href="#keys.KP8" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.KP9">
+<code class="descname">KP9</code><a class="headerlink" href="#keys.KP9" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.KP_PERIOD">
+<code class="descname">KP_PERIOD</code><a class="headerlink" href="#keys.KP_PERIOD" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.KP_DIVIDE">
+<code class="descname">KP_DIVIDE</code><a class="headerlink" href="#keys.KP_DIVIDE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.KP_MULTIPLY">
+<code class="descname">KP_MULTIPLY</code><a class="headerlink" href="#keys.KP_MULTIPLY" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.KP_MINUS">
+<code class="descname">KP_MINUS</code><a class="headerlink" href="#keys.KP_MINUS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.KP_PLUS">
+<code class="descname">KP_PLUS</code><a class="headerlink" href="#keys.KP_PLUS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.KP_ENTER">
+<code class="descname">KP_ENTER</code><a class="headerlink" href="#keys.KP_ENTER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.KP_EQUALS">
+<code class="descname">KP_EQUALS</code><a class="headerlink" href="#keys.KP_EQUALS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.UP">
+<code class="descname">UP</code><a class="headerlink" href="#keys.UP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.DOWN">
+<code class="descname">DOWN</code><a class="headerlink" href="#keys.DOWN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.RIGHT">
+<code class="descname">RIGHT</code><a class="headerlink" href="#keys.RIGHT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.LEFT">
+<code class="descname">LEFT</code><a class="headerlink" href="#keys.LEFT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.INSERT">
+<code class="descname">INSERT</code><a class="headerlink" href="#keys.INSERT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.HOME">
+<code class="descname">HOME</code><a class="headerlink" href="#keys.HOME" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.END">
+<code class="descname">END</code><a class="headerlink" href="#keys.END" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.PAGEUP">
+<code class="descname">PAGEUP</code><a class="headerlink" href="#keys.PAGEUP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.PAGEDOWN">
+<code class="descname">PAGEDOWN</code><a class="headerlink" href="#keys.PAGEDOWN" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.F1">
+<code class="descname">F1</code><a class="headerlink" href="#keys.F1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.F2">
+<code class="descname">F2</code><a class="headerlink" href="#keys.F2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.F3">
+<code class="descname">F3</code><a class="headerlink" href="#keys.F3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.F4">
+<code class="descname">F4</code><a class="headerlink" href="#keys.F4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.F5">
+<code class="descname">F5</code><a class="headerlink" href="#keys.F5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.F6">
+<code class="descname">F6</code><a class="headerlink" href="#keys.F6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.F7">
+<code class="descname">F7</code><a class="headerlink" href="#keys.F7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.F8">
+<code class="descname">F8</code><a class="headerlink" href="#keys.F8" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.F9">
+<code class="descname">F9</code><a class="headerlink" href="#keys.F9" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.F10">
+<code class="descname">F10</code><a class="headerlink" href="#keys.F10" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.F11">
+<code class="descname">F11</code><a class="headerlink" href="#keys.F11" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.F12">
+<code class="descname">F12</code><a class="headerlink" href="#keys.F12" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.F13">
+<code class="descname">F13</code><a class="headerlink" href="#keys.F13" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.F14">
+<code class="descname">F14</code><a class="headerlink" href="#keys.F14" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.F15">
+<code class="descname">F15</code><a class="headerlink" href="#keys.F15" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.NUMLOCK">
+<code class="descname">NUMLOCK</code><a class="headerlink" href="#keys.NUMLOCK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.CAPSLOCK">
+<code class="descname">CAPSLOCK</code><a class="headerlink" href="#keys.CAPSLOCK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.SCROLLOCK">
+<code class="descname">SCROLLOCK</code><a class="headerlink" href="#keys.SCROLLOCK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.RSHIFT">
+<code class="descname">RSHIFT</code><a class="headerlink" href="#keys.RSHIFT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.LSHIFT">
+<code class="descname">LSHIFT</code><a class="headerlink" href="#keys.LSHIFT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.RCTRL">
+<code class="descname">RCTRL</code><a class="headerlink" href="#keys.RCTRL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.LCTRL">
+<code class="descname">LCTRL</code><a class="headerlink" href="#keys.LCTRL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.RALT">
+<code class="descname">RALT</code><a class="headerlink" href="#keys.RALT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.LALT">
+<code class="descname">LALT</code><a class="headerlink" href="#keys.LALT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.RMETA">
+<code class="descname">RMETA</code><a class="headerlink" href="#keys.RMETA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.LMETA">
+<code class="descname">LMETA</code><a class="headerlink" href="#keys.LMETA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.LSUPER">
+<code class="descname">LSUPER</code><a class="headerlink" href="#keys.LSUPER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.RSUPER">
+<code class="descname">RSUPER</code><a class="headerlink" href="#keys.RSUPER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.MODE">
+<code class="descname">MODE</code><a class="headerlink" href="#keys.MODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.HELP">
+<code class="descname">HELP</code><a class="headerlink" href="#keys.HELP" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.PRINT">
+<code class="descname">PRINT</code><a class="headerlink" href="#keys.PRINT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.SYSREQ">
+<code class="descname">SYSREQ</code><a class="headerlink" href="#keys.SYSREQ" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.BREAK">
+<code class="descname">BREAK</code><a class="headerlink" href="#keys.BREAK" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.MENU">
+<code class="descname">MENU</code><a class="headerlink" href="#keys.MENU" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.POWER">
+<code class="descname">POWER</code><a class="headerlink" href="#keys.POWER" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.EURO">
+<code class="descname">EURO</code><a class="headerlink" href="#keys.EURO" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keys.LAST">
+<code class="descname">LAST</code><a class="headerlink" href="#keys.LAST" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<p>Additionally you can access a set of constants that represent modifier keys:</p>
+<dl class="class">
+<dt id="keymods">
+<em class="property">class </em><code class="descname">keymods</code><a class="headerlink" href="#keymods" title="Permalink to this definition">¶</a></dt>
+<dd><p>Constants representing modifier keys that may have been depressed during
+an <code class="docutils literal notranslate"><span class="pre">on_key_up</span></code>/<code class="docutils literal notranslate"><span class="pre">on_key_down</span></code> event.</p>
+<dl class="attribute">
+<dt id="keymods.LSHIFT">
+<code class="descname">LSHIFT</code><a class="headerlink" href="#keymods.LSHIFT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keymods.RSHIFT">
+<code class="descname">RSHIFT</code><a class="headerlink" href="#keymods.RSHIFT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keymods.SHIFT">
+<code class="descname">SHIFT</code><a class="headerlink" href="#keymods.SHIFT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keymods.LCTRL">
+<code class="descname">LCTRL</code><a class="headerlink" href="#keymods.LCTRL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keymods.RCTRL">
+<code class="descname">RCTRL</code><a class="headerlink" href="#keymods.RCTRL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keymods.CTRL">
+<code class="descname">CTRL</code><a class="headerlink" href="#keymods.CTRL" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keymods.LALT">
+<code class="descname">LALT</code><a class="headerlink" href="#keymods.LALT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keymods.RALT">
+<code class="descname">RALT</code><a class="headerlink" href="#keymods.RALT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keymods.ALT">
+<code class="descname">ALT</code><a class="headerlink" href="#keymods.ALT" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keymods.LMETA">
+<code class="descname">LMETA</code><a class="headerlink" href="#keymods.LMETA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keymods.RMETA">
+<code class="descname">RMETA</code><a class="headerlink" href="#keymods.RMETA" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keymods.META">
+<code class="descname">META</code><a class="headerlink" href="#keymods.META" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keymods.NUM">
+<code class="descname">NUM</code><a class="headerlink" href="#keymods.NUM" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keymods.CAPS">
+<code class="descname">CAPS</code><a class="headerlink" href="#keymods.CAPS" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="keymods.MODE">
+<code class="descname">MODE</code><a class="headerlink" href="#keymods.MODE" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="_static/logo.svg" alt="Logo"/>
+            </a></p>
+<h1 class="logo"><a href="index.html">Pygame Zero</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction à Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="from-scratch.html">Migrer depuis Scratch</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Event Hooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#game-loop-hooks">Game Loop Hooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event-handling-hooks">Event Handling Hooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#buttons-and-keys">Buttons and Keys</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="builtins.html">Objets pré-définis</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="repl.html">Using the REPL (Read-Evaluate-Print Loop)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ide-mode.html">Running Pygame Zero in IDLE and other IDEs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other-libs.html">Other libraries like Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="stickers.html">Laptop Stickers</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles of Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Pygame Zero</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="from-scratch.html" title="previous chapter">Migrer depuis Scratch</a></li>
+      <li>Next: <a href="builtins.html" title="next chapter">Objets pré-définis</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2015, Daniel Pope.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>
