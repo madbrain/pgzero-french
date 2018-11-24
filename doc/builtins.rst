@@ -14,10 +14,10 @@ Screen
 
     ptext
 
-The ``screen`` object represents your game screen.
+L'objet ``screen`` represente l'écran de ton jeu.
 
-It is a thin wrapper around a Pygame surface that allows you to easily
-draw images to the screen ("blit" them).
+C'est une fine couche autour d'une surface Pygame qui te permet facilement de dessiner
+des images à l'écran.
 
 .. class:: Screen
 
