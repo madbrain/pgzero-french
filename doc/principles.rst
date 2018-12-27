@@ -9,7 +9,7 @@ Veuillez lire attentivement ce qui suit avant de contribuer.
 .. _accessibility:
 
 Rendre accessible
---------------------
+-----------------
 
 L'objectif principal de Pygame Zero est d'être accessible aux programmeurs débutants. La conception de l'API en est évidemment influencée.
 
@@ -53,8 +53,8 @@ Comme tous les projets, Pygame Zero nécessite une bonne documentation. Les dema
 Essayez d'éviter les phrases compliquées et les termes techniques dans la documentation, afin qu'elle soit plus facilement lisible par des programmeurs inexpérimentés.
 
 
-Minimiser les changements d'envergure
--------------------------------------
+Minimiser les changements radicaux
+----------------------------------
 
 Dans les structures de l'éducation, les utilisateurs n'ont pas toujours le contrôle sur la version d'une bibliothèque qu'ils utilisent. Ils ne savent pas comment installer ou mettre à jour afin d'obtenir la dernière version.
 
