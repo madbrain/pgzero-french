@@ -1,7 +1,8 @@
 Objets pré-définis
 ==================
 
-Pygame Zero fournit des objets pré-définis utiles pour t'aider à construire des jeux facilement.
+Pygame Zero fournit des objets pré-définis utiles pour t'aider
+à construire des jeux facilement.
 
 
 .. _screen:
@@ -14,111 +15,113 @@ Screen
 
     ptext
 
-L'objet ``screen`` represente l'écran de ton jeu.
+L'objet ``screen`` représente l'écran de ton jeu.
 
-C'est une fine couche autour d'une surface Pygame qui te permet facilement de dessiner
-des images à l'écran.
+C'est une fine couche autour d'une surface Pygame qui te permet
+facilement de dessiner des images à l'écran.
 
 .. class:: Screen
 
     .. attribute:: surface
 
-        The raw `Pygame surface`_ that represents the screen buffer. You can
-        use this for advanced graphics operations.
+        La `surface Pygame`_ brute qui représente l'espace mémoire de l'écran. Tu peux
+        l'utiliser pour les opérations graphiques avancées.
 
-        .. _`Pygame surface`: https://www.pygame.org/docs/ref/surface.html
+        .. _`surface Pygame`: https://www.pygame.org/docs/ref/surface.html
 
     .. method:: clear()
 
-        Reset the screen to black.
+        Réinitialise l'écran en noir.
 
-    .. method:: fill((red, green, blue))
+    .. method:: fill((rouge, vert, bleu))
 
-        Fill the screen with a solid color.
+        Rempli l'écran d'une couleur pleine.
 
-    .. method:: blit(image, (left, top))
+    .. method:: blit(image, (gauche, haut))
 
-        Draw the image to the screen at the given position.
+        Dessine l'image sur l'écran à la position donnée.
 
-        ``blit()`` accepts either a Surface or a string as its ``image``
-        parameter. If ``image`` is a ``str`` then the named image will be
-        loaded from the ``images/`` directory.
+        ``blit()`` accepte soit une surface ou une chaîne comme paramètre ``image``.
+        Si ``image`` est une chaîne alors l'image au nom correspondant sera chargée
+        depuis le répertoire ``images/``.
 
-    .. method:: draw.line(start, end, (r, g, b))
+    .. method:: draw.line(début, fin, (r, v, b))
 
-        Draw a line from start to end.
+        Dessine une ligne de ``début`` à ``fin``.
 
-    .. method:: draw.circle(pos, radius, (r, g, b))
+    .. method:: draw.circle(pos, rayon, (r, v, b))
 
-        Draw the outline of a circle.
+        Dessine un cercle.
 
-    .. method:: draw.filled_circle(pos, radius, (r, g, b))
+    .. method:: draw.filled_circle(pos, rayon, (r, v, b))
 
-        Draw a filled circle.
+        Dessine un disque.
 
-    .. method:: draw.rect(rect, (r, g, b))
+    .. method:: draw.rect(rect, (r, v, b))
 
-        Draw the outline of a rectangle.
+        Dessine le contour un rectangle.
 
-        Takes a :ref:`Rect <rect>`.
+        Prend un :ref:`Rect <rect>` en paramètre.
 
-    .. method:: draw.filled_rect(rect, (r, g, b))
+    .. method:: draw.filled_rect(rect, (r, v, b))
 
-        Draw a filled rectangle.
+        Dessine un rectangle plein.
 
-    .. method:: draw.text(text, [pos], **kwargs)
+    .. method:: draw.text(texte, [pos], **kwargs)
 
-        Draw text.
+        Dessine du texte.
 
-        There's an extremely rich API for positioning and formatting text; see
-        :doc:`ptext` for full details.
+        Il existe une API extrêmement riche pour positionner et formater du texte, regarder
+        :doc:`ptext` pour plus de détails.
 
-    .. method:: draw.textbox(text, rect, **kwargs)
+    .. method:: draw.textbox(texte, rect, **kwargs)
 
-        Draw text, sized to fill the given :ref:`Rect`.
+        Dessine du texte dimensionné pour remplir le :ref:`Rect` donné.
 
-        There's an extremely rich API for formatting text; see
-        :doc:`ptext` for full details.
+        Il existe une API extrêmement riche pour positionner et formater du texte, regarder
+        :doc:`ptext` pour plus de détails.
 
 .. _rect:
 
 Rect
 ----
 
-The `Pygame Rect`_ class is available as a built in. This can be used in a
-variety of ways, from detecting clicks within a region to drawing a box onto
-the screen:
+La classe `Pygame Rect`_ est disponible en tant que classe prédéfinie.
+Elle peut être utilisée de nombreuses façons, de la détection de clics
+dans une région au dessin d'une boîte sur l'écran:
 
-For example, you can draw a box with::
+Par exemple, tu peux dessiner une boîte avec::
 
-    RED = 200, 0, 0
-    BOX = Rect((20, 20), (100, 100))
+    ROUGE = 200, 0, 0
+    BOITE = Rect((20, 20), (100, 100))
 
     def draw():
-        screen.draw.rect(BOX, RED)
+        screen.draw.rect(BOITE, ROUGE)
 
 
 .. _`Pygame Rect`: https://www.pygame.org/docs/ref/rect.html
 
 
-Resource Loading
-----------------
+Chargement de resources
+-----------------------
 
-The ``images`` and ``sounds`` objects can be used to load images and sounds
-from files stored in the ``images`` and ``sounds`` subdirectories respectively.
-Pygame Zero will handle loading of these resources on demand and will cache
-them to avoid reloading them.
+Les objets ``images`` et ``sounds`` peuvent être utilisés pour charger des
+images et des clips audio depuis des fichiers stockés dans les répertoires
+``images`` et ``sounds`` respectivement. Pygame Zero va se charger de lire
+ces resources à la demande et va les mémoriser afin d'éviter de les relire.
 
-You generally need to ensure that your images are named with lowercase letters,
-numbers and underscores only. They also have to start with a letter.
+Tu doit généralement t'assurer que tes images sont nommées avec des lettres
+minuscule, des chiffres et le caractère souligné ``_`` seulement.
+Ils doivent aussi commencer par une lettre.
 
-File names like these will work well with the resource loader::
+Les noms de fichiers suivants vont fonctionner correctement lors du
+chargement de resources::
 
     alien.png
     alien_hurt.png
     alien_run_7.png
 
-These will not work::
+Ceux-ci ne fonctionneront pas::
 
     3.png
     3degrees.png
@@ -128,43 +131,45 @@ These will not work::
 Images
 ''''''
 
-Pygame Zero can load images in ``.png``, ``.gif``, and ``.jpg`` formats. PNG is
-recommended: it will allow high quality images with transparency.
+Pygame Zero peut charger des images aux formats ``.png``, ``.gif`` et ``.jpg``.
+le format PNG est recommandé : il autorise des images de haute qualité et
+gère la transparence.
 
-We need to ensure an images directory is set up. If your project contains the
-following files::
+Nous devons nous assurer que le répertoire ``images`` existe. Si ton projet
+contient les fichiers suivants::
 
     space_game.py
     images/alien.png
 
-Then ``space_game.py`` could draw the 'alien' sprite to the screen with this
-code::
+Alors ``space_game.py`` peux dessiner l'image 'alien' à l'écran avec
+ce code::
 
     def draw():
         screen.clear()
         screen.blit('alien', (10, 10))
 
-The name passed to ``blit()`` is the name of the image file within the images
-directory, without the file extension.
+Le nom passé à ``blit()`` est le nom du fichier image dans le répertoire
+images, sans l'extension de fichier.
 
-Or using the :ref:`actor` API, ::
+Ou en utilisant l'API :ref:`actor`::
 
     alien = Actor('alien')
 
     def draw():
         alien.draw()
 
-There are some restrictions on the file names in both cases: they may only
-contain lowercase latin letters, numbers and underscores. This is to prevent
-compatibility problems when your game is played on a different operating system
-that has different case sensitivity.
+Dans les deux cas, il y a quelques restrictions sur les noms de fichiers:
+ils ne peuvent seulement contenir des lettres latines minuscules,
+des chiffres et le caractère souligné ``_``. Ceci afin d'éviter des problèmes
+de compatibilité quand ton jeu est exécuté sur différents systèmes
+d'exploitation qui ont différentes sensibilités à la casse.
 
-Image Surfaces
-''''''''''''''
+Surfaces d'images
+'''''''''''''''''
 
-You can also load images from the ``images`` directory using the ``images``
-object. This allows you to work with the image data itself, query its
-dimensions and so on::
+Tu peux également charger des images depuis le répertoire ``images``
+en utilisant l'objet ``images``. Ceci t'autorise à travailler avec les
+données de l'image elle-même, obtenir ces dimensions, etc.::
 
     forest = []
     for i in range(5):
@@ -172,275 +177,275 @@ dimensions and so on::
             Actor('tree', topleft=(images.tree.width * i, 0))
         )
 
-Each loaded image is a Pygame ``Surface``. You will typically use
-``screen.blit(...)`` to draw this to the screen. It also provides handy methods
-to query the size of the image in pixels:
+Chaque image chargée est une ``Surface`` Pygame. Tu va généralement
+utiliser ``screen.blit(...)`` pour les dessiner à l'écran. Elle fournit
+également des méthodes pratiques pour obtenir la taille de l'image en pixels:
 
 .. class:: Surface
 
     .. method:: get_width()
 
-        Returns the width of the image in pixels.
+        Retourne la largeur de l'image en pixels.
 
     .. method:: get_height()
 
-        Returns the height of the image in pixels.
+        Retourne la hauteur de l'image en pixels.
 
     .. method:: get_size()
 
-        Returns a tuple (width, height) indicating the size in pixels of the
-        surface.
+        Retourne un tuple (largeur, hauteur) indiquant la taille en pixels de la surface.
 
     .. method:: get_rect()
 
-        Get a :class:`Rect` that is pre-populated with the bounds of the image
-        if the image was located at the origin.
+        Retourne un objet :class:`Rect` qui est prérempli avec les limites de l'images
+        comme si l'image était située à l'origine.
 
-        Effectively this is equivalent to::
+        Dans les faits, ceci est équivalent à::
 
             Rect((0, 0), image.get_size())
 
 
-Sounds
-''''''
+Sons
+''''
 
-Pygame Zero can load sounds in ``.wav`` and ``.ogg`` formats. WAV is great for
-small sound effects, while OGG is a compressed format that is more suited to
-music. You can find free .ogg and .wav files online that can be used in your
-game.
+Pygame Zero peut charger des sons aux formats ``.wav`` et ``.ogg``.
+le format WAV est adapté aux petits effets sonores, tandis que OGG est
+un format compressé qui convient mieux à la musique. Tu peux trouver
+des fichiers .ogg et .wav libres de droits en ligne que tu peux utiliser
+dans ton jeu.
 
-We need to ensure a sounds directory is set up. If your project contains the
-following files::
+Nous devons nous assurer que le répertoire ``sounds`` existe. si ton projet
+contient les fichiers suivants::
 
     drum_kit.py
     sounds/drum.wav
 
-Then ``drum_kit.py`` could play the drum sound whenever the mouse is clicked
-with this code::
+Alors ``drum_kit.py`` peux jouer le son de batterie dès que la le bouton
+de la souris est pressé avec le code suivant::
 
     def on_mouse_down():
         sounds.drum.play()
 
-Each loaded sound is a Pygame ``Sound``, and has various methods to play and
-stop the sound as well as query its length in seconds:
+Chaque son chargé est un object Pygame ``Sound`` et a diverses méthodes
+pour jouer et stopper le son, ainsi qu'obtenir sa longueur en secondes:
 
 .. class:: Sound
 
     .. method:: play()
 
-        Play the sound.
+        Joue le son.
 
-    .. method:: play(loops)
+    .. method:: play(n)
 
-        Play the sound, but loop it a number of times.
+        Joue le son en boucle ``n`` fois.
 
-        :param loops: The number of times to loop. If you pass ``-1`` as the
-                      number of times to loop, the sound will loop forever (or
-                      until you call :meth:`.Sound.stop()`
+        :param n: Le nombre de fois à répéter. Si tu donnes ``-1`` comme nombre de répétition,
+                    le son va se répéter indéfiniment (ou jusqu'à ce que tu appelles :meth:`.Sound.stop()`)
 
     .. method:: stop()
 
-        Stop playing the sound.
+        Arrête de jouer le son.
 
     .. method:: get_length()
 
-        Get the duration of the sound in seconds.
+        Retourne la durée du son en secondes.
 
-You should avoid using the ``sounds`` object to play longer pieces of music.
-Because the sounds sytem will fully load the music into memory before playing
-it, this can use a lot of memory, as well as introducing a delay while the
-music is loaded.
+Tu devrait éviter d'utiliser l'objet ``sounds`` pour jouer de longs
+morceaux de musique, parce que Pygame va complètement charger la
+musique en mémoire avant de la jouer, ceci peut utiliser beaucoup
+de mémoire, ainsi qu'introduire un délai au chargement de la musique.
 
 .. _music:
 
-Music
------
+Musique
+-------
 
 .. versionadded:: 1.1
 
 .. warning::
 
-    The music API is experimental and may be subject to cross-platform
-    portability issues.
+    L'API musique est expérimentale et peux causer des problèmes sur certaines plateformes.
 
-    In particular:
+    En particulier:
 
-    * MP3 may not be available on some Linux distributions.
-    * Some OGG Vorbis files seem to hang Pygame with 100% CPU.
+    * le format MP3 peut ne pas être disponible dans toutes les distributions Linux.
+    * certains fichier OGG Vorbis semble bloquer Pygame en consommant 100% du CPU.
 
-    In the case of the latter issue, the problem may be fixed by re-encoding
-    (possibly with a different encoder).
-
-
-A built-in object called ``music`` provides access to play music from within
-a ``music/`` directory (alongside your ``images/`` and ``sounds/`` directories,
-if you have them). The music system will load the track a little bit at a time
-while the music plays, avoiding the problems with using ``sounds`` to play
-longer tracks.
-
-Another difference to the sounds system is that only one music track can be
-playing at a time. If you play a different track, the previously playing track
-will be stopped.
+    Dans le dernier cas, le problème peut être réglé en re-encodant
+    (si possible avec un encodeur différent).
 
 
-.. function:: music.play(name)
+L'objet prédéfini ``music`` fournit le moyen de jouer de la musique depuis
+le répertoire ``music/`` (à côté de tes répertoires ``images/`` et ``sounds/``,
+si tu en as). Le système musical va charger la piste de musique par petits
+morceaux pendant que la musique est jouée, évitant le problème de l'utilisation
+de ``sounds`` pour jouer de long morceaux de musique.
 
-    Play a music track from the given file. The track will loop indefinitely.
+Une autre différence avec les effets sonores est que une seule piste de musique
+peut être jouée à la fois. Si tu joues une piste différente, la piste en cours
+d'exécution et stoppée.
 
-    This replaces the currently playing track and cancels any tracks previously
-    queued with ``queue()``.
 
-    You do not need to include the extension in the track name; for example, to
-    play the file ``handel.mp3`` on a loop::
+.. function:: music.play(nom)
+
+    Joue une piste de musique depuis le fichier donné. La piste va jouer indéfiniment.
+
+    Cela va remplacer la piste en cours et annuler toutes les pistes mises en attente avec ``queue()``.
+
+    Tu n'as pas besoin d'inclure l'extension dans le nom de la piste, par exemple, pour jouer
+    le fichier ``handel.mp3`` en boucle::
 
         music.play('handel')
 
-.. function:: music.play_once(name)
+.. function:: music.play_once(nom)
 
-    Similar to ``play()``, but the music will stop after playing through once.
+    Similaire à ``play()``, mais joue la musique une fois seulement.
 
-.. function:: music.queue(name)
+.. function:: music.queue(nom)
 
-    Similar to ``play_once()``, but instead of stopping the current music, the
-    track will be queued to play after the current track finishes (or after
-    any other previously queued tracks).
+    Similaire à ``play_once()``, mais au lieu de stopper la musique en cours, la piste
+    va être mise sur liste d'attente pour être jouée une fois que la musique en cours sera finie
+    (ou après les autres musiques mises en attente précédemment).
 
 .. function:: music.stop()
 
-    Stop the music.
+    Arrête la musique.
 
 .. function:: music.pause()
 
-    Pause the music temporarily. It can be resumed by calling
+    Met la musique en pause temporairement. Elle peut être redémarrée en appelant
     ``unpause()``.
 
 .. function:: music.unpause()
 
-    Unpause the music.
+    Redémarre la musique.
 
 .. function:: music.is_playing()
 
-    Returns True if the music is playing (and is not paused), False otherwise.
+    Retourne vrai si la musique en en train d'être jouée (et n'est pas en pause), faux dans les autres cas.
 
-.. function:: music.fadeout(duration)
+.. function:: music.fadeout(durée)
 
-    Fade out and eventually stop the current music playback.
+    Diminue progressivement le volume et stoppe la musique en cours d'exécution.
 
-    :param duration: The duration in seconds over which the sound will be faded
-                    out. For example, to fade out over half a second, call
+    :param duration: La durée en secondes pendant laquelle le volume va diminuer.
+                    Par exemple, pour diminuer le son pendant une demi seconde, appelle
                     ``music.fadeout(0.5)``.
 
 .. function:: music.set_volume(volume)
 
-    Set the volume of the music system.
+    Défini le volume de la musique.
 
-    This takes a number between 0 (meaning silent) and 1 (meaning full volume).
+    Cela prend un nombre décimal entre 0 (pas de son) and 1 (volume maximum).
 
 .. function:: music.get_volume()
 
-    Get the current volume of the music system.
+    Retourne le volume courant de la musique.
 
 
-If you have started a music track playing using :func:`music.play_once()`, you
-can use the :func:`on_music_end() hook <on_music_end>` to do something when the
-music ends - for example, to pick another track at random.
+Si tu as démarré la lecture de la piste de musique en utilisant
+:func:`music.play_once()`, tu peux utiliser le
+:func:`hook on_music_end() <on_music_end>` pour faire quelque chose
+quand le morceau se termine, par exemple, pour choisir aléatoirement le
+prochain morceau.
 
 
 .. _clock:
 
-Clock
------
+Horloge
+-------
 
-Often when writing a game, you will want to schedule some game event to occur
-at a later time. For example, we may want a big boss alien to appear after 60
-seconds. Or perhaps a power-up will appear every 20 seconds.
+Souvent pendant l'écriture d'un jeu, tu veux planifier des événements
+pour qu'ils se produisent un moment plus tard. Par exemple, nous voudrions
+qu'un super chef extraterrestre apparaisse après 60 secondes.
+Ou peut-être qu'un bonus apparaisse toutes les 20 secondes.
 
-More subtle are the situations when you want to delay some action for a shorter
-period. For example you might have a laser weapon that takes 1 second to charge
-up.
+Plus subtiles sont les situations où tu veux retarder une action pour
+une durée plus courte. Par exemple, tu pourrais avoir une arme laser
+qui prend 1 secondes à se recharger.
 
-We can use the ``clock`` object to schedule a function to happen in the
-future.
+Nous pouvons utiliser l'objet ``clock`` pour programmer l'appel d'une
+fonction à se faire dans le future.
 
-Let's start by defining a function ``fire_laser`` that we want to run in the
-future::
+Commençons par définir une fonction ``fire_laser`` que nous voulons
+exécuter dans le future::
 
     def fire_laser():
         lasers.append(player.pos)
 
-Then when the fire button is pressed, we will ask the ``clock`` to call it for
-us after exactly 1 second::
+Ensuite lorsque le bouton de tir est pressé, nous allons demander à l'objet
+``clock`` de l'appeler pour nous, après exactement 1 seconde::
 
     def on_mouse_down():
         clock.schedule(fire_laser, 1.0)
 
-Note that ``fire_laser`` is the function itself; without parentheses, it is
-not being called here! The clock will call it for us.
+Note que ``fire_laser`` est elle-même une fonction, sans parenthèse,
+car elle n'est pas appelée ici ! L'horloge se chargera de le faire pour nous.
 
-(It is a good habit to write out times in seconds with a decimal point, like
-``1.0``. This makes it more obvious when you are reading it back, that you are
-referring to a time value and not a count of things.)
+(C'est une bonne habitude d'écrire les durées en secondes avec une décimale,
+comme ``1.0``. C'est ainsi plus évident en se relisant que cela
+représente une durée et pas un compte de quelques chose.)
 
-``clock`` provides the following useful methods:
+L'objet ``clock`` fournit les méthodes utiles suivantes:
 
 .. class:: Clock
 
-    .. method:: schedule(callback, delay)
+    .. method:: schedule(callback, delai)
 
-        Schedule `callback` to be called after the given delay.
+        Programme `callback` à être appelée après le délai donné.
 
-        Repeated calls will schedule the callback repeatedly.
+        Un nombre répété d'appels à ``schedule`` va programmer l'appel
+        à la fonction autant de fois.
 
-        :param callback: A callable that takes no arguments.
-        :param delay: The delay, in seconds, before the function should be
-                      called.
+        :param callback: Une fonction qui ne prend aucun paramètre.
+        :param delai: Le délai en secondes à attendre avant que la fonction ne soit appelée.
 
-    .. method:: schedule_unique(callback, delay)
+    .. method:: schedule_unique(callback, delai)
 
-        Schedule `callback` to be called once after the given delay.
+        Programme `callback` à être appelée une fois après le délai donné.
 
-        If `callback` was already scheduled, cancel and reschedule it. This
-        applies also if it was scheduled multiple times: after calling
-        ``schedule_unique``, it will be scheduled exactly once.
+        Si `callback` avait déjà été programmée, cela l'annule et la reprogramme. Cela
+        s'applique aussi si elle était programmée plusieurs fois: après l'appel à
+        ``schedule_unique``, la fonction sera programmée exactement une fois.
 
-        :param callback: A callable that takes no arguments.
-        :param delay: The delay, in seconds, before the function should be
-                      called.
+        :param callback: Une fonction qui ne prend aucun argument.
+        :param delai: Le délai en secondes à attendre avant que la function ne soit appelée.
 
-    .. method:: schedule_interval(callback, interval)
+    .. method:: schedule_interval(callback, intervalle)
 
-        Schedule `callback` to be called repeatedly.
+        Programme `callback` pour être appelée de façon répétée.
 
-        :param callback: A callable that takes no arguments.
-        :param interval: The interval in seconds between calls to `callback`.
+        :param callback: Une fonction qui ne prend aucun argument.
+        :param intervalle: L'intervalle en secondes entre chaque appel à `callback`.
 
     .. method:: unschedule(callback)
 
-        Unschedule callback if it has been previously scheduled (either because
-        it has been scheduled with ``schedule()`` and has not yet been called,
-        or because it has been scheduled to repeat with
-        ``schedule_interval()``.
+        Déprogramme l'appel à `callback` s'il a été précédemment programmé (soit parce qu'il
+        a été programmé avec ``schedule()`` et n'a pas encore été exécuté ou
+        parce qu'il a été programmé pour se répéter avec ``schedule_interval()``.
 
 
-Note that the Pygame Zero clock only holds weak references to each callback
-you give it. It will not fire scheduled events if the objects and methods are
-not referenced elsewhere. This can help prevent the clock keeping objects
-alive and continuing to fire unexpectedly after they are otherwise dead.
+Note que l'horloge de Pygame Zero ne tient que des références faibles
+aux fonctions que tu lui donnes. Il ne déclenchera pas d'événements programmés
+si les objets et méthodes ne sont pas référencés ailleurs. Cela empêche
+l'horloge de garder des objets vivants et de continuer à déclencher des
+événements inattendus après qu'ils sont normalement morts.
 
-The downside to the weak references is that you won't be able to schedule
-lambdas or any other object that has been created purely to be scheduled. You
-will have to keep a reference to the object.
+La contre-partie aux références faibles et que tu ne pourras pas programmer
+des lambdas ou tout autre objet créé uniquement pour être programmé.
+Tu devras garder une référence à l'objet.
 
 .. _actor:
 
-Actors
-------
+Acteurs
+-------
 
-Once you have many images moving around in a game it can be convenient to have
-something that holds in one place the image and where it is on screen. We'll
-call each moving image on screen an ``Actor``. You can create an actor by supplying
-at least an image name (from the images folder above). To draw the alien talked
-about above::
+Une fois que tu as pleins d'images se déplacant dans le jeux, il est
+intéressant d'avoir quelque chose qui regroupe à un seul endroit l'image
+et où elle se trouve à l'écran. Nous allons appeler chaque image se déplaçant
+à l'écran un acteur (``Actor``). Tu peux créer un acteur en fournissant
+au moins le nom d'une image (depuis le répertoire d'images décrit au-dessus).
+Pour dessiner un extraterrestre::
 
     alien = Actor('alien', (50, 50))
 
@@ -448,7 +453,7 @@ about above::
         screen.clear()
         alien.draw()
 
-You can move the actor around by setting its pos attribute in an update::
+tu peux déplacer l'acteur en changeant son attribut ``pos`` dans la fonction ``update``::
 
     def update():
         if keyboard.left:
@@ -456,37 +461,38 @@ You can move the actor around by setting its pos attribute in an update::
         elif keyboard.right:
             alien.x += 1
 
-And you may change the image used to draw the actor by setting its image
-attribute to some new image name::
+et tu peux changer l'image utilisée pour déssiner l'acteur en changeant
+son attribut ``image`` pour un nouveau nom d'image::
 
     alien.image = 'alien_hurt'
 
-Actors have all the same attributes and methods as :ref:`Rect <rect>`,
-including methods like `.colliderect()`__ which can be used to test whether
-two actors have collided.
+Les acteurs ont tous les mêmes attributs et méthodes que :ref:`Rect <rect>`,
+en incluant les méthodes telles que `.colliderect()`__ qui peut être utilisée
+pour tester si deux acteurs se percutent.
 
 .. __: https://www.pygame.org/docs/ref/rect.html#pygame.Rect.colliderect
 
 
-Positioning Actors
-''''''''''''''''''
+Positionner les acteurs
+'''''''''''''''''''''''
 
-If you assign a new value to one of the position attributes then the actor will
-be moved. For example::
+Si tu donnes une nouvelle valeur à un des attributs de position, alors l'acteur
+va se déplacer. Par exemple::
 
     alien.right = WIDTH
 
-will position the alien so its right-hand side is set to ``WIDTH``.
+va positionner l'extraterrestre de façon à ce que sa droite est la
+valeur ``WIDTH``.
 
-Similarly, you can also set the initial position of the actor in the
-constructor, by passing one of these as a keyword argument: ``pos``,
-``topleft``, ``topright``, ``bottomleft``, ``bottomright``, ``midtop``,
-``midleft``, ``midright``, ``midbottom`` or ``center``:
+De façon similaire, tu peux aussi donner la position initiale de l'acteur
+dans le constructeur, en donnant l'un des mots-clés suivant en argument:
+``pos``, ``topleft``, ``topright``, ``bottomleft``, ``bottomright``,
+``midtop``, ``midleft``, ``midright``, ``midbottom`` ou ``center``:
 
 .. image:: _static/actor/anchor_points.png
 
-This can be done during creation or by assigning a pair of x, y co-ordinates.
-For example::
+Cela peut être fait pendant la création ou en affectant une paire
+de coordonnées (x, y). Par exemple::
 
     WIDTH = 200
     HEIGHT = 200
@@ -499,31 +505,31 @@ For example::
 
 .. image:: _static/actor/alien_center.png
 
-Changing ``center=(100, 100)`` to ``midbottom=(100, 200)`` gives you:
+En changeant ``center=(100, 100)`` en ``midbottom=(100, 200)`` cela te donnes:
 
 .. image:: _static/actor/alien_midbottom.png
 
-If you don't specify an initial position, the actor will initially be
-positioned in the top-left corner (equivalent to ``topleft=(0, 0)``).
+Si tu ne spécifies pas de position initiale, l'acteur sera positionné par
+défaut dans le coin en haut à gauche (équivalent à ``topleft=(0, 0)``).
 
 .. _anchor:
 
-Anchor point
-''''''''''''
+Point d'ancrage
+'''''''''''''''
 
-Actors have an "anchor position", which is a convenient way to position the
-actor in the scene. By default, the anchor position is the center, so the
-``.pos`` attribute refers to the center of the actor (and so do the ``x`` and
-``y`` coordinates). It's common to want to set the anchor point to another
-part of the sprite (perhaps the feet - so that you can easily set the Actor to
-be "standing on" something)::
+Les acteurs ont une "position d'ancrage", qui est une façon pratique de
+positionner les acteurs dans la scène. Par défaut, le point d'ancrage est
+le centre, si bien que l'attribut ``.pos`` représente le centre de l'acteur
+(de même pour les coordonnées ``x`` et ``y``). Il est commun de définir
+le point d'ancrage à une autre partie du sprite (peut être les pieds afin
+de pouvoir facilement faire tenir l'acteur sur quelque chose)::
 
     alien = Actor('alien', anchor=('center', 'bottom'))
     spaceship = Actor('spaceship', anchor=(10, 50))
 
-``anchor`` is specified as a tuple ``(xanchor, yanchor)``, where the values can
-be floats or the strings ``left``, ``center``/``middle``, ``right``, ``top`` or
-``bottom`` as appropriate.
+``anchor`` est défini comme le tuple ``(xanchor, yanchor)``, où les valeurs
+peuvent être des décimaux ou les chaînes ``left``, ``center``/``middle``,
+``right``, ``top`` ou ``bottom``.
 
 
 .. _rotation:
@@ -533,29 +539,29 @@ Rotation
 
 .. versionadded:: 1.2
 
-The ``.angle`` attribute of an Actor controls the rotation of the sprite, in
-degrees, anticlockwise (counterclockwise).
+L'attribut ``.angle`` de l'acteur controle la rotation du sprite, en degrés,
+dans le sens trigonométrique (sens inverse des aiguilles d'une montre).
 
-The centre of rotation is the Actor's :ref:`anchor point <anchor>`.
+Le cente de rotation est le :ref:`point d'ancrage <anchor>` de l'acteur.
 
-Note that this will change the ``width`` and ``height`` of the Actor.
+Note que cela va changer la hauteur (``width``) et la largeur (``height``)
+de l'acteur.
 
-For example, to make an asteroid sprite spinning slowly anticlockwise in
-space::
+Par exemple, pour faire tourner lentement un astéroïde dans l'espace::
 
     asteroid = Actor('asteroid', center=(300, 300))
 
     def update():
         asteroid.angle += 1
 
-To have it spin clockwise, we'd change ``update()`` to::
+Pour le faire tourner dans l'aute sens, nous écririons ``update()`` ainsi::
 
     def update():
         asteroid.angle -= 1
 
-As a different example, we could make an actor ``ship`` always face the mouse
-pointer. Because :meth:`~Actor.angle_to()` returns 0 for "right", the sprite we
-use for "ship" should face right::
+Un autre exemple: nous pourrions faire qu'un acteur ``ship`` soit toujours
+tourné vers la souris. Comme :meth:`~Actor.angle_to()` retourne 0 pour
+la droite, l'acteur `ship` devrait se tourner vers la droite::
 
     ship = Actor('ship')
 
@@ -565,174 +571,172 @@ use for "ship" should face right::
 .. image:: _static/rotation.svg
     :alt: Diagram showing how to set up sprites for rotation with angle_to()
 
-Remember that angles loop round, so 0 degrees == 360 degrees == 720 degrees.
-Likewise -180 degrees == 180 degrees.
+Souviens toi que les angles bouclent:  0 degrés == 360 degrés == 720 degrés.
+De même -180 degrés == 180 degrés.
 
 
-Distance and angle to
-'''''''''''''''''''''
+Distance et angle
+'''''''''''''''''
 
-Actors have convenient methods for calculating their distance or angle to other
-Actors or ``(x, y)`` coordinate pairs.
+Les acteurs ont des méthodes très pratiques pour calculer leur distance
+ou angle avec d'autres acteurs ou des paires de coordonnées ``(x, y)``.
 
-.. method:: Actor.distance_to(target)
+.. method:: Actor.distance_to(cible)
 
-    Return the distance from this actor's position to target, in pixels.
-
-
-.. method:: Actor.angle_to(target)
-
-    Return the angle from this actor's position to target, in degrees.
-
-    This will return a number between -180 and 180 degrees. Right is 0 degrees
-    and the angles increase going anticlockwise.
-
-    Therefore:
-
-    * Left is 180 degrees.
-    * Up is 90 degrees.
-    * Down is -90 degrees.
+    Retourne la distance depuis la position de l'acteur à la `cible` en pixels.
 
 
-The Keyboard
-------------
+.. method:: Actor.angle_to(cible)
 
-You probably noticed that we used the ``keyboard`` in the above code.
-If you'd like to know what keys are pressed on the keyboard, you can query the
-attributes of the ``keyboard`` builtin. If, say, the left arrow is held down,
-then ``keyboard.left`` will be ``True``, otherwise it will be ``False``.
+    Retourne l'angle depuis la position de l'acteur à la `cible` en degrés.
 
-There are attributes for every key; some examples::
+    Cela va retouner un nombre entre -180 et 180 degrés. La droite est 0 degrés
+    et les angles augmentent en allant dans le sens horaire inverse (sens trigonométrique).
 
-    keyboard.a  # The 'A' key
-    keyboard.left  # The left arrow key
-    keyboard.rshift  # The right shift key
-    keyboard.kp0  # The '0' key on the keypad
-    keyboard.k_0  # The main '0' key
+    Donc:
 
-The full set of key constants is given in the `Buttons and Keys`_
-documentation, but the attributes are lowercase, because these are variables
-not constants.
+    * La gauche est 180 degrés.
+    * Le haut est 90 degrés.
+    * Le bas est -90 degrés.
+
+
+Le clavier
+----------
+
+Tu as sans doute remarqué que nous avons utilisé l'objet ``keyboard``
+dans le code au-dessus. Si tu veux savoir quelles touches du clavier sont
+pressées, tu peux lire les attributs de l'objet pré-défini ``keyboard``.
+Si, par exemple, la flêche gauche est maintenue enfoncée, alors
+``keyboard.left`` sera vrai (``True``), sinon il sera faux (``False``).
+
+Il y a un attribut pour chaque touche, quelques exemples::
+
+    keyboard.a  # La touche 'A'
+    keyboard.left  # La touche de navigation gauche
+    keyboard.rshift  # La touche majuscule droite
+    keyboard.kp0  # La touche '0' sur le pavé numérique
+    keyboard.k_0  # La touche prinicipale '0'
+
+L'ensemble des constantes de touche est donné dans la documentation
+`Buttons and Keys`_, mais les attributs sont en minuscule, parce que ceux
+sont des variables et non des constantes.
 
 .. deprecated:: 1.1
 
-    Uppercase and prefixed attribute names (eg. ``keyboard.LEFT`` or
-    ``keyboard.K_a``) are now deprecated; use lowercase attribute names
-    instead.
+    Le noms en majuscule ou préfixés (ie. ``keyboard.LEFT`` ou
+    ``keyboard.K_a``) sont maintenant dépréconisés: utilise plutôt
+    des noms d'attributs en minuscule.
 
 .. _`Buttons and Keys`: hooks.html#buttons-and-keys
 
 .. versionadded:: 1.1
 
-    You can now also query the state of the keys using the keyboard constants
-    themselves::
+    Tu peux aussi interroger l'état des touches en utilisant les constantes des touches elles-même::
 
-        keyboard[keys.A]  # True if the 'A' key is pressed
-        keyboard[keys.SPACE]  # True if the space bar is pressed
+        keyboard[keys.A]  # Vrai si la touche 'A' est pressée
+        keyboard[keys.SPACE]  # Vrai si la barre d'espace est pressée
 
 
 Animations
 ----------
 
-You can animate most things in pygame using the builtin ``animate()``. For
-example, to move an :ref:`Actor <actor>` from its current position on the
-screen to the position ``(100, 100)``::
+Tu peux animer pratiquement tous dans pygame en utilisant la fonction
+pré-définie ``animate()``. Par exemple, pour bouger un :ref:`acteur <actor>`
+depuis sa position courante à l'écran vers la position ``(100, 100)``::
 
     animate(alien, pos=(100, 100))
 
-.. function:: animate(object, tween='linear', duration=1, on_finished=None, **targets)
+.. function:: animate(objet, tween='linear', duration=1, on_finished=None, **cibles)
 
-    Animate the attributes on object from their current value to that
-    specified in the targets keywords.
+    Anime les attributs de `objet` depuis leurs valeurs courantes vers celles spécifiées
+    par mots-clés dans `cibles`.
 
-    :param tween: The type of *tweening* to use.
-    :param duration: The duration of the animation, in seconds.
-    :param on_finished: Function called when the animation finishes.
-    :param targets: The target values for the attributes to animate.
+    :param tween: Le type de *tweening* à utiliser.
+    :param duration: La durée de l'animation en secondes.
+    :param on_finished: Fonction appelée à la fin de l'animation.
+    :param targets: Le valeurs cibles des attributs à animer.
 
-The tween argument can be one of the following:
+L'argument `tween` peut être l'un des suivants:
 
 +--------------------+------------------------------------------------------+
-| 'linear'           | Animate at a constant speed from start to finish     |
+| 'linear'           | Anime avec une vitesse constante du début à la fin   |
 +--------------------+------------------------------------------------------+
-| 'accelerate'       | Start slower and accelerate to finish                |
+| 'accelerate'       | Démarre doucement et accélère à la fin               |
 +--------------------+------------------------------------------------------+
-| 'decelerate'       | Start fast and decelerate to finish                  |
+| 'decelerate'       | Démarre rapidement et ralentit à la fin              |
 +--------------------+------------------------------------------------------+
-| 'accel_decel'      | Accelerate to mid point and decelerate to finish     |
+| 'accel_decel'      | Accélère jusqu'à la moitié puis ralentit à la fin    |
 +--------------------+------------------------------------------------------+
-| 'end_elastic'      | Give a little wobble at the end                      |
+| 'end_elastic'      | Oscille légèrement à la fin                          |
 +--------------------+------------------------------------------------------+
-| 'start_elastic'    | Have a little wobble at the start                    |
+| 'start_elastic'    | Oscille légèrement au démarrage                      |
 +--------------------+------------------------------------------------------+
-| 'both_elastic'     | Have a wobble at both ends                           |
+| 'both_elastic'     | Oscille aux deux extrémités                          |
 +--------------------+------------------------------------------------------+
-| 'bounce_end'       | Accelerate to the finish and bounce there            |
+| 'bounce_end'       | Accélère jusqu'à la fin et rebondit                  |
 +--------------------+------------------------------------------------------+
-| 'bounce_start'     | Bounce at the start                                  |
+| 'bounce_start'     | Rebondit au démarrage                                |
 +--------------------+------------------------------------------------------+
-| 'bounce_start_end' | Bounce at both ends                                  |
+| 'bounce_start_end' | Rebondit aux deux extrémités                         |
 +--------------------+------------------------------------------------------+
 
-The ``animate()`` function returns an ``Animation`` instance:
+La fonction ``animate()`` retourne une instance de la classe ``Animation``:
 
 .. class:: Animation
 
     .. method:: stop(complete=False)
 
-        Stop the animation, optionally completing the transition to the final
-        property values.
+        Arrête l'animation et la complète optionnellement jusqu'à sa valeur finale.
 
-        :param complete: Set the animated attribute to the target value.
+        :param complete: Donne à l'attribut animé sa valeur cible.
 
     .. attribute:: running
 
-        This will be True if the animation is running. It will be False
-        when the duration has run or the ``stop()`` method was called before
-        then.
+        Vaut vrai si l'animation est en cours d'exécution. Il vaudra faux si la
+        durée de l'animation est dépassée ou si la méthode ``stop()`` a été appelée avant.
 
     .. attribute:: on_finished
 
-        You may set this attribute to a function which will be called
-        when the animation duration runs out. The ``on_finished`` argument
-        to ``animate()`` also sets this attribute. It is not called when
-        ``stop()`` is called. This function takes no arguments.
+        Tu peux définir cet attribut avec une fonction qui sera appelée
+        à la fin normale de l'animation. Le paramètre ``on_finished`` de la
+        fonction ``animate()`` défini aussi cet attribut. Elle ne sera pas appelée si
+        ``stop()`` est appelée. Cette fonction ne prend pas de paramètres.
 
 
-Tone Generator
---------------
+Générateur de sons
+------------------
 
 .. versionadded:: 1.2
 
-Pygame Zero can play tones using a built-in synthesizer.
+Pygame Zero peut jouer des sons en utilisant un synthétiseur intégré.
 
-.. function:: tone.play(pitch, duration)
+.. function:: tone.play(hauteur, duration)
 
-    Play a note at the given pitch for the given duration.
+    Joue une note à la hauteur donnée pour la durée donnée.
 
-    Duration is in seconds.
+    La durée est en secondes.
 
-    The `pitch` can be specified as a number in which case it is the frequency
-    of the note in hertz.
+    La `hauteur` peut être donnée comme un nombre, dans ce cas cela
+    sera la fréquence de la note en hertz.
 
-    Alternatively, the pitch can be specified as a string representing a note
-    name and octave. For example:
+    Sinon, la hauteur peut être définie comme une chaîne représentant
+    le nom d'une note et un octave. Par exemple:
 
-    * ``'E4'`` would be E in octave 4.
-    * ``'A#5'`` would be A-sharp in octave 5.
-    * ``'Bb3'`` would be B-flat in octave 3.
+    * ``'E4'`` sera un mi au 4ème octave.
+    * ``'A#5'`` sera un la dièse au 5ème octave.
+    * ``'Bb3'`` sera un si bémol au 3ème octave.
 
-Creating notes, particularly long notes, takes time - up to several
-milliseconds. You can create your notes ahead of time so that this doesn't slow
-your game down while it is running:
+Créer des notes, en particulier de longues notes, prend du temps (jusqu'à
+plusieurs millisecondes). Tu peux créer des notes à l'avance afin de ne pas
+ralentir ton jeu pendant qu'il s'exécute:
 
-.. function:: tone.create(pitch, duration)
+.. function:: tone.create(hauteur, duration)
 
-    Create and return a Sound object.
+    Crée et renvoie un objet `Sound`.
 
-    The arguments are as for play(), above.
+    Les paramètres sont les mêmes que ceux de `play()`, décrit au-dessus.
 
-This could be used in a Pygame Zero program like this::
+Ceci peut être utilisé dans un programme Pygame Zero comme ceci::
 
     beep = tone.create('A3', 0.5)
 
