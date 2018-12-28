@@ -1,38 +1,38 @@
-Installing Pygame Zero
+Installer Pygame Zero
 ======================
 
-Included with Mu
-----------------
+Inclus avec Mu
+-------------
 
-The `Mu IDE <https://codewith.mu>`_, which is aimed at beginners, includes a
-version of Pygame Zero.
+L'`éditeur Mu <https://codewith.mu>`_, qui est destiné aux débutants, inclus une
+version de Pygame Zero.
 
-You will need to `switch mode <https://codewith.mu/en/tutorials/1.0/modes>`_
-into Pygame Zero mode to use it. Then type in a program and
-`use the Play button <https://codewith.mu/en/tutorials/1.0/pgzero>`_ to run it
-with Pygame Zero.
+Vous devez `basculer vers le mode <https://codewith.mu/en/tutorials/1.0/modes>`_
+Pygame Zero pour pouvoir l'utiliser. Écrivez alors un programme et
+`utiliser le bouton Play <https://codewith.mu/en/tutorials/1.0/pgzero>`_ pour le lancer
+avec Pygame Zero.
 
 .. note::
 
-    The version of Mu included with Pygame Zero may not be the latest version!
-    You can find which version is installed by running this code in Mu::
+    La version de Pygame Zero inclus avec Mu peut ne pas être la plus récente !
+    Vous pouvez trouver quelle version est installée en exécutant le code suivant::
 
         import pgzero
         print(pgzero.__version__)
 
 
-Stand-alone installation
-------------------------
+Installation indépendante
+-------------------------
 
-First of all, you need **Python 3** installed! This is usually installed
-already if you are using **Linux** or a **Raspberry Pi**. You can download it
-from `python.org <https://www.python.org/>` on other systems.
+Avant tout, vous avez besoin que **Python 3** soit installé ! Il est généralement déjà installé
+si vous utilisez **Linux** ou un **Raspberry Pi**. Vous pouvez le télécharger depuis
+`python.org <https://www.python.org/>`_ sur d'autres systèmes.
 
 
 Windows
 '''''''
 
-To install Pygame Zero, use **pip**. At a `command prompt`__, type
+Pour installer Pygame Zero, utiliser **pip**. Depuis une `invite de ligne de commande`__, entrez
 
 .. __: https://www.lifewire.com/how-to-open-command-prompt-2618089
 
@@ -44,7 +44,7 @@ To install Pygame Zero, use **pip**. At a `command prompt`__, type
 Mac
 '''
 
-In a Terminal window, type
+Dans une fenêtre de terminal, entrez
 
 ::
 
@@ -54,20 +54,20 @@ In a Terminal window, type
 Linux
 '''''
 
-In a terminal window, type
+Dans une fenêtre de terminal, entrez
 
 ::
 
    sudo pip install pgzero
 
 
-Some Linux systems call it ``pip3``; if the above command printed something
-like ``sudo: pip: command not found`` then try::
+Certains systèmes Linux l'appelle ``pip3``, si la commande d'au-dessus affiche un message
+du genre ``sudo: pip: command not found`` essayez alors::
 
     sudo pip3 install pgzero
 
-Sometimes pip is not installed and needs to be installed. If so try this before
-running the above commands again::
+Parfois pip n'est pas installé. Si c'est le cas, essayer la commande suivante avant
+de ré-exécuter la commande précédente::
 
 
     sudo python3 -m ensurepip
@@ -75,15 +75,15 @@ running the above commands again::
 
 .. _install-repl:
 
-Installing the REPL
--------------------
+Installer le REPL
+-----------------
 
-:doc:`Pygame Zero's REPL <repl>` is an optional feature. This can be enabled
-when installing with ``pip`` by adding ``pgzero[repl]`` to the pip command
+:doc:`le REPL de Pygame Zero <repl>` est une fonctionnalité optionnelle. Elle peut être activée
+lors de l'installation avec ``pip`` en ajouteant ``pgzero[repl]`` à la commande pip
 line::
 
     pip install pgzero[repl]
 
-If you aren't sure if you have the REPL installed, you can still run this
-command (it won't break anything if it is installed!).
+Si vous n'êtes pas sûre d'avoir le REPL déjà installé, vous pouvez toujours exécuter cette
+commande (cela ne cassera rien s'il est déjà installé !).
 

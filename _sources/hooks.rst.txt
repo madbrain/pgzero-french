@@ -1,48 +1,46 @@
-Event Hooks
-===========
+Les *hooks* d'évènements
+========================
 
-Pygame Zero will automatically pick up and call event hooks that you define.
-This approach saves you from having to implement the event loop machinery
-yourself.
+Pygame Zero va automatiquement détecter et appeler les *hooks* (littéralement « crochet » ou « hameçon ») d'évènements que tu définis.
+Cette approche vous épargne d'écrire vous même la mécanique de boucle d'évènements.
 
-Game Loop Hooks
----------------
+Les *hooks* d'une boucle de jeu
+-------------------------------
 
-A typical game loop looks a bit like this::
+Une boucle de jeu typique ressemble à peu près à ça::
 
     while game_has_not_ended():
         process_input()
         update()
         draw()
 
-Input processing is a bit more complicated, but Pygame Zero allows you to
-easily define the ``update()`` and ``draw()`` functions within your game
-module.
+Le traitement des entrées est un peu plus complexe, mais Pygame Zero te permet facilement
+d'écrire les fonctions ``update()`` et ``draw()`` dans ton programme de jeu.
 
 .. function:: draw()
 
-    Called by Pygame Zero when it needs to redraw your game window.
+    Elle est appelée par Pygame Zero quand il a besoin de redessiner l'écran de jeu.
 
-    ``draw()`` must take no arguments.
+    ``draw()`` ne prend aucun argument.
 
-    Pygame Zero attempts to work out when the game screen needs to be redrawn
-    to avoid redrawing if nothing has changed. On each step of the game loop
-    it will draw the screen in the following situations:
+    Pygame Zero tente de décider quand l'écran de jeu a besoin d'être redessiné
+    afin d'éviter de le faire si rien n'a changé. À chaque pas de la boucle de jeu,
+    il va dessiner l'écran dans les situations suivantes :
 
-    * If you have defined an ``update()`` function (see below).
-    * If a clock event fires.
-    * If an input event has been triggered.
+    * Si tu as défini une fonction ``update()`` (voir ci-dessous).
+    * Si un événement d'horloge est émis.
+    * Si un événement d'entrée a été déclenché.
 
-    One way this can catch you out is if you attempt to modify or animate
-    something within the draw function. For example, this code is wrong: the
-    alien is not guaranteed to continue moving across the screen::
+    Une façon de se faire piéger est lorsque tu tentes de modifier ou animer
+    quelques chose dans la fonction ``draw``. Par exemple, ce code est faux : l'extraterrestre
+    n'est pas garanti de bouger tout le long de l'écran::
 
         def draw():
             alien.left += 1
             alien.draw()
 
-    The correct code uses ``update()`` to modify or animate things and draw
-    simply to paint the screen::
+    Le code correct utilise la fonction ``update()`` pour modifier ou animer les objets et ``draw``
+    simplement pour dessiner à l'écran::
 
         def draw():
             alien.draw()
@@ -50,40 +48,39 @@ module.
         def update():
             alien.left += 1
 
-.. function:: update() or update(dt)
+.. function:: update() ou update(dt)
 
-    Called by Pygame Zero to step your game logic. This will be called
-    repeatedly, 60 times a second.
+    Elle est appelée par Pygame Zero pour faire progresser ta logique de jeu. Elle va être appelée
+    continuellement 60 fois par seconde.
 
-    There are two different approaches to writing an update function.
+    Il y a deux façons d'écrire une fonction ``update``.
 
-    In simple games you can assume a small time step (a fraction of a second)
-    has elapsed between each call to ``update()``. Perhaps you don't even care
-    how big that time step is: you can just move objects by a fixed number of
-    pixels per frame (or accelerate them by a fixed constant, etc.)
+    Dans les jeux simples, tu peux supposer qu'un court laps de temps (une fraction de seconde)
+    est passé entre chaque appel à ``update()``. Peut être que la durée de ce laps n'a pas
+    d'importance : tu peux juste bouger les objets d'un nombre constant de pixels
+    par images (ou les accélérer par une constante, etc.)
 
-    A more advanced approach is to base your movement and physics calculations
-    on the actual amount of time that has elapsed between calls. This can give
-    smoother animation, but the calculations involved can be harder and you
-    must take more care to avoid unpredictable behaviour when the time steps
-    grow larger.
+    Une approche plus sophistiquée est de baser le mouvement et les calculs physiques
+    sur la quantité réelle de temps écoulée entre deux appels. Cela produit
+    des animations plus fluides, mais les calculs induits peuvent être plus compliqués et tu 
+    dois être attentif à ne pas créer de comportements non-prédictibles lorsque le laps
+    de temps écoulé devient plus grand.
 
-    To use a time-based approach, you can change the update function to take a
-    single parameter. If your update function takes an argument, Pygame Zero
-    will pass it the elapsed time in seconds. You can use this to scale your
-    movement calculations.
+    Pour utiliser l'approche basée sur le temps, tu peux changer la fonction ``update`` en ajoutant
+    un paramètre unique. Si ta fonction ``update`` prend un argument, Pygame Zero
+    va lui passer le temps écoulé en secondes. tu peux l'utiliser pour adapter le calcul des mouvements.
 
 
-Event Handling Hooks
---------------------
+Les *hooks* de gestion d'événements
+-----------------------------------
 
-Similar to the game loop hooks, your Pygame Zero program can respond to input
-events by defining functions with specific names.
+Comme pour les *hooks* de la boucle de jeu, ton programme Pygame Zero peut répondre aux événements d'entrée
+en définissant des fonctions avec des noms spécifiques.
 
-Somewhat like in the case of ``update()``, Pygame Zero will inspect your
-event handler functions to determine how to call them. So you don't need to
-make your handler functions take arguments. For example, Pygame Zero will
-be happy to call any of these variations of an ``on_mouse_down`` function::
+Comme pour la fonction ``update()``, Pygame Zero va inspecter ta
+fonction de gestion d'événements pour déterminer comment l'appeler. Tu n'as donc pas besoin d'avoir
+d'arguments à ta fonction. Par exemple, Pygame Zero va être capable d'appeler toutes ces variantes
+de la fonction ``on_mouse_down``::
 
     def on_mouse_down():
         print("Mouse button clicked")
@@ -97,91 +94,84 @@ be happy to call any of these variations of an ``on_mouse_down`` function::
     def on_mouse_down(pos, button):
         print("Mouse button", button, "clicked at", pos)
 
-It does this by looking at the names of the parameters, so they must be spelled
-exactly as above. Each event hook has a different set of parameters that you
-can use, as described below.
+Il le fait en regardant le nom des paramètres, ils doivent donc être épelés exactement comme
+ci-dessus. Chaque *hook* d'événements a un ensemble différent de paramètres que tu peux
+utiliser comme décrit ci-dessous.
 
 .. function:: on_mouse_down([pos], [button])
 
-    Called when a mouse button is depressed.
+    Appelée lorsqu'un bouton de la souris est pressé.
 
-    :param pos: A tuple (x, y) that gives the location of the mouse pointer
-                when the button was pressed.
-    :param button: A :class:`mouse` enum value indicating the button that was
-                   pressed.
+    :param pos: un tuple (x, y) donnant la position du pointeur de souris lorsque le bouton a été pressé.
+    :param button: une valeur de l'énumération :class:`mouse` indiquant quel bouton a été pressé.
 
 .. function:: on_mouse_up([pos], [button])
 
-    Called when a mouse button is released.
+    Appelée lorsqu'un un bouton de la souris est relâché.
 
-    :param pos: A tuple (x, y) that gives the location of the mouse pointer
-                when the button was released.
-    :param button: A :class:`mouse` enum value indicating the button that was
-                   released.
+    :param pos: un tuple (x, y) donnant la position du pointeur de souris lorsque le bouton a été relâché.
+    :param button: une valeur de l'énumération :class:`mouse` indiquant quel bouton a été relâché.
 
 .. function:: on_mouse_move([pos], [rel], [buttons])
 
-    Called when the mouse is moved.
+    Appelée lorsque la souris est bougée.
 
-    :param pos: A tuple (x, y) that gives the location that the mouse pointer
-                moved to.
-    :param rel: A tuple (delta_x, delta_y) that represent the change in the
-                mouse pointer's position.
-    :param buttons: A set of :class:`mouse` enum values indicating the buttons
-                    that were depressed during the move.
+    :param pos: un tuple (x, y) donnant la position du pointeur de souris à laquelle la souris a bougé.
+    :param rel: un tuple (delta_x, delta_y) représentant le déplacement relatif du pointeur de souris.
+    :param buttons: un ensemble de valeurs de l'énumération :class:`mouse` indiquant quels boutons
+                    étaient pressés durant le déplacement.
 
 
-To handle mouse drags, use code such as the following::
+Pour gérer le glissement de la souris (mouvement avec bouton pressé), utilise un code tel que le suivant::
 
     def on_mouse_move(rel, buttons):
         if mouse.LEFT in buttons:
-            # the mouse was dragged, do something with `rel`
+            # la souris a été glissée, faire quelque chose avec `rel`
             ...
 
 
 .. function:: on_key_down([key], [mod], [unicode])
 
-    Called when a key is depressed.
+    Appelée lorsqu'une touche est pressée.
 
-    :param key: An integer indicating the key that was pressed (see
-                :ref:`below <buttons-and-keys>`).
-    :param unicode: Where relevant, the character that was typed. Not all keys
-                    will result in printable characters - many may be control
-                    characters. In the event that a key doesn't correspond to
-                    a Unicode character, this will be the empty string.
-    :param mod: A bitmask of modifier keys that were depressed.
+    :param key: un entier indiquant quelle touche a été pressée (voir
+                :ref:`ci-dessous <buttons-and-keys>`).
+    :param unicode: lorsque cela a du sens, le caractère qui a été entré. Toutes les touches
+                    ne produisent pas un caractère affichable - beaucoup sont des caractères
+                    de contrôle. Dans le cas où la touche ne correspond pas à un caractère Unicode,
+                    cela sera la chaîne vide.
+    :param mod: un masque de bits représentant les touches mortes également pressées.
 
 .. function:: on_key_up([key], [mod])
 
-    Called when a key is released.
+    Appelée lorsqu'une touche est relâchée.
 
-    :param key: An integer indicating the key that was released (see
-                :ref:`below <buttons-and-keys>`).
-    :param mod: A bitmask of modifier keys that were depressed.
+    :param key: un entier indiquant quelle touche a été relâchée (voir
+                :ref:`ci-dessous <buttons-and-keys>`).
+    :param mod: un masque de bits représentant les touches mortes pressées.
 
 
 .. function:: on_music_end()
 
-    Called when a :ref:`music track <music>` finishes.
+    Appelée lorsque une :ref:`piste de musique <music>` se termine.
 
-    Note that this will not be called if the track is configured to loop.
+    Note qu'elle ne sera pas appelée si la piste audio est configurée pour boucler.
 
 
 .. _buttons-and-keys:
 
-Buttons and Keys
-''''''''''''''''
+Boutons et touches
+''''''''''''''''''
 
-Built-in objects ``mouse`` and ``keys`` can be used to determine which buttons
-or keys were pressed in the above events.
+Les objets pré-définis ``mouse`` et ``keys`` peuvent être utilisés pour déterminer quels boutons
+ou touches étaient pressés dans les événements ci-dessus.
 
-Note that mouse scrollwheel events appear as button presses with the below
-``WHEEL_UP``/``WHEEL_DOWN`` button constants.
+Note que les événements de la molette de la souris apparaissent comme des boutons pressés avec les constantes
+``WHEEL_UP``/``WHEEL_DOWN``.
 
 .. class:: mouse
 
-    A built-in enumeration of buttons that can be received by the
-    ``on_mouse_*`` handlers.
+    Une énumération pré-défini de boutons qui peut être reçue par les *hooks* ``on_mouse_*``.
 
     .. attribute:: LEFT
     .. attribute:: MIDDLE
@@ -191,8 +181,7 @@ Note that mouse scrollwheel events appear as button presses with the below
 
 .. class:: keys
 
-    A built-in enumeration of keys that can be received by the ``on_key_*``
-    handlers.
+    Une énumération pré-défini de touches qui peut être reçue par les *hooks* ``on_key_*``.
 
     .. attribute:: BACKSPACE
     .. attribute:: TAB
@@ -329,12 +318,12 @@ Note that mouse scrollwheel events appear as button presses with the below
     .. attribute:: EURO
     .. attribute:: LAST
 
-Additionally you can access a set of constants that represent modifier keys:
+De plus, tu peux accéder a un ensemble de constantes représentant les touches mortes :
 
 .. class:: keymods
 
-    Constants representing modifier keys that may have been depressed during
-    an ``on_key_up``/``on_key_down`` event.
+    Constantes représentant les touches mortes qui ont été pressées durant les événements 
+    ``on_key_up``/``on_key_down``.
 
     .. attribute:: LSHIFT
     .. attribute:: RSHIFT

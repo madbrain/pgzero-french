@@ -1,83 +1,61 @@
-Principles of Pygame Zero
-=========================
+Les principes de Pygame Zero
+============================
 
 
-Please read the following carefully before contributing.
+Veuillez lire attentivement ce qui suit avant de contribuer.
 
-Because Pygame Zero is aimed at beginners we must take extra care to avoid
-introducting hurdles for programmers who have not yet learned to deal with
-them.
-
+Étant donné que Pygame Zero s'adresse essentiellement aux débutants, nous devons faire très attention à ne pas introduire de difficultés pour les programmeurs qui n'ont pas encore appris à les surmonter.
 
 .. _accessibility:
 
-Make it accessible
-------------------
+Rendre accessible
+-----------------
 
-The main aim of Pygame Zero is to be accessible to beginner programmers.
-The design of the API is, of course, influenced by this.
+L'objectif principal de Pygame Zero est d'être accessible aux programmeurs débutants. La conception de l'API en est évidemment influencée.
 
-This also applies to things like hardware requirements: Pygame Zero chose
-originally to support only keyboard and mouse input, in order to be accessible
-to any user.
+Ceci s'applique également à des éléments comme les exigences matérielles : Pygame Zero a choisi à l'origine de ne prendre en charge que les entrées du clavier et de la souris, afin d'être accessible à tous les utilisateurs.
 
 
-Be conservative
+Être prudent
+------------
+
+À l'amorce du développement de Pygame Zero, Richard et moi (Daniel) avons effectué plusieurs allers-retours sur diverses fonctionnalités. Nous les avons ajoutées, les avons essayées et les avons retirées.
+
+Les fonctionnalités doivent être rejetées si elles sont trop expérimentales ou si elles peuvent prêter à confusion.
+
+Cela s'applique également aux autres éléments comme la prise en charge de l'OS : nous interdisons les noms de fichiers qui ne sont pas susceptibles d'être compatibles entre les systèmes d'exploitation.
+
+Fonctionnel
+-----------
+
+Pygame Zero couvre pratiquement l'intégralité de Pygame - mais nous n'exposons pas toutes les fonctionnalités. Nous n'exposons que les fonctions qui fonctionnent vraiment bien sans peine et masquons une partie des autres éléments qui fonctionnent moins bien ou qui nécessitent des étapes supplémentaires.
+
+
+Minimiser les temps d'exécution
+-------------------------------
+
+En fin de compte, Pygame Zero est un environnement de développement de jeux et l'adéquation des performances est un élément clé.
+
+Il n'est pas vraiment judicieux de faire une vérification coûteuse à chaque image pour détecter un écueil potentiel. Au lieu de cela, nous pouvons effectuer un contrôle au départ, ou vérifier seulement quand une exception est levée pour la diagnostiquer et rapporter plus d'informations.
+
+
+Des erreurs limpides
+--------------------
+
+Lorsque des exceptions sont levées par Pygame Zero, elles doivent délivrer des messages d'erreur clairs qui expliquent le problème.
+
+
+Bien documenter
 ---------------
 
-Early in the development of Pygame Zero, Richard and I (Daniel) went backwards
-and forwards over various features. We put them in, tried them and took them
-out again.
+Comme tous les projets, Pygame Zero nécessite une bonne documentation. Les demandes d'intégration (pull requests) sont plus susceptibles d'être acceptées si elles sont accompagnées des documentations adéquates.
 
-Features should be rejected if they are too experimental, or if they might
-cause confusion.
-
-This also applies to things like OS support: we disallow filenames that are
-not likely to be compatible across operating systems.
+Essayez d'éviter les phrases compliquées et les termes techniques dans la documentation, afin qu'elle soit plus facilement lisible par des programmeurs inexpérimentés.
 
 
-Just Work
----------
+Minimiser les changements radicaux
+----------------------------------
 
-Pygame Zero wraps Pygame almost completely - but we don't expose all the
-features. We expose only the features that work really well without extra fuss,
-and hide some of the other features that work less well or need extra steps.
+Dans les structures de l'éducation, les utilisateurs n'ont pas toujours le contrôle sur la version d'une bibliothèque qu'ils utilisent. Ils ne savent pas comment installer ou mettre à jour afin d'obtenir la dernière version.
 
-
-Minimise runtime cost
----------------------
-
-At the end of the day, Pygame Zero is a games framework and performance is an
-issue.
-
-Doing expensive checking every frame to catch a potential pitfall is not really
-acceptable. Instead, we might check at start up time, or check only when an
-exception is raised to diagnose it and report more information.
-
-
-Error clearly
--------------
-
-When exceptions are thrown by Pygame Zero, they should have clear error
-messages that explain the problem.
-
-
-Document well
--------------
-
-Like all projects, Pygame Zero needs good documentation. Pull requests are more
-likely to be accepted if they include the necessary documentation.
-
-Try to avoid complicated sentences and technical terms in the documentation, so
-that it is more easily readable by inexperienced programmers.
-
-
-Minimise breaking changes
--------------------------
-
-In educational environments, users don't always have control of the version of
-a library they use. They don't know how to install or upgrade to the latest
-version.
-
-It is more important to get the features right first time than in many other
-projects.
+Il est ici plus important d'obtenir des fonctionnalités correctes du premier coup que dans beaucoup d'autres projets.

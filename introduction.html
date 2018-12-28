@@ -17,7 +17,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Migrer depuis Scratch" href="from-scratch.html" />
-    <link rel="prev" title="Bienvenu à Pygame Zero" href="index.html" />
+    <link rel="prev" title="Bienvenue à Pygame Zero" href="index.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -39,12 +39,11 @@
 <div class="section" id="creer-une-fenetre">
 <h2>Créer une fenêtre<a class="headerlink" href="#creer-une-fenetre" title="Permalink to this headline">¶</a></h2>
 <p>D’abord, crée un fichier vide appelé <code class="docutils literal notranslate"><span class="pre">intro.py</span></code>.</p>
-<p>Vérifie que cela démarre et ouvre une fenêtre vide en utilisant la commande</p>
+<p>Vérifie que cela démarre et ouvre une fenêtre vide en utilisant la commande:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pgzrun</span> <span class="n">intro</span><span class="o">.</span><span class="n">py</span>
 </pre></div>
 </div>
-<p>Tout dans Pygame Zero est optionel: un fichier vide est un programme valide en
-Pygame Zero!</p>
+<p>Tout dans Pygame Zero est optionnel: un fichier vide est un programme Pygame Zero valide !</p>
 <p>Tu peux quitter le jeu en cliquant sur le bouton de fermeture de la fenêtre ou en pressant les touches
 <code class="docutils literal notranslate"><span class="pre">Ctrl-Q</span></code> (<code class="docutils literal notranslate"><span class="pre">⌘-Q</span></code> sur Mac). Si le jeu se bloque pour une raison indéterminée, tu
 peux le terminer en pressant <code class="docutils literal notranslate"><span class="pre">Ctrl-C</span></code> dans la fenêtre de terminal.</p>
@@ -65,12 +64,12 @@ va appeler cette fonction à chaque fois qu’il a besoin de dessiner l’écran
     <span class="n">screen</span><span class="o">.</span><span class="n">fill</span><span class="p">((</span><span class="mi">128</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
 </pre></div>
 </td></tr></table></div>
-<p>Relance <code class="docutils literal notranslate"><span class="pre">pgzrun</span> <span class="pre">intro.py</span></code> et l’écran devrait maintenant afficher un carré rouge!</p>
+<p>Relance <code class="docutils literal notranslate"><span class="pre">pgzrun</span> <span class="pre">intro.py</span></code> et l’écran devrait maintenant afficher un carré rouge !</p>
 <p>Que fait ce programme??</p>
 <p><code class="docutils literal notranslate"><span class="pre">WIDTH</span></code> et <code class="docutils literal notranslate"><span class="pre">HEIGHT</span></code> contrôlent la largeur et la hauteur de la fenêtre. Le programme
 définie la taille de la fenêtre à 300 pixels dans chaque direction.</p>
 <p><code class="docutils literal notranslate"><span class="pre">screen</span></code> est une variable pré-définie qui représente la fenêtre d’affichage. Il y a
-<a class="reference internal" href="builtins.html#screen"><span class="std std-ref">pleins de fonctions pour dessiner des images et des formes</span></a>. L’appel à la méthode
+<a class="reference internal" href="builtins.html#screen"><span class="std std-ref">collection de fonctions pour dessiner des images et des formes</span></a>. L’appel à la méthode
 <code class="docutils literal notranslate"><span class="pre">screen.fill()</span></code> remplit l’écran avec une couleur unie,
 définie comme un tuple de couleur <code class="docutils literal notranslate"><span class="pre">(rouge,</span> <span class="pre">vert,</span> <span class="pre">bleu)</span></code>.
 <code class="docutils literal notranslate"><span class="pre">(128,</span> <span class="pre">0,</span> <span class="pre">0)</span></code> sera un rouge moyennement foncé.
@@ -80,20 +79,20 @@ Essaye de changer ces valeurs avec des nombres compris entre 0 et 255 et regarde
 <div class="section" id="dessiner-un-sprite">
 <h2>Dessiner un <em>sprite</em><a class="headerlink" href="#dessiner-un-sprite" title="Permalink to this headline">¶</a></h2>
 <p>Avant de pouvoir dessiner quoique ce soit, nous allons avoir besoin de l’image d’un extraterrestre. Tu peux
-cliquer avec le bouton de droite sur celle ci-dessous et l’enregistrer (“Enregister l’image sous…” ou quelque chose du genre).</p>
+cliquer avec le bouton de droite sur celle ci-dessous et l’enregistrer (“Enregistrer l’image sous…” ou quelque chose du genre).</p>
 <img alt="_images/alien.png" src="_images/alien.png" />
-<p>(Cette image a un canal de transparence, ou “alpha”, qui est super pour les jeux!
+<p>(Cette image a un paramètre de transparence, ou “alpha”, qui est super pour les jeux !
 Mais elle est conçue pour un arrière-plan sombre, il se peut donc que tu ne vois pas
-le casque de l’espace de l’extraterrestre avant qu’il soit affiché dans le jeu).</p>
+le casque de l’extraterrestre avant qu’il soit affiché dans le jeu).</p>
 <div class="admonition tip">
 <p class="first admonition-title">Tip</p>
-<p class="last">Tu peux trouver pleins d’images gratuites, incluant celle-ci, sur <a class="reference external" href="https://kenney.nl/assets?q=2d">kenney.nl</a>. Celle-ci vient de
+<p class="last">Tu peux trouver plein d’images gratuites, incluant celle-ci, sur <a class="reference external" href="https://kenney.nl/assets?q=2d">kenney.nl</a>. Celle-ci vient de
 <a class="reference external" href="https://kenney.nl/assets/platformer-art-deluxe">Platformer Art Deluxe pack</a>.</p>
 </div>
 <p>Tu dois enregistrer le fichier au bon endroit pour que Pygame Zero puisse le trouver.
 Crée un répertoire appelé <code class="docutils literal notranslate"><span class="pre">images</span></code> et enregistre l’image à l’intérieur en l’appelant
 <code class="docutils literal notranslate"><span class="pre">alien.png</span></code>. Les noms de fichiers doivent être en minuscule, sinon Pygame Zero va se plaindre
-en t’alertant d’un risque potentiel de compatibilité sur certaines plateformes.</p>
+en t’alertant d’un risque potentiel d’incompatibilité sur certaines plateformes.</p>
 <p>Si tu as fait tout cela, ton projet devrait ressembler à ceci:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.
 ├── images/
@@ -102,7 +101,7 @@ en t’alertant d’un risque potentiel de compatibilité sur certaines platefor
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">images/</span></code> est un répertoire standard dans lequel Pygame Zero va chercher tes images.</p>
-<p>Il y a une classe pré-définie appelée <code class="xref py py-class docutils literal notranslate"><span class="pre">Actor</span></code> que tu peux utiliser pour representer
+<p>Il y a une classe pré-définie appelée <code class="xref py py-class docutils literal notranslate"><span class="pre">Actor</span></code> que tu peux utiliser pour représenter
 une image (<em>sprite</em>) qui doit être dessinée à l’écran.</p>
 <p>Définissons-en une maintenant. Change le fichier <code class="docutils literal notranslate"><span class="pre">intro.py</span></code> afin qu’il contienne:</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -124,10 +123,10 @@ une image (<em>sprite</em>) qui doit être dessinée à l’écran.</p>
     <span class="n">alien</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 </pre></div>
 </td></tr></table></div>
-<p>Ton extraterrestre devrait maintenant apparaître à l’écran! En donnant la chaîne <code class="docutils literal notranslate"><span class="pre">'alien'</span></code>
+<p>Ton extraterrestre devrait maintenant apparaître à l’écran ! En donnant la chaîne <code class="docutils literal notranslate"><span class="pre">'alien'</span></code>
 à la classe <code class="docutils literal notranslate"><span class="pre">Actor</span></code>, il charge automatiquement l’image correspondante. L’objet obtenu a des attributs
 comme la position et la taille. Ceci nous permet de définir la hauteur de la fenêtre (<code class="docutils literal notranslate"><span class="pre">HEIGHT</span></code>)
-basée sur la hauteur de l’alien.</p>
+basée sur la hauteur de l’extraterrestre.</p>
 <p>La méthode <code class="docutils literal notranslate"><span class="pre">alien.draw()</span></code> dessine le <em>sprite</em> sur l’écran à sa position courante.</p>
 </div>
 <div class="section" id="deplacer-l-extraterrestre">
@@ -137,7 +136,7 @@ basée sur la hauteur de l’alien.</p>
 </pre></div>
 </div>
 <p>Note comment tu peux définir <code class="docutils literal notranslate"><span class="pre">topright</span></code> pour déplacer l’extraterrestre par son
-coin haut-droit. Si le bord droit de l’extraterrestre est positioné à <code class="docutils literal notranslate"><span class="pre">0</span></code>, alors
+coin haut-droit. Si le bord droit de l’extraterrestre est positionné à <code class="docutils literal notranslate"><span class="pre">0</span></code>, alors
 il sera en dehors de l’écran juste à gauche. Maintenant faisons le bouger.
 Ajoute les lignes suivantes à la fin du fichier:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
@@ -163,23 +162,23 @@ avons besoin de définir une fonction appelée <a class="reference internal" hre
 4
 5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_mouse_down</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">alien</span><span class="o">.</span><span class="n">collidepoint</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Eek!&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Eek !&quot;</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Tu m&#39;as manqué!&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Tu m&#39;as manqué !&quot;</span><span class="p">)</span>
 </pre></div>
 </td></tr></table></div>
-<p>Tu peux démarrer le jeu et essayer de cliquer sur et à côté de l’extraterrestre.</p>
+<p>Tu peux démarrer le jeu et essayer de cliquer sur l’extraterrestre et à côté.</p>
 <p>Pygame Zero est intelligent dans la façon d’appeler tes fonctions. Si tu ne définis pas
-ta fonction avec un parametre <code class="docutils literal notranslate"><span class="pre">pos</span></code>, Pygame Zero va l’appeler sans position.
-Il y a aussi un parametre <code class="docutils literal notranslate"><span class="pre">button</span></code> pour <code class="docutils literal notranslate"><span class="pre">on_mouse_down</span></code>. Nous aurions pu écrire:</p>
+ta fonction avec un paramètre <code class="docutils literal notranslate"><span class="pre">pos</span></code>, Pygame Zero va l’appeler sans position.
+Il y a aussi un paramètre <code class="docutils literal notranslate"><span class="pre">button</span></code> pour <code class="docutils literal notranslate"><span class="pre">on_mouse_down</span></code>. Nous aurions pu écrire:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_mouse_down</span><span class="p">():</span>
-    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Tu cliques!&quot;</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Tu cliques !&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>ou:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_mouse_down</span><span class="p">(</span><span class="n">pos</span><span class="p">,</span> <span class="n">button</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">button</span> <span class="o">==</span> <span class="n">mouse</span><span class="o">.</span><span class="n">LEFT</span> <span class="ow">and</span> <span class="n">alien</span><span class="o">.</span><span class="n">collidepoint</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
-        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Tu m&#39;as touché!&quot;</span><span class="p">)</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&quot;Tu m&#39;as touché !&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -203,22 +202,22 @@ le fichier en tant que <code class="docutils literal notranslate"><span class="p
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">sounds/</span></code> est un répertoire standard dans lequel Pygame Zero va chercher
-tes fichiers audios.</p>
-<p>Mantenant changeons la fonction <code class="docutils literal notranslate"><span class="pre">on_mouse_down</span></code> pour utiliser ces nouvelles ressources:</p>
+tes fichiers audio.</p>
+<p>Maintenant changeons la fonction <code class="docutils literal notranslate"><span class="pre">on_mouse_down</span></code> pour utiliser ces nouvelles ressources:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_mouse_down</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">alien</span><span class="o">.</span><span class="n">collidepoint</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
         <span class="n">alien</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="s1">&#39;alien_hurt&#39;</span>
         <span class="n">sounds</span><span class="o">.</span><span class="n">eep</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Maintenant quand tu cliques sur l’alien, tu devrais entendre un son et le <em>sprite</em> devrait
+<p>Maintenant, quand tu cliques sur l’extraterrestre, tu devrais entendre un son et le <em>sprite</em> devrait
 se changer en un extraterrestre pas content.</p>
 <p>Il y a cependant un bogue dans le jeu, l’extraterrestre ne redevient jamais
 joyeux (mais le son se fait entendre à chaque clic). Réparons ça tout de suite.</p>
 </div>
 <div class="section" id="l-horloge">
 <h2>L’horloge<a class="headerlink" href="#l-horloge" title="Permalink to this headline">¶</a></h2>
-<p>Si tu es habitué à Python en dehors de la programmation de jeux, tu peux connaitre
+<p>Si tu es habitué à Python en dehors de la programmation de jeux, tu peux connaître
 la méthode <code class="docutils literal notranslate"><span class="pre">time.sleep()</span></code> qui attend un certain délai. Tu peux être tenté d’écrire
 ton programme comme suit:</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
@@ -236,12 +235,12 @@ ton programme comme suit:</p>
 </td></tr></table></div>
 <p>Malheureusement, cela n’est pas utilisable dans un jeu. <code class="docutils literal notranslate"><span class="pre">time.sleep()</span></code>
 bloque toute activité, nous voulons que le jeu continue de fonctionner et de s’animer.
-En fait nous devons retourner de la fonction <code class="docutils literal notranslate"><span class="pre">on_mouse_down</span></code> et laisser le jeu calculer quand
+En fait nous devons sortir de la fonction <code class="docutils literal notranslate"><span class="pre">on_mouse_down</span></code> et laisser le jeu décider quand
 réinitialiser l’extraterrestre au cours de son activité normale, tout en continuant d’appeler vos
 fonctions <code class="docutils literal notranslate"><span class="pre">draw()</span></code> et <code class="docutils literal notranslate"><span class="pre">update()</span></code>.</p>
 <p>Ce n’est pas difficile avec Pygame Zero, car il y a la classe pré-définie
 <a class="reference internal" href="builtins.html#Clock" title="Clock"><code class="xref py py-class docutils literal notranslate"><span class="pre">Clock</span></code></a> qui peut ordonnancer l’appel à des fonctions dans le futur.</p>
-<p>D’abord, “ré-usinons” (c.-à-d. réorganison notre programme). Nous pouvons créer des fonctions pour
+<p>D’abord, réorganisons notre programme. Nous pouvons créer des fonctions pour
 définir l’apparence de l’extraterrestre blessé et aussi le remettre dans son état normal:</p>
 <div class="highlight-python notranslate"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
@@ -268,30 +267,30 @@ définir l’apparence de l’extraterrestre blessé et aussi le remettre dans s
     <span class="n">alien</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="s1">&#39;alien&#39;</span>
 </pre></div>
 </td></tr></table></div>
-<p>Cela ne vas rien changer pour l’instant. <code class="docutils literal notranslate"><span class="pre">set_alien_normal()</span></code> ne va pas être appelée.
+<p>Cela ne va rien changer pour l’instant. <code class="docutils literal notranslate"><span class="pre">set_alien_normal()</span></code> ne sera pas appelée.
 Mais changeons <code class="docutils literal notranslate"><span class="pre">set_alien_hurt()</span></code> en utilisant l’horloge afin que
-<code class="docutils literal notranslate"><span class="pre">set_alien_normal()</span></code> soit appeler un moment plus tard.</p>
+<code class="docutils literal notranslate"><span class="pre">set_alien_normal()</span></code> soit appelée un moment plus tard.:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_alien_hurt</span><span class="p">():</span>
     <span class="n">alien</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="s1">&#39;alien_hurt&#39;</span>
     <span class="n">sounds</span><span class="o">.</span><span class="n">eep</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
     <span class="n">clock</span><span class="o">.</span><span class="n">schedule_unique</span><span class="p">(</span><span class="n">set_alien_normal</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">clock.schedule_unique()</span></code> va faire en sorte que <code class="docutils literal notranslate"><span class="pre">set_alien_normal()</span></code> soit appelé
+<p><code class="docutils literal notranslate"><span class="pre">clock.schedule_unique()</span></code> va faire en sorte que <code class="docutils literal notranslate"><span class="pre">set_alien_normal()</span></code> soit appelée
 après <code class="docutils literal notranslate"><span class="pre">0.5</span></code> seconde. <code class="docutils literal notranslate"><span class="pre">schedule_unique()</span></code> empêche aussi que l’appel à la même fonction
-soit ordonnancé plus d’une fois, comme quand par exemple tu cliques très rapidemment.</p>
+soit ordonnancé plus d’une fois, comme quand par exemple tu cliques très rapidement.</p>
 <p>Essaye et tu verras l’extraterrestre revenir à l’état normal après 0.5 seconde. Essaye
-de cliquer rapidemment et vérifie que l’extraterrestre ne revienne dans l’état normal que 0.5 seconde
+de cliquer rapidement et vérifie que l’extraterrestre ne revienne dans l’état normal que 0.5 seconde
 après le dernier clic.</p>
 <p><code class="docutils literal notranslate"><span class="pre">clock.schedule_unique()</span></code> accepte comme intervalle de temps à la fois des entiers et des décimaux.
-Dans ce tutorial nous utilisons un nombre décimal pour l’illustrer mais
+Dans ce tutoriel nous utilisons un nombre décimal pour l’illustrer mais
 essaye d’utiliser les deux pour voir l’effet que produit chaque valeur.</p>
 </div>
 <div class="section" id="resume">
 <h2>Résumé<a class="headerlink" href="#resume" title="Permalink to this headline">¶</a></h2>
-<p>Nous avons vu comment charger et dessiner des <em>sprites</em>, jouers des sons,
+<p>Nous avons vu comment charger et dessiner des <em>sprites</em>, jouer des sons,
 gérer les actions de l’utilisateur et utiliser une horloge pré-définie.</p>
-<p>Tu peux maintenant vouloir améliorer le jeu pour comptabiliser le score ou faire bouger
+<p>Tu voudrais sûrement améliorer le jeu pour compter les points ou faire bouger
 l’extraterrestre de façon plus erratique.</p>
 <p>Il y a encore plus de fonctionnalités qui font que Pygame Zero est facile à utiliser.
 Regarde la documentation <a class="reference internal" href="builtins.html"><span class="doc">des objets pré-définis</span></a> pour apprendre
@@ -334,11 +333,11 @@ le reste de l’API.</p>
 <li class="toctree-l1"><a class="reference internal" href="from-scratch.html">Migrer depuis Scratch</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="hooks.html">Event Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Les <em>hooks</em> d’évènements</a></li>
 <li class="toctree-l1"><a class="reference internal" href="builtins.html">Objets pré-définis</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installer Pygame Zero</a></li>
 <li class="toctree-l1"><a class="reference internal" href="repl.html">Using the REPL (Read-Evaluate-Print Loop)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ide-mode.html">Running Pygame Zero in IDLE and other IDEs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="other-libs.html">Other libraries like Pygame Zero</a></li>
@@ -357,7 +356,7 @@ le reste de l’API.</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="index.html" title="previous chapter">Bienvenu à Pygame Zero</a></li>
+      <li>Previous: <a href="index.html" title="previous chapter">Bienvenue à Pygame Zero</a></li>
       <li>Next: <a href="from-scratch.html" title="next chapter">Migrer depuis Scratch</a></li>
   </ul></li>
 </ul>

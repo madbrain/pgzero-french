@@ -17,7 +17,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Text Formatting" href="ptext.html" />
-    <link rel="prev" title="Event Hooks" href="hooks.html" />
+    <link rel="prev" title="Les hooks d’évènements" href="hooks.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -36,90 +36,91 @@
             
   <div class="section" id="objets-pre-definis">
 <h1>Objets pré-définis<a class="headerlink" href="#objets-pre-definis" title="Permalink to this headline">¶</a></h1>
-<p>Pygame Zero fournit des objets pré-définis utiles pour t’aider à construire des jeux facilement.</p>
+<p>Pygame Zero fournit des objets pré-définis utiles pour t’aider
+à construire des jeux facilement.</p>
 <div class="section" id="screen">
 <span id="id1"></span><h2>Screen<a class="headerlink" href="#screen" title="Permalink to this headline">¶</a></h2>
 <div class="toctree-wrapper compound">
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">screen</span></code> object represents your game screen.</p>
-<p>It is a thin wrapper around a Pygame surface that allows you to easily
-draw images to the screen (“blit” them).</p>
+<p>L’objet <code class="docutils literal notranslate"><span class="pre">screen</span></code> représente l’écran de ton jeu.</p>
+<p>C’est une fine couche autour d’une surface Pygame qui te permet
+facilement de dessiner des images à l’écran.</p>
 <dl class="class">
 <dt id="Screen">
 <em class="property">class </em><code class="descname">Screen</code><a class="headerlink" href="#Screen" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="attribute">
 <dt id="Screen.surface">
 <code class="descname">surface</code><a class="headerlink" href="#Screen.surface" title="Permalink to this definition">¶</a></dt>
-<dd><p>The raw <a class="reference external" href="https://www.pygame.org/docs/ref/surface.html">Pygame surface</a> that represents the screen buffer. You can
-use this for advanced graphics operations.</p>
+<dd><p>La <a class="reference external" href="https://www.pygame.org/docs/ref/surface.html">surface Pygame</a> brute qui représente l’espace mémoire de l’écran. Tu peux
+l’utiliser pour les opérations graphiques avancées.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Screen.clear">
 <code class="descname">clear</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Screen.clear" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reset the screen to black.</p>
+<dd><p>Réinitialise l’écran en noir.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Screen.fill">
-<code class="descname">fill</code><span class="sig-paren">(</span><em>(red</em>, <em>green</em>, <em>blue)</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.fill" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fill the screen with a solid color.</p>
+<code class="descname">fill</code><span class="sig-paren">(</span><em>(rouge</em>, <em>vert</em>, <em>bleu)</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.fill" title="Permalink to this definition">¶</a></dt>
+<dd><p>Rempli l’écran d’une couleur pleine.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Screen.blit">
-<code class="descname">blit</code><span class="sig-paren">(</span><em>image</em>, <em>(left</em>, <em>top)</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.blit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Draw the image to the screen at the given position.</p>
-<p><code class="docutils literal notranslate"><span class="pre">blit()</span></code> accepts either a Surface or a string as its <code class="docutils literal notranslate"><span class="pre">image</span></code>
-parameter. If <code class="docutils literal notranslate"><span class="pre">image</span></code> is a <code class="docutils literal notranslate"><span class="pre">str</span></code> then the named image will be
-loaded from the <code class="docutils literal notranslate"><span class="pre">images/</span></code> directory.</p>
+<code class="descname">blit</code><span class="sig-paren">(</span><em>image</em>, <em>(gauche</em>, <em>haut)</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.blit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dessine l’image sur l’écran à la position donnée.</p>
+<p><code class="docutils literal notranslate"><span class="pre">blit()</span></code> accepte soit une surface ou une chaîne comme paramètre <code class="docutils literal notranslate"><span class="pre">image</span></code>.
+Si <code class="docutils literal notranslate"><span class="pre">image</span></code> est une chaîne alors l’image au nom correspondant sera chargée
+depuis le répertoire <code class="docutils literal notranslate"><span class="pre">images/</span></code>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Screen.draw.line">
-<code class="descclassname">draw.</code><code class="descname">line</code><span class="sig-paren">(</span><em>start</em>, <em>end</em>, <em>(r</em>, <em>g</em>, <em>b)</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.draw.line" title="Permalink to this definition">¶</a></dt>
-<dd><p>Draw a line from start to end.</p>
+<code class="descclassname">draw.</code><code class="descname">line</code><span class="sig-paren">(</span><em>début</em>, <em>fin</em>, <em>(r</em>, <em>v</em>, <em>b)</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.draw.line" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dessine une ligne de <code class="docutils literal notranslate"><span class="pre">début</span></code> à <code class="docutils literal notranslate"><span class="pre">fin</span></code>.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Screen.draw.circle">
-<code class="descclassname">draw.</code><code class="descname">circle</code><span class="sig-paren">(</span><em>pos</em>, <em>radius</em>, <em>(r</em>, <em>g</em>, <em>b)</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.draw.circle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Draw the outline of a circle.</p>
+<code class="descclassname">draw.</code><code class="descname">circle</code><span class="sig-paren">(</span><em>pos</em>, <em>rayon</em>, <em>(r</em>, <em>v</em>, <em>b)</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.draw.circle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dessine un cercle.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Screen.draw.filled_circle">
-<code class="descclassname">draw.</code><code class="descname">filled_circle</code><span class="sig-paren">(</span><em>pos</em>, <em>radius</em>, <em>(r</em>, <em>g</em>, <em>b)</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.draw.filled_circle" title="Permalink to this definition">¶</a></dt>
-<dd><p>Draw a filled circle.</p>
+<code class="descclassname">draw.</code><code class="descname">filled_circle</code><span class="sig-paren">(</span><em>pos</em>, <em>rayon</em>, <em>(r</em>, <em>v</em>, <em>b)</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.draw.filled_circle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dessine un disque.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Screen.draw.rect">
-<code class="descclassname">draw.</code><code class="descname">rect</code><span class="sig-paren">(</span><em>rect</em>, <em>(r</em>, <em>g</em>, <em>b)</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.draw.rect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Draw the outline of a rectangle.</p>
-<p>Takes a <a class="reference internal" href="#rect"><span class="std std-ref">Rect</span></a>.</p>
+<code class="descclassname">draw.</code><code class="descname">rect</code><span class="sig-paren">(</span><em>rect</em>, <em>(r</em>, <em>v</em>, <em>b)</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.draw.rect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dessine le contour un rectangle.</p>
+<p>Prend un <a class="reference internal" href="#rect"><span class="std std-ref">Rect</span></a> en paramètre.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Screen.draw.filled_rect">
-<code class="descclassname">draw.</code><code class="descname">filled_rect</code><span class="sig-paren">(</span><em>rect</em>, <em>(r</em>, <em>g</em>, <em>b)</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.draw.filled_rect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Draw a filled rectangle.</p>
+<code class="descclassname">draw.</code><code class="descname">filled_rect</code><span class="sig-paren">(</span><em>rect</em>, <em>(r</em>, <em>v</em>, <em>b)</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.draw.filled_rect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dessine un rectangle plein.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Screen.draw.text">
-<code class="descclassname">draw.</code><code class="descname">text</code><span class="sig-paren">(</span><em>text</em>, <span class="optional">[</span><em>pos</em>, <span class="optional">]</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.draw.text" title="Permalink to this definition">¶</a></dt>
-<dd><p>Draw text.</p>
-<p>There’s an extremely rich API for positioning and formatting text; see
-<a class="reference internal" href="ptext.html"><span class="doc">Text Formatting</span></a> for full details.</p>
+<code class="descclassname">draw.</code><code class="descname">text</code><span class="sig-paren">(</span><em>texte</em>, <span class="optional">[</span><em>pos</em>, <span class="optional">]</span><em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.draw.text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dessine du texte.</p>
+<p>Il existe une API extrêmement riche pour positionner et formater du texte, regarder
+<a class="reference internal" href="ptext.html"><span class="doc">Text Formatting</span></a> pour plus de détails.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Screen.draw.textbox">
-<code class="descclassname">draw.</code><code class="descname">textbox</code><span class="sig-paren">(</span><em>text</em>, <em>rect</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.draw.textbox" title="Permalink to this definition">¶</a></dt>
-<dd><p>Draw text, sized to fill the given <a class="reference internal" href="#rect"><span class="std std-ref">Rect</span></a>.</p>
-<p>There’s an extremely rich API for formatting text; see
-<a class="reference internal" href="ptext.html"><span class="doc">Text Formatting</span></a> for full details.</p>
+<code class="descclassname">draw.</code><code class="descname">textbox</code><span class="sig-paren">(</span><em>texte</em>, <em>rect</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="headerlink" href="#Screen.draw.textbox" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dessine du texte dimensionné pour remplir le <a class="reference internal" href="#rect"><span class="std std-ref">Rect</span></a> donné.</p>
+<p>Il existe une API extrêmement riche pour positionner et formater du texte, regarder
+<a class="reference internal" href="ptext.html"><span class="doc">Text Formatting</span></a> pour plus de détails.</p>
 </dd></dl>
 
 </dd></dl>
@@ -127,33 +128,35 @@ loaded from the <code class="docutils literal notranslate"><span class="pre">ima
 </div>
 <div class="section" id="rect">
 <span id="id2"></span><h2>Rect<a class="headerlink" href="#rect" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference external" href="https://www.pygame.org/docs/ref/rect.html">Pygame Rect</a> class is available as a built in. This can be used in a
-variety of ways, from detecting clicks within a region to drawing a box onto
-the screen:</p>
-<p>For example, you can draw a box with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">RED</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
-<span class="n">BOX</span> <span class="o">=</span> <span class="n">Rect</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
+<p>La classe <a class="reference external" href="https://www.pygame.org/docs/ref/rect.html">Pygame Rect</a> est disponible en tant que classe prédéfinie.
+Elle peut être utilisée de nombreuses façons, de la détection de clics
+dans une région au dessin d’une boîte sur l’écran:</p>
+<p>Par exemple, tu peux dessiner une boîte avec:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ROUGE</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="n">BOITE</span> <span class="o">=</span> <span class="n">Rect</span><span class="p">((</span><span class="mi">20</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
 
 <span class="k">def</span> <span class="nf">draw</span><span class="p">():</span>
-    <span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">BOX</span><span class="p">,</span> <span class="n">RED</span><span class="p">)</span>
+    <span class="n">screen</span><span class="o">.</span><span class="n">draw</span><span class="o">.</span><span class="n">rect</span><span class="p">(</span><span class="n">BOITE</span><span class="p">,</span> <span class="n">ROUGE</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
-<div class="section" id="resource-loading">
-<h2>Resource Loading<a class="headerlink" href="#resource-loading" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">images</span></code> and <code class="docutils literal notranslate"><span class="pre">sounds</span></code> objects can be used to load images and sounds
-from files stored in the <code class="docutils literal notranslate"><span class="pre">images</span></code> and <code class="docutils literal notranslate"><span class="pre">sounds</span></code> subdirectories respectively.
-Pygame Zero will handle loading of these resources on demand and will cache
-them to avoid reloading them.</p>
-<p>You generally need to ensure that your images are named with lowercase letters,
-numbers and underscores only. They also have to start with a letter.</p>
-<p>File names like these will work well with the resource loader:</p>
+<div class="section" id="chargement-de-resources">
+<h2>Chargement de resources<a class="headerlink" href="#chargement-de-resources" title="Permalink to this headline">¶</a></h2>
+<p>Les objets <code class="docutils literal notranslate"><span class="pre">images</span></code> et <code class="docutils literal notranslate"><span class="pre">sounds</span></code> peuvent être utilisés pour charger des
+images et des clips audio depuis des fichiers stockés dans les répertoires
+<code class="docutils literal notranslate"><span class="pre">images</span></code> et <code class="docutils literal notranslate"><span class="pre">sounds</span></code> respectivement. Pygame Zero va se charger de lire
+ces resources à la demande et va les mémoriser afin d’éviter de les relire.</p>
+<p>Tu doit généralement t’assurer que tes images sont nommées avec des lettres
+minuscule, des chiffres et le caractère souligné <code class="docutils literal notranslate"><span class="pre">_</span></code> seulement.
+Ils doivent aussi commencer par une lettre.</p>
+<p>Les noms de fichiers suivants vont fonctionner correctement lors du
+chargement de resources:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alien</span><span class="o">.</span><span class="n">png</span>
 <span class="n">alien_hurt</span><span class="o">.</span><span class="n">png</span>
 <span class="n">alien_run_7</span><span class="o">.</span><span class="n">png</span>
 </pre></div>
 </div>
-<p>These will not work:</p>
+<p>Ceux-ci ne fonctionneront pas:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">3.</span><span class="n">png</span>
 <span class="mi">3</span><span class="n">degrees</span><span class="o">.</span><span class="n">png</span>
 <span class="n">my</span><span class="o">-</span><span class="n">cat</span><span class="o">.</span><span class="n">png</span>
@@ -162,40 +165,42 @@ numbers and underscores only. They also have to start with a letter.</p>
 </div>
 <div class="section" id="images">
 <h3>Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h3>
-<p>Pygame Zero can load images in <code class="docutils literal notranslate"><span class="pre">.png</span></code>, <code class="docutils literal notranslate"><span class="pre">.gif</span></code>, and <code class="docutils literal notranslate"><span class="pre">.jpg</span></code> formats. PNG is
-recommended: it will allow high quality images with transparency.</p>
-<p>We need to ensure an images directory is set up. If your project contains the
-following files:</p>
+<p>Pygame Zero peut charger des images aux formats <code class="docutils literal notranslate"><span class="pre">.png</span></code>, <code class="docutils literal notranslate"><span class="pre">.gif</span></code> et <code class="docutils literal notranslate"><span class="pre">.jpg</span></code>.
+le format PNG est recommandé : il autorise des images de haute qualité et
+gère la transparence.</p>
+<p>Nous devons nous assurer que le répertoire <code class="docutils literal notranslate"><span class="pre">images</span></code> existe. Si ton projet
+contient les fichiers suivants:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">space_game</span><span class="o">.</span><span class="n">py</span>
 <span class="n">images</span><span class="o">/</span><span class="n">alien</span><span class="o">.</span><span class="n">png</span>
 </pre></div>
 </div>
-<p>Then <code class="docutils literal notranslate"><span class="pre">space_game.py</span></code> could draw the ‘alien’ sprite to the screen with this
-code:</p>
+<p>Alors <code class="docutils literal notranslate"><span class="pre">space_game.py</span></code> peux dessiner l’image ‘alien’ à l’écran avec
+ce code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw</span><span class="p">():</span>
     <span class="n">screen</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
     <span class="n">screen</span><span class="o">.</span><span class="n">blit</span><span class="p">(</span><span class="s1">&#39;alien&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>The name passed to <code class="docutils literal notranslate"><span class="pre">blit()</span></code> is the name of the image file within the images
-directory, without the file extension.</p>
-<p>Or using the <a class="reference internal" href="#actor"><span class="std std-ref">Actors</span></a> API,</p>
+<p>Le nom passé à <code class="docutils literal notranslate"><span class="pre">blit()</span></code> est le nom du fichier image dans le répertoire
+images, sans l’extension de fichier.</p>
+<p>Ou en utilisant l’API <a class="reference internal" href="#actor"><span class="std std-ref">Acteurs</span></a>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alien</span> <span class="o">=</span> <span class="n">Actor</span><span class="p">(</span><span class="s1">&#39;alien&#39;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">draw</span><span class="p">():</span>
     <span class="n">alien</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>There are some restrictions on the file names in both cases: they may only
-contain lowercase latin letters, numbers and underscores. This is to prevent
-compatibility problems when your game is played on a different operating system
-that has different case sensitivity.</p>
+<p>Dans les deux cas, il y a quelques restrictions sur les noms de fichiers:
+ils ne peuvent seulement contenir des lettres latines minuscules,
+des chiffres et le caractère souligné <code class="docutils literal notranslate"><span class="pre">_</span></code>. Ceci afin d’éviter des problèmes
+de compatibilité quand ton jeu est exécuté sur différents systèmes
+d’exploitation qui ont différentes sensibilités à la casse.</p>
 </div>
-<div class="section" id="image-surfaces">
-<h3>Image Surfaces<a class="headerlink" href="#image-surfaces" title="Permalink to this headline">¶</a></h3>
-<p>You can also load images from the <code class="docutils literal notranslate"><span class="pre">images</span></code> directory using the <code class="docutils literal notranslate"><span class="pre">images</span></code>
-object. This allows you to work with the image data itself, query its
-dimensions and so on:</p>
+<div class="section" id="surfaces-d-images">
+<h3>Surfaces d’images<a class="headerlink" href="#surfaces-d-images" title="Permalink to this headline">¶</a></h3>
+<p>Tu peux également charger des images depuis le répertoire <code class="docutils literal notranslate"><span class="pre">images</span></code>
+en utilisant l’objet <code class="docutils literal notranslate"><span class="pre">images</span></code>. Ceci t’autorise à travailler avec les
+données de l’image elle-même, obtenir ces dimensions, etc.:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">forest</span> <span class="o">=</span> <span class="p">[]</span>
 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
     <span class="n">forest</span><span class="o">.</span><span class="n">append</span><span class="p">(</span>
@@ -203,37 +208,36 @@ dimensions and so on:</p>
     <span class="p">)</span>
 </pre></div>
 </div>
-<p>Each loaded image is a Pygame <code class="docutils literal notranslate"><span class="pre">Surface</span></code>. You will typically use
-<code class="docutils literal notranslate"><span class="pre">screen.blit(...)</span></code> to draw this to the screen. It also provides handy methods
-to query the size of the image in pixels:</p>
+<p>Chaque image chargée est une <code class="docutils literal notranslate"><span class="pre">Surface</span></code> Pygame. Tu va généralement
+utiliser <code class="docutils literal notranslate"><span class="pre">screen.blit(...)</span></code> pour les dessiner à l’écran. Elle fournit
+également des méthodes pratiques pour obtenir la taille de l’image en pixels:</p>
 <dl class="class">
 <dt id="Surface">
 <em class="property">class </em><code class="descname">Surface</code><a class="headerlink" href="#Surface" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="Surface.get_width">
 <code class="descname">get_width</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Surface.get_width" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the width of the image in pixels.</p>
+<dd><p>Retourne la largeur de l’image en pixels.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Surface.get_height">
 <code class="descname">get_height</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Surface.get_height" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns the height of the image in pixels.</p>
+<dd><p>Retourne la hauteur de l’image en pixels.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Surface.get_size">
 <code class="descname">get_size</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Surface.get_size" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns a tuple (width, height) indicating the size in pixels of the
-surface.</p>
+<dd><p>Retourne un tuple (largeur, hauteur) indiquant la taille en pixels de la surface.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Surface.get_rect">
 <code class="descname">get_rect</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Surface.get_rect" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get a <code class="xref py py-class docutils literal notranslate"><span class="pre">Rect</span></code> that is pre-populated with the bounds of the image
-if the image was located at the origin.</p>
-<p>Effectively this is equivalent to:</p>
+<dd><p>Retourne un objet <code class="xref py py-class docutils literal notranslate"><span class="pre">Rect</span></code> qui est prérempli avec les limites de l’images
+comme si l’image était située à l’origine.</p>
+<p>Dans les faits, ceci est équivalent à:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Rect</span><span class="p">((</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">image</span><span class="o">.</span><span class="n">get_size</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -242,46 +246,46 @@ if the image was located at the origin.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="sounds">
-<h3>Sounds<a class="headerlink" href="#sounds" title="Permalink to this headline">¶</a></h3>
-<p>Pygame Zero can load sounds in <code class="docutils literal notranslate"><span class="pre">.wav</span></code> and <code class="docutils literal notranslate"><span class="pre">.ogg</span></code> formats. WAV is great for
-small sound effects, while OGG is a compressed format that is more suited to
-music. You can find free .ogg and .wav files online that can be used in your
-game.</p>
-<p>We need to ensure a sounds directory is set up. If your project contains the
-following files:</p>
+<div class="section" id="sons">
+<h3>Sons<a class="headerlink" href="#sons" title="Permalink to this headline">¶</a></h3>
+<p>Pygame Zero peut charger des sons aux formats <code class="docutils literal notranslate"><span class="pre">.wav</span></code> et <code class="docutils literal notranslate"><span class="pre">.ogg</span></code>.
+le format WAV est adapté aux petits effets sonores, tandis que OGG est
+un format compressé qui convient mieux à la musique. Tu peux trouver
+des fichiers .ogg et .wav libres de droits en ligne que tu peux utiliser
+dans ton jeu.</p>
+<p>Nous devons nous assurer que le répertoire <code class="docutils literal notranslate"><span class="pre">sounds</span></code> existe. si ton projet
+contient les fichiers suivants:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">drum_kit</span><span class="o">.</span><span class="n">py</span>
 <span class="n">sounds</span><span class="o">/</span><span class="n">drum</span><span class="o">.</span><span class="n">wav</span>
 </pre></div>
 </div>
-<p>Then <code class="docutils literal notranslate"><span class="pre">drum_kit.py</span></code> could play the drum sound whenever the mouse is clicked
-with this code:</p>
+<p>Alors <code class="docutils literal notranslate"><span class="pre">drum_kit.py</span></code> peux jouer le son de batterie dès que la le bouton
+de la souris est pressé avec le code suivant:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_mouse_down</span><span class="p">():</span>
     <span class="n">sounds</span><span class="o">.</span><span class="n">drum</span><span class="o">.</span><span class="n">play</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Each loaded sound is a Pygame <code class="docutils literal notranslate"><span class="pre">Sound</span></code>, and has various methods to play and
-stop the sound as well as query its length in seconds:</p>
+<p>Chaque son chargé est un object Pygame <code class="docutils literal notranslate"><span class="pre">Sound</span></code> et a diverses méthodes
+pour jouer et stopper le son, ainsi qu’obtenir sa longueur en secondes:</p>
 <dl class="class">
 <dt id="Sound">
 <em class="property">class </em><code class="descname">Sound</code><a class="headerlink" href="#Sound" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="Sound.play">
 <code class="descname">play</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Sound.play" title="Permalink to this definition">¶</a></dt>
-<dd><p>Play the sound.</p>
+<dd><p>Joue le son.</p>
 </dd></dl>
 
 <dl class="method">
 <dt>
-<code class="descname">play</code><span class="sig-paren">(</span><em>loops</em><span class="sig-paren">)</span></dt>
-<dd><p>Play the sound, but loop it a number of times.</p>
+<code class="descname">play</code><span class="sig-paren">(</span><em>n</em><span class="sig-paren">)</span></dt>
+<dd><p>Joue le son en boucle <code class="docutils literal notranslate"><span class="pre">n</span></code> fois.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>loops</strong> – The number of times to loop. If you pass <code class="docutils literal notranslate"><span class="pre">-1</span></code> as the
-number of times to loop, the sound will loop forever (or
-until you call <a class="reference internal" href="#Sound.stop" title="Sound.stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Sound.stop()</span></code></a></td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>n</strong> – Le nombre de fois à répéter. Si tu donnes <code class="docutils literal notranslate"><span class="pre">-1</span></code> comme nombre de répétition,
+le son va se répéter indéfiniment (ou jusqu’à ce que tu appelles <a class="reference internal" href="#Sound.stop" title="Sound.stop"><code class="xref py py-meth docutils literal notranslate"><span class="pre">Sound.stop()</span></code></a>)</td>
 </tr>
 </tbody>
 </table>
@@ -290,56 +294,54 @@ until you call <a class="reference internal" href="#Sound.stop" title="Sound.sto
 <dl class="method">
 <dt id="Sound.stop">
 <code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Sound.stop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stop playing the sound.</p>
+<dd><p>Arrête de jouer le son.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Sound.get_length">
 <code class="descname">get_length</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Sound.get_length" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the duration of the sound in seconds.</p>
+<dd><p>Retourne la durée du son en secondes.</p>
 </dd></dl>
 
 </dd></dl>
 
-<p>You should avoid using the <code class="docutils literal notranslate"><span class="pre">sounds</span></code> object to play longer pieces of music.
-Because the sounds sytem will fully load the music into memory before playing
-it, this can use a lot of memory, as well as introducing a delay while the
-music is loaded.</p>
+<p>Tu devrait éviter d’utiliser l’objet <code class="docutils literal notranslate"><span class="pre">sounds</span></code> pour jouer de longs
+morceaux de musique, parce que Pygame va complètement charger la
+musique en mémoire avant de la jouer, ceci peut utiliser beaucoup
+de mémoire, ainsi qu’introduire un délai au chargement de la musique.</p>
 </div>
 </div>
-<div class="section" id="music">
-<span id="id3"></span><h2>Music<a class="headerlink" href="#music" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="musique">
+<span id="music"></span><h2>Musique<a class="headerlink" href="#musique" title="Permalink to this headline">¶</a></h2>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.1.</span></p>
 </div>
 <div class="admonition warning">
 <p class="first admonition-title">Warning</p>
-<p>The music API is experimental and may be subject to cross-platform
-portability issues.</p>
-<p>In particular:</p>
+<p>L’API musique est expérimentale et peux causer des problèmes sur certaines plateformes.</p>
+<p>En particulier:</p>
 <ul class="simple">
-<li>MP3 may not be available on some Linux distributions.</li>
-<li>Some OGG Vorbis files seem to hang Pygame with 100% CPU.</li>
+<li>le format MP3 peut ne pas être disponible dans toutes les distributions Linux.</li>
+<li>certains fichier OGG Vorbis semble bloquer Pygame en consommant 100% du CPU.</li>
 </ul>
-<p class="last">In the case of the latter issue, the problem may be fixed by re-encoding
-(possibly with a different encoder).</p>
+<p class="last">Dans le dernier cas, le problème peut être réglé en re-encodant
+(si possible avec un encodeur différent).</p>
 </div>
-<p>A built-in object called <code class="docutils literal notranslate"><span class="pre">music</span></code> provides access to play music from within
-a <code class="docutils literal notranslate"><span class="pre">music/</span></code> directory (alongside your <code class="docutils literal notranslate"><span class="pre">images/</span></code> and <code class="docutils literal notranslate"><span class="pre">sounds/</span></code> directories,
-if you have them). The music system will load the track a little bit at a time
-while the music plays, avoiding the problems with using <code class="docutils literal notranslate"><span class="pre">sounds</span></code> to play
-longer tracks.</p>
-<p>Another difference to the sounds system is that only one music track can be
-playing at a time. If you play a different track, the previously playing track
-will be stopped.</p>
+<p>L’objet prédéfini <code class="docutils literal notranslate"><span class="pre">music</span></code> fournit le moyen de jouer de la musique depuis
+le répertoire <code class="docutils literal notranslate"><span class="pre">music/</span></code> (à côté de tes répertoires <code class="docutils literal notranslate"><span class="pre">images/</span></code> et <code class="docutils literal notranslate"><span class="pre">sounds/</span></code>,
+si tu en as). Le système musical va charger la piste de musique par petits
+morceaux pendant que la musique est jouée, évitant le problème de l’utilisation
+de <code class="docutils literal notranslate"><span class="pre">sounds</span></code> pour jouer de long morceaux de musique.</p>
+<p>Une autre différence avec les effets sonores est que une seule piste de musique
+peut être jouée à la fois. Si tu joues une piste différente, la piste en cours
+d’exécution et stoppée.</p>
 <dl class="function">
 <dt id="music.play">
-<code class="descclassname">music.</code><code class="descname">play</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#music.play" title="Permalink to this definition">¶</a></dt>
-<dd><p>Play a music track from the given file. The track will loop indefinitely.</p>
-<p>This replaces the currently playing track and cancels any tracks previously
-queued with <code class="docutils literal notranslate"><span class="pre">queue()</span></code>.</p>
-<p>You do not need to include the extension in the track name; for example, to
-play the file <code class="docutils literal notranslate"><span class="pre">handel.mp3</span></code> on a loop:</p>
+<code class="descclassname">music.</code><code class="descname">play</code><span class="sig-paren">(</span><em>nom</em><span class="sig-paren">)</span><a class="headerlink" href="#music.play" title="Permalink to this definition">¶</a></dt>
+<dd><p>Joue une piste de musique depuis le fichier donné. La piste va jouer indéfiniment.</p>
+<p>Cela va remplacer la piste en cours et annuler toutes les pistes mises en attente avec <code class="docutils literal notranslate"><span class="pre">queue()</span></code>.</p>
+<p>Tu n’as pas besoin d’inclure l’extension dans le nom de la piste, par exemple, pour jouer
+le fichier <code class="docutils literal notranslate"><span class="pre">handel.mp3</span></code> en boucle:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">music</span><span class="o">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;handel&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -347,53 +349,53 @@ play the file <code class="docutils literal notranslate"><span class="pre">hande
 
 <dl class="function">
 <dt id="music.play_once">
-<code class="descclassname">music.</code><code class="descname">play_once</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#music.play_once" title="Permalink to this definition">¶</a></dt>
-<dd><p>Similar to <code class="docutils literal notranslate"><span class="pre">play()</span></code>, but the music will stop after playing through once.</p>
+<code class="descclassname">music.</code><code class="descname">play_once</code><span class="sig-paren">(</span><em>nom</em><span class="sig-paren">)</span><a class="headerlink" href="#music.play_once" title="Permalink to this definition">¶</a></dt>
+<dd><p>Similaire à <code class="docutils literal notranslate"><span class="pre">play()</span></code>, mais joue la musique une fois seulement.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="music.queue">
-<code class="descclassname">music.</code><code class="descname">queue</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#music.queue" title="Permalink to this definition">¶</a></dt>
-<dd><p>Similar to <code class="docutils literal notranslate"><span class="pre">play_once()</span></code>, but instead of stopping the current music, the
-track will be queued to play after the current track finishes (or after
-any other previously queued tracks).</p>
+<code class="descclassname">music.</code><code class="descname">queue</code><span class="sig-paren">(</span><em>nom</em><span class="sig-paren">)</span><a class="headerlink" href="#music.queue" title="Permalink to this definition">¶</a></dt>
+<dd><p>Similaire à <code class="docutils literal notranslate"><span class="pre">play_once()</span></code>, mais au lieu de stopper la musique en cours, la piste
+va être mise sur liste d’attente pour être jouée une fois que la musique en cours sera finie
+(ou après les autres musiques mises en attente précédemment).</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="music.stop">
 <code class="descclassname">music.</code><code class="descname">stop</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#music.stop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stop the music.</p>
+<dd><p>Arrête la musique.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="music.pause">
 <code class="descclassname">music.</code><code class="descname">pause</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#music.pause" title="Permalink to this definition">¶</a></dt>
-<dd><p>Pause the music temporarily. It can be resumed by calling
+<dd><p>Met la musique en pause temporairement. Elle peut être redémarrée en appelant
 <code class="docutils literal notranslate"><span class="pre">unpause()</span></code>.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="music.unpause">
 <code class="descclassname">music.</code><code class="descname">unpause</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#music.unpause" title="Permalink to this definition">¶</a></dt>
-<dd><p>Unpause the music.</p>
+<dd><p>Redémarre la musique.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="music.is_playing">
 <code class="descclassname">music.</code><code class="descname">is_playing</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#music.is_playing" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns True if the music is playing (and is not paused), False otherwise.</p>
+<dd><p>Retourne vrai si la musique en en train d’être jouée (et n’est pas en pause), faux dans les autres cas.</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="music.fadeout">
-<code class="descclassname">music.</code><code class="descname">fadeout</code><span class="sig-paren">(</span><em>duration</em><span class="sig-paren">)</span><a class="headerlink" href="#music.fadeout" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fade out and eventually stop the current music playback.</p>
+<code class="descclassname">music.</code><code class="descname">fadeout</code><span class="sig-paren">(</span><em>durée</em><span class="sig-paren">)</span><a class="headerlink" href="#music.fadeout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Diminue progressivement le volume et stoppe la musique en cours d’exécution.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>duration</strong> – The duration in seconds over which the sound will be faded
-out. For example, to fade out over half a second, call
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>duration</strong> – La durée en secondes pendant laquelle le volume va diminuer.
+Par exemple, pour diminuer le son pendant une demi seconde, appelle
 <code class="docutils literal notranslate"><span class="pre">music.fadeout(0.5)</span></code>.</td>
 </tr>
 </tbody>
@@ -403,64 +405,67 @@ out. For example, to fade out over half a second, call
 <dl class="function">
 <dt id="music.set_volume">
 <code class="descclassname">music.</code><code class="descname">set_volume</code><span class="sig-paren">(</span><em>volume</em><span class="sig-paren">)</span><a class="headerlink" href="#music.set_volume" title="Permalink to this definition">¶</a></dt>
-<dd><p>Set the volume of the music system.</p>
-<p>This takes a number between 0 (meaning silent) and 1 (meaning full volume).</p>
+<dd><p>Défini le volume de la musique.</p>
+<p>Cela prend un nombre décimal entre 0 (pas de son) and 1 (volume maximum).</p>
 </dd></dl>
 
 <dl class="function">
 <dt id="music.get_volume">
 <code class="descclassname">music.</code><code class="descname">get_volume</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#music.get_volume" title="Permalink to this definition">¶</a></dt>
-<dd><p>Get the current volume of the music system.</p>
+<dd><p>Retourne le volume courant de la musique.</p>
 </dd></dl>
 
-<p>If you have started a music track playing using <a class="reference internal" href="#music.play_once" title="music.play_once"><code class="xref py py-func docutils literal notranslate"><span class="pre">music.play_once()</span></code></a>, you
-can use the <a class="reference internal" href="hooks.html#on_music_end" title="on_music_end"><code class="xref py py-func docutils literal notranslate"><span class="pre">on_music_end()</span> <span class="pre">hook</span></code></a> to do something when the
-music ends - for example, to pick another track at random.</p>
+<p>Si tu as démarré la lecture de la piste de musique en utilisant
+<a class="reference internal" href="#music.play_once" title="music.play_once"><code class="xref py py-func docutils literal notranslate"><span class="pre">music.play_once()</span></code></a>, tu peux utiliser le
+<a class="reference internal" href="hooks.html#on_music_end" title="on_music_end"><code class="xref py py-func docutils literal notranslate"><span class="pre">hook</span> <span class="pre">on_music_end()</span></code></a> pour faire quelque chose
+quand le morceau se termine, par exemple, pour choisir aléatoirement le
+prochain morceau.</p>
 </div>
-<div class="section" id="clock">
-<span id="id4"></span><h2>Clock<a class="headerlink" href="#clock" title="Permalink to this headline">¶</a></h2>
-<p>Often when writing a game, you will want to schedule some game event to occur
-at a later time. For example, we may want a big boss alien to appear after 60
-seconds. Or perhaps a power-up will appear every 20 seconds.</p>
-<p>More subtle are the situations when you want to delay some action for a shorter
-period. For example you might have a laser weapon that takes 1 second to charge
-up.</p>
-<p>We can use the <code class="docutils literal notranslate"><span class="pre">clock</span></code> object to schedule a function to happen in the
-future.</p>
-<p>Let’s start by defining a function <code class="docutils literal notranslate"><span class="pre">fire_laser</span></code> that we want to run in the
-future:</p>
+<div class="section" id="horloge">
+<span id="clock"></span><h2>Horloge<a class="headerlink" href="#horloge" title="Permalink to this headline">¶</a></h2>
+<p>Souvent pendant l’écriture d’un jeu, tu veux planifier des événements
+pour qu’ils se produisent un moment plus tard. Par exemple, nous voudrions
+qu’un super chef extraterrestre apparaisse après 60 secondes.
+Ou peut-être qu’un bonus apparaisse toutes les 20 secondes.</p>
+<p>Plus subtiles sont les situations où tu veux retarder une action pour
+une durée plus courte. Par exemple, tu pourrais avoir une arme laser
+qui prend 1 secondes à se recharger.</p>
+<p>Nous pouvons utiliser l’objet <code class="docutils literal notranslate"><span class="pre">clock</span></code> pour programmer l’appel d’une
+fonction à se faire dans le future.</p>
+<p>Commençons par définir une fonction <code class="docutils literal notranslate"><span class="pre">fire_laser</span></code> que nous voulons
+exécuter dans le future:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">fire_laser</span><span class="p">():</span>
     <span class="n">lasers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">player</span><span class="o">.</span><span class="n">pos</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Then when the fire button is pressed, we will ask the <code class="docutils literal notranslate"><span class="pre">clock</span></code> to call it for
-us after exactly 1 second:</p>
+<p>Ensuite lorsque le bouton de tir est pressé, nous allons demander à l’objet
+<code class="docutils literal notranslate"><span class="pre">clock</span></code> de l’appeler pour nous, après exactement 1 seconde:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_mouse_down</span><span class="p">():</span>
     <span class="n">clock</span><span class="o">.</span><span class="n">schedule</span><span class="p">(</span><span class="n">fire_laser</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Note that <code class="docutils literal notranslate"><span class="pre">fire_laser</span></code> is the function itself; without parentheses, it is
-not being called here! The clock will call it for us.</p>
-<p>(It is a good habit to write out times in seconds with a decimal point, like
-<code class="docutils literal notranslate"><span class="pre">1.0</span></code>. This makes it more obvious when you are reading it back, that you are
-referring to a time value and not a count of things.)</p>
-<p><code class="docutils literal notranslate"><span class="pre">clock</span></code> provides the following useful methods:</p>
+<p>Note que <code class="docutils literal notranslate"><span class="pre">fire_laser</span></code> est elle-même une fonction, sans parenthèse,
+car elle n’est pas appelée ici ! L’horloge se chargera de le faire pour nous.</p>
+<p>(C’est une bonne habitude d’écrire les durées en secondes avec une décimale,
+comme <code class="docutils literal notranslate"><span class="pre">1.0</span></code>. C’est ainsi plus évident en se relisant que cela
+représente une durée et pas un compte de quelques chose.)</p>
+<p>L’objet <code class="docutils literal notranslate"><span class="pre">clock</span></code> fournit les méthodes utiles suivantes:</p>
 <dl class="class">
 <dt id="Clock">
 <em class="property">class </em><code class="descname">Clock</code><a class="headerlink" href="#Clock" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="Clock.schedule">
-<code class="descname">schedule</code><span class="sig-paren">(</span><em>callback</em>, <em>delay</em><span class="sig-paren">)</span><a class="headerlink" href="#Clock.schedule" title="Permalink to this definition">¶</a></dt>
-<dd><p>Schedule <cite>callback</cite> to be called after the given delay.</p>
-<p>Repeated calls will schedule the callback repeatedly.</p>
+<code class="descname">schedule</code><span class="sig-paren">(</span><em>callback</em>, <em>delai</em><span class="sig-paren">)</span><a class="headerlink" href="#Clock.schedule" title="Permalink to this definition">¶</a></dt>
+<dd><p>Programme <cite>callback</cite> à être appelée après le délai donné.</p>
+<p>Un nombre répété d’appels à <code class="docutils literal notranslate"><span class="pre">schedule</span></code> va programmer l’appel
+à la fonction autant de fois.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>callback</strong> – A callable that takes no arguments.</li>
-<li><strong>delay</strong> – The delay, in seconds, before the function should be
-called.</li>
+<li><strong>callback</strong> – Une fonction qui ne prend aucun paramètre.</li>
+<li><strong>delai</strong> – Le délai en secondes à attendre avant que la fonction ne soit appelée.</li>
 </ul>
 </td>
 </tr>
@@ -470,19 +475,18 @@ called.</li>
 
 <dl class="method">
 <dt id="Clock.schedule_unique">
-<code class="descname">schedule_unique</code><span class="sig-paren">(</span><em>callback</em>, <em>delay</em><span class="sig-paren">)</span><a class="headerlink" href="#Clock.schedule_unique" title="Permalink to this definition">¶</a></dt>
-<dd><p>Schedule <cite>callback</cite> to be called once after the given delay.</p>
-<p>If <cite>callback</cite> was already scheduled, cancel and reschedule it. This
-applies also if it was scheduled multiple times: after calling
-<code class="docutils literal notranslate"><span class="pre">schedule_unique</span></code>, it will be scheduled exactly once.</p>
+<code class="descname">schedule_unique</code><span class="sig-paren">(</span><em>callback</em>, <em>delai</em><span class="sig-paren">)</span><a class="headerlink" href="#Clock.schedule_unique" title="Permalink to this definition">¶</a></dt>
+<dd><p>Programme <cite>callback</cite> à être appelée une fois après le délai donné.</p>
+<p>Si <cite>callback</cite> avait déjà été programmée, cela l’annule et la reprogramme. Cela
+s’applique aussi si elle était programmée plusieurs fois: après l’appel à
+<code class="docutils literal notranslate"><span class="pre">schedule_unique</span></code>, la fonction sera programmée exactement une fois.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>callback</strong> – A callable that takes no arguments.</li>
-<li><strong>delay</strong> – The delay, in seconds, before the function should be
-called.</li>
+<li><strong>callback</strong> – Une fonction qui ne prend aucun argument.</li>
+<li><strong>delai</strong> – Le délai en secondes à attendre avant que la function ne soit appelée.</li>
 </ul>
 </td>
 </tr>
@@ -492,15 +496,15 @@ called.</li>
 
 <dl class="method">
 <dt id="Clock.schedule_interval">
-<code class="descname">schedule_interval</code><span class="sig-paren">(</span><em>callback</em>, <em>interval</em><span class="sig-paren">)</span><a class="headerlink" href="#Clock.schedule_interval" title="Permalink to this definition">¶</a></dt>
-<dd><p>Schedule <cite>callback</cite> to be called repeatedly.</p>
+<code class="descname">schedule_interval</code><span class="sig-paren">(</span><em>callback</em>, <em>intervalle</em><span class="sig-paren">)</span><a class="headerlink" href="#Clock.schedule_interval" title="Permalink to this definition">¶</a></dt>
+<dd><p>Programme <cite>callback</cite> pour être appelée de façon répétée.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>callback</strong> – A callable that takes no arguments.</li>
-<li><strong>interval</strong> – The interval in seconds between calls to <cite>callback</cite>.</li>
+<li><strong>callback</strong> – Une fonction qui ne prend aucun argument.</li>
+<li><strong>intervalle</strong> – L’intervalle en secondes entre chaque appel à <cite>callback</cite>.</li>
 </ul>
 </td>
 </tr>
@@ -511,29 +515,30 @@ called.</li>
 <dl class="method">
 <dt id="Clock.unschedule">
 <code class="descname">unschedule</code><span class="sig-paren">(</span><em>callback</em><span class="sig-paren">)</span><a class="headerlink" href="#Clock.unschedule" title="Permalink to this definition">¶</a></dt>
-<dd><p>Unschedule callback if it has been previously scheduled (either because
-it has been scheduled with <code class="docutils literal notranslate"><span class="pre">schedule()</span></code> and has not yet been called,
-or because it has been scheduled to repeat with
-<code class="docutils literal notranslate"><span class="pre">schedule_interval()</span></code>.</p>
+<dd><p>Déprogramme l’appel à <cite>callback</cite> s’il a été précédemment programmé (soit parce qu’il
+a été programmé avec <code class="docutils literal notranslate"><span class="pre">schedule()</span></code> et n’a pas encore été exécuté ou
+parce qu’il a été programmé pour se répéter avec <code class="docutils literal notranslate"><span class="pre">schedule_interval()</span></code>.</p>
 </dd></dl>
 
 </dd></dl>
 
-<p>Note that the Pygame Zero clock only holds weak references to each callback
-you give it. It will not fire scheduled events if the objects and methods are
-not referenced elsewhere. This can help prevent the clock keeping objects
-alive and continuing to fire unexpectedly after they are otherwise dead.</p>
-<p>The downside to the weak references is that you won’t be able to schedule
-lambdas or any other object that has been created purely to be scheduled. You
-will have to keep a reference to the object.</p>
+<p>Note que l’horloge de Pygame Zero ne tient que des références faibles
+aux fonctions que tu lui donnes. Il ne déclenchera pas d’événements programmés
+si les objets et méthodes ne sont pas référencés ailleurs. Cela empêche
+l’horloge de garder des objets vivants et de continuer à déclencher des
+événements inattendus après qu’ils sont normalement morts.</p>
+<p>La contre-partie aux références faibles et que tu ne pourras pas programmer
+des lambdas ou tout autre objet créé uniquement pour être programmé.
+Tu devras garder une référence à l’objet.</p>
 </div>
-<div class="section" id="actors">
-<span id="actor"></span><h2>Actors<a class="headerlink" href="#actors" title="Permalink to this headline">¶</a></h2>
-<p>Once you have many images moving around in a game it can be convenient to have
-something that holds in one place the image and where it is on screen. We’ll
-call each moving image on screen an <code class="docutils literal notranslate"><span class="pre">Actor</span></code>. You can create an actor by supplying
-at least an image name (from the images folder above). To draw the alien talked
-about above:</p>
+<div class="section" id="acteurs">
+<span id="actor"></span><h2>Acteurs<a class="headerlink" href="#acteurs" title="Permalink to this headline">¶</a></h2>
+<p>Une fois que tu as pleins d’images se déplacant dans le jeux, il est
+intéressant d’avoir quelque chose qui regroupe à un seul endroit l’image
+et où elle se trouve à l’écran. Nous allons appeler chaque image se déplaçant
+à l’écran un acteur (<code class="docutils literal notranslate"><span class="pre">Actor</span></code>). Tu peux créer un acteur en fournissant
+au moins le nom d’une image (depuis le répertoire d’images décrit au-dessus).
+Pour dessiner un extraterrestre:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alien</span> <span class="o">=</span> <span class="n">Actor</span><span class="p">(</span><span class="s1">&#39;alien&#39;</span><span class="p">,</span> <span class="p">(</span><span class="mi">50</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
 
 <span class="k">def</span> <span class="nf">draw</span><span class="p">():</span>
@@ -541,7 +546,7 @@ about above:</p>
     <span class="n">alien</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>You can move the actor around by setting its pos attribute in an update:</p>
+<p>tu peux déplacer l’acteur en changeant son attribut <code class="docutils literal notranslate"><span class="pre">pos</span></code> dans la fonction <code class="docutils literal notranslate"><span class="pre">update</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
     <span class="k">if</span> <span class="n">keyboard</span><span class="o">.</span><span class="n">left</span><span class="p">:</span>
         <span class="n">alien</span><span class="o">.</span><span class="n">x</span> <span class="o">-=</span> <span class="mi">1</span>
@@ -549,29 +554,30 @@ about above:</p>
         <span class="n">alien</span><span class="o">.</span><span class="n">x</span> <span class="o">+=</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p>And you may change the image used to draw the actor by setting its image
-attribute to some new image name:</p>
+<p>et tu peux changer l’image utilisée pour déssiner l’acteur en changeant
+son attribut <code class="docutils literal notranslate"><span class="pre">image</span></code> pour un nouveau nom d’image:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alien</span><span class="o">.</span><span class="n">image</span> <span class="o">=</span> <span class="s1">&#39;alien_hurt&#39;</span>
 </pre></div>
 </div>
-<p>Actors have all the same attributes and methods as <a class="reference internal" href="#rect"><span class="std std-ref">Rect</span></a>,
-including methods like <a class="reference external" href="https://www.pygame.org/docs/ref/rect.html#pygame.Rect.colliderect">.colliderect()</a> which can be used to test whether
-two actors have collided.</p>
-<div class="section" id="positioning-actors">
-<h3>Positioning Actors<a class="headerlink" href="#positioning-actors" title="Permalink to this headline">¶</a></h3>
-<p>If you assign a new value to one of the position attributes then the actor will
-be moved. For example:</p>
+<p>Les acteurs ont tous les mêmes attributs et méthodes que <a class="reference internal" href="#rect"><span class="std std-ref">Rect</span></a>,
+en incluant les méthodes telles que <a class="reference external" href="https://www.pygame.org/docs/ref/rect.html#pygame.Rect.colliderect">.colliderect()</a> qui peut être utilisée
+pour tester si deux acteurs se percutent.</p>
+<div class="section" id="positionner-les-acteurs">
+<h3>Positionner les acteurs<a class="headerlink" href="#positionner-les-acteurs" title="Permalink to this headline">¶</a></h3>
+<p>Si tu donnes une nouvelle valeur à un des attributs de position, alors l’acteur
+va se déplacer. Par exemple:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alien</span><span class="o">.</span><span class="n">right</span> <span class="o">=</span> <span class="n">WIDTH</span>
 </pre></div>
 </div>
-<p>will position the alien so its right-hand side is set to <code class="docutils literal notranslate"><span class="pre">WIDTH</span></code>.</p>
-<p>Similarly, you can also set the initial position of the actor in the
-constructor, by passing one of these as a keyword argument: <code class="docutils literal notranslate"><span class="pre">pos</span></code>,
-<code class="docutils literal notranslate"><span class="pre">topleft</span></code>, <code class="docutils literal notranslate"><span class="pre">topright</span></code>, <code class="docutils literal notranslate"><span class="pre">bottomleft</span></code>, <code class="docutils literal notranslate"><span class="pre">bottomright</span></code>, <code class="docutils literal notranslate"><span class="pre">midtop</span></code>,
-<code class="docutils literal notranslate"><span class="pre">midleft</span></code>, <code class="docutils literal notranslate"><span class="pre">midright</span></code>, <code class="docutils literal notranslate"><span class="pre">midbottom</span></code> or <code class="docutils literal notranslate"><span class="pre">center</span></code>:</p>
+<p>va positionner l’extraterrestre de façon à ce que sa droite est la
+valeur <code class="docutils literal notranslate"><span class="pre">WIDTH</span></code>.</p>
+<p>De façon similaire, tu peux aussi donner la position initiale de l’acteur
+dans le constructeur, en donnant l’un des mots-clés suivant en argument:
+<code class="docutils literal notranslate"><span class="pre">pos</span></code>, <code class="docutils literal notranslate"><span class="pre">topleft</span></code>, <code class="docutils literal notranslate"><span class="pre">topright</span></code>, <code class="docutils literal notranslate"><span class="pre">bottomleft</span></code>, <code class="docutils literal notranslate"><span class="pre">bottomright</span></code>,
+<code class="docutils literal notranslate"><span class="pre">midtop</span></code>, <code class="docutils literal notranslate"><span class="pre">midleft</span></code>, <code class="docutils literal notranslate"><span class="pre">midright</span></code>, <code class="docutils literal notranslate"><span class="pre">midbottom</span></code> ou <code class="docutils literal notranslate"><span class="pre">center</span></code>:</p>
 <img alt="_images/anchor_points.png" src="_images/anchor_points.png" />
-<p>This can be done during creation or by assigning a pair of x, y co-ordinates.
-For example:</p>
+<p>Cela peut être fait pendant la création ou en affectant une paire
+de coordonnées (x, y). Par exemple:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">WIDTH</span> <span class="o">=</span> <span class="mi">200</span>
 <span class="n">HEIGHT</span> <span class="o">=</span> <span class="mi">200</span>
 
@@ -583,140 +589,140 @@ For example:</p>
 </pre></div>
 </div>
 <img alt="_images/alien_center.png" src="_images/alien_center.png" />
-<p>Changing <code class="docutils literal notranslate"><span class="pre">center=(100,</span> <span class="pre">100)</span></code> to <code class="docutils literal notranslate"><span class="pre">midbottom=(100,</span> <span class="pre">200)</span></code> gives you:</p>
+<p>En changeant <code class="docutils literal notranslate"><span class="pre">center=(100,</span> <span class="pre">100)</span></code> en <code class="docutils literal notranslate"><span class="pre">midbottom=(100,</span> <span class="pre">200)</span></code> cela te donnes:</p>
 <img alt="_images/alien_midbottom.png" src="_images/alien_midbottom.png" />
-<p>If you don’t specify an initial position, the actor will initially be
-positioned in the top-left corner (equivalent to <code class="docutils literal notranslate"><span class="pre">topleft=(0,</span> <span class="pre">0)</span></code>).</p>
+<p>Si tu ne spécifies pas de position initiale, l’acteur sera positionné par
+défaut dans le coin en haut à gauche (équivalent à <code class="docutils literal notranslate"><span class="pre">topleft=(0,</span> <span class="pre">0)</span></code>).</p>
 </div>
-<div class="section" id="anchor-point">
-<span id="anchor"></span><h3>Anchor point<a class="headerlink" href="#anchor-point" title="Permalink to this headline">¶</a></h3>
-<p>Actors have an “anchor position”, which is a convenient way to position the
-actor in the scene. By default, the anchor position is the center, so the
-<code class="docutils literal notranslate"><span class="pre">.pos</span></code> attribute refers to the center of the actor (and so do the <code class="docutils literal notranslate"><span class="pre">x</span></code> and
-<code class="docutils literal notranslate"><span class="pre">y</span></code> coordinates). It’s common to want to set the anchor point to another
-part of the sprite (perhaps the feet - so that you can easily set the Actor to
-be “standing on” something):</p>
+<div class="section" id="point-d-ancrage">
+<span id="anchor"></span><h3>Point d’ancrage<a class="headerlink" href="#point-d-ancrage" title="Permalink to this headline">¶</a></h3>
+<p>Les acteurs ont une “position d’ancrage”, qui est une façon pratique de
+positionner les acteurs dans la scène. Par défaut, le point d’ancrage est
+le centre, si bien que l’attribut <code class="docutils literal notranslate"><span class="pre">.pos</span></code> représente le centre de l’acteur
+(de même pour les coordonnées <code class="docutils literal notranslate"><span class="pre">x</span></code> et <code class="docutils literal notranslate"><span class="pre">y</span></code>). Il est commun de définir
+le point d’ancrage à une autre partie du sprite (peut être les pieds afin
+de pouvoir facilement faire tenir l’acteur sur quelque chose):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">alien</span> <span class="o">=</span> <span class="n">Actor</span><span class="p">(</span><span class="s1">&#39;alien&#39;</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;center&#39;</span><span class="p">,</span> <span class="s1">&#39;bottom&#39;</span><span class="p">))</span>
 <span class="n">spaceship</span> <span class="o">=</span> <span class="n">Actor</span><span class="p">(</span><span class="s1">&#39;spaceship&#39;</span><span class="p">,</span> <span class="n">anchor</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">50</span><span class="p">))</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">anchor</span></code> is specified as a tuple <code class="docutils literal notranslate"><span class="pre">(xanchor,</span> <span class="pre">yanchor)</span></code>, where the values can
-be floats or the strings <code class="docutils literal notranslate"><span class="pre">left</span></code>, <code class="docutils literal notranslate"><span class="pre">center</span></code>/<code class="docutils literal notranslate"><span class="pre">middle</span></code>, <code class="docutils literal notranslate"><span class="pre">right</span></code>, <code class="docutils literal notranslate"><span class="pre">top</span></code> or
-<code class="docutils literal notranslate"><span class="pre">bottom</span></code> as appropriate.</p>
+<p><code class="docutils literal notranslate"><span class="pre">anchor</span></code> est défini comme le tuple <code class="docutils literal notranslate"><span class="pre">(xanchor,</span> <span class="pre">yanchor)</span></code>, où les valeurs
+peuvent être des décimaux ou les chaînes <code class="docutils literal notranslate"><span class="pre">left</span></code>, <code class="docutils literal notranslate"><span class="pre">center</span></code>/<code class="docutils literal notranslate"><span class="pre">middle</span></code>,
+<code class="docutils literal notranslate"><span class="pre">right</span></code>, <code class="docutils literal notranslate"><span class="pre">top</span></code> ou <code class="docutils literal notranslate"><span class="pre">bottom</span></code>.</p>
 </div>
 <div class="section" id="rotation">
-<span id="id6"></span><h3>Rotation<a class="headerlink" href="#rotation" title="Permalink to this headline">¶</a></h3>
+<span id="id4"></span><h3>Rotation<a class="headerlink" href="#rotation" title="Permalink to this headline">¶</a></h3>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.2.</span></p>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">.angle</span></code> attribute of an Actor controls the rotation of the sprite, in
-degrees, anticlockwise (counterclockwise).</p>
-<p>The centre of rotation is the Actor’s <a class="reference internal" href="#anchor"><span class="std std-ref">anchor point</span></a>.</p>
-<p>Note that this will change the <code class="docutils literal notranslate"><span class="pre">width</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code> of the Actor.</p>
-<p>For example, to make an asteroid sprite spinning slowly anticlockwise in
-space:</p>
+<p>L’attribut <code class="docutils literal notranslate"><span class="pre">.angle</span></code> de l’acteur controle la rotation du sprite, en degrés,
+dans le sens trigonométrique (sens inverse des aiguilles d’une montre).</p>
+<p>Le cente de rotation est le <a class="reference internal" href="#anchor"><span class="std std-ref">point d’ancrage</span></a> de l’acteur.</p>
+<p>Note que cela va changer la hauteur (<code class="docutils literal notranslate"><span class="pre">width</span></code>) et la largeur (<code class="docutils literal notranslate"><span class="pre">height</span></code>)
+de l’acteur.</p>
+<p>Par exemple, pour faire tourner lentement un astéroïde dans l’espace:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">asteroid</span> <span class="o">=</span> <span class="n">Actor</span><span class="p">(</span><span class="s1">&#39;asteroid&#39;</span><span class="p">,</span> <span class="n">center</span><span class="o">=</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">))</span>
 
 <span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
     <span class="n">asteroid</span><span class="o">.</span><span class="n">angle</span> <span class="o">+=</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p>To have it spin clockwise, we’d change <code class="docutils literal notranslate"><span class="pre">update()</span></code> to:</p>
+<p>Pour le faire tourner dans l’aute sens, nous écririons <code class="docutils literal notranslate"><span class="pre">update()</span></code> ainsi:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">update</span><span class="p">():</span>
     <span class="n">asteroid</span><span class="o">.</span><span class="n">angle</span> <span class="o">-=</span> <span class="mi">1</span>
 </pre></div>
 </div>
-<p>As a different example, we could make an actor <code class="docutils literal notranslate"><span class="pre">ship</span></code> always face the mouse
-pointer. Because <a class="reference internal" href="#Actor.angle_to" title="Actor.angle_to"><code class="xref py py-meth docutils literal notranslate"><span class="pre">angle_to()</span></code></a> returns 0 for “right”, the sprite we
-use for “ship” should face right:</p>
+<p>Un autre exemple: nous pourrions faire qu’un acteur <code class="docutils literal notranslate"><span class="pre">ship</span></code> soit toujours
+tourné vers la souris. Comme <a class="reference internal" href="#Actor.angle_to" title="Actor.angle_to"><code class="xref py py-meth docutils literal notranslate"><span class="pre">angle_to()</span></code></a> retourne 0 pour
+la droite, l’acteur <cite>ship</cite> devrait se tourner vers la droite:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ship</span> <span class="o">=</span> <span class="n">Actor</span><span class="p">(</span><span class="s1">&#39;ship&#39;</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">on_mouse_move</span><span class="p">(</span><span class="n">pos</span><span class="p">):</span>
     <span class="n">ship</span><span class="o">.</span><span class="n">angle</span> <span class="o">=</span> <span class="n">ship</span><span class="o">.</span><span class="n">angle_to</span><span class="p">(</span><span class="n">pos</span><span class="p">)</span>
 </pre></div>
 </div>
-<img alt="Diagram showing how to set up sprites for rotation with angle_to()" src="_images/rotation.svg" /><p>Remember that angles loop round, so 0 degrees == 360 degrees == 720 degrees.
-Likewise -180 degrees == 180 degrees.</p>
+<img alt="Diagram showing how to set up sprites for rotation with angle_to()" src="_images/rotation.svg" /><p>Souviens toi que les angles bouclent:  0 degrés == 360 degrés == 720 degrés.
+De même -180 degrés == 180 degrés.</p>
 </div>
-<div class="section" id="distance-and-angle-to">
-<h3>Distance and angle to<a class="headerlink" href="#distance-and-angle-to" title="Permalink to this headline">¶</a></h3>
-<p>Actors have convenient methods for calculating their distance or angle to other
-Actors or <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code> coordinate pairs.</p>
+<div class="section" id="distance-et-angle">
+<h3>Distance et angle<a class="headerlink" href="#distance-et-angle" title="Permalink to this headline">¶</a></h3>
+<p>Les acteurs ont des méthodes très pratiques pour calculer leur distance
+ou angle avec d’autres acteurs ou des paires de coordonnées <code class="docutils literal notranslate"><span class="pre">(x,</span> <span class="pre">y)</span></code>.</p>
 <dl class="method">
 <dt id="Actor.distance_to">
-<code class="descclassname">Actor.</code><code class="descname">distance_to</code><span class="sig-paren">(</span><em>target</em><span class="sig-paren">)</span><a class="headerlink" href="#Actor.distance_to" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the distance from this actor’s position to target, in pixels.</p>
+<code class="descclassname">Actor.</code><code class="descname">distance_to</code><span class="sig-paren">(</span><em>cible</em><span class="sig-paren">)</span><a class="headerlink" href="#Actor.distance_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retourne la distance depuis la position de l’acteur à la <cite>cible</cite> en pixels.</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Actor.angle_to">
-<code class="descclassname">Actor.</code><code class="descname">angle_to</code><span class="sig-paren">(</span><em>target</em><span class="sig-paren">)</span><a class="headerlink" href="#Actor.angle_to" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the angle from this actor’s position to target, in degrees.</p>
-<p>This will return a number between -180 and 180 degrees. Right is 0 degrees
-and the angles increase going anticlockwise.</p>
-<p>Therefore:</p>
+<code class="descclassname">Actor.</code><code class="descname">angle_to</code><span class="sig-paren">(</span><em>cible</em><span class="sig-paren">)</span><a class="headerlink" href="#Actor.angle_to" title="Permalink to this definition">¶</a></dt>
+<dd><p>Retourne l’angle depuis la position de l’acteur à la <cite>cible</cite> en degrés.</p>
+<p>Cela va retouner un nombre entre -180 et 180 degrés. La droite est 0 degrés
+et les angles augmentent en allant dans le sens horaire inverse (sens trigonométrique).</p>
+<p>Donc:</p>
 <ul class="simple">
-<li>Left is 180 degrees.</li>
-<li>Up is 90 degrees.</li>
-<li>Down is -90 degrees.</li>
+<li>La gauche est 180 degrés.</li>
+<li>Le haut est 90 degrés.</li>
+<li>Le bas est -90 degrés.</li>
 </ul>
 </dd></dl>
 
 </div>
 </div>
-<div class="section" id="the-keyboard">
-<h2>The Keyboard<a class="headerlink" href="#the-keyboard" title="Permalink to this headline">¶</a></h2>
-<p>You probably noticed that we used the <code class="docutils literal notranslate"><span class="pre">keyboard</span></code> in the above code.
-If you’d like to know what keys are pressed on the keyboard, you can query the
-attributes of the <code class="docutils literal notranslate"><span class="pre">keyboard</span></code> builtin. If, say, the left arrow is held down,
-then <code class="docutils literal notranslate"><span class="pre">keyboard.left</span></code> will be <code class="docutils literal notranslate"><span class="pre">True</span></code>, otherwise it will be <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p>
-<p>There are attributes for every key; some examples:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">keyboard</span><span class="o">.</span><span class="n">a</span>  <span class="c1"># The &#39;A&#39; key</span>
-<span class="n">keyboard</span><span class="o">.</span><span class="n">left</span>  <span class="c1"># The left arrow key</span>
-<span class="n">keyboard</span><span class="o">.</span><span class="n">rshift</span>  <span class="c1"># The right shift key</span>
-<span class="n">keyboard</span><span class="o">.</span><span class="n">kp0</span>  <span class="c1"># The &#39;0&#39; key on the keypad</span>
-<span class="n">keyboard</span><span class="o">.</span><span class="n">k_0</span>  <span class="c1"># The main &#39;0&#39; key</span>
+<div class="section" id="le-clavier">
+<h2>Le clavier<a class="headerlink" href="#le-clavier" title="Permalink to this headline">¶</a></h2>
+<p>Tu as sans doute remarqué que nous avons utilisé l’objet <code class="docutils literal notranslate"><span class="pre">keyboard</span></code>
+dans le code au-dessus. Si tu veux savoir quelles touches du clavier sont
+pressées, tu peux lire les attributs de l’objet pré-défini <code class="docutils literal notranslate"><span class="pre">keyboard</span></code>.
+Si, par exemple, la flêche gauche est maintenue enfoncée, alors
+<code class="docutils literal notranslate"><span class="pre">keyboard.left</span></code> sera vrai (<code class="docutils literal notranslate"><span class="pre">True</span></code>), sinon il sera faux (<code class="docutils literal notranslate"><span class="pre">False</span></code>).</p>
+<p>Il y a un attribut pour chaque touche, quelques exemples:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">keyboard</span><span class="o">.</span><span class="n">a</span>  <span class="c1"># La touche &#39;A&#39;</span>
+<span class="n">keyboard</span><span class="o">.</span><span class="n">left</span>  <span class="c1"># La touche de navigation gauche</span>
+<span class="n">keyboard</span><span class="o">.</span><span class="n">rshift</span>  <span class="c1"># La touche majuscule droite</span>
+<span class="n">keyboard</span><span class="o">.</span><span class="n">kp0</span>  <span class="c1"># La touche &#39;0&#39; sur le pavé numérique</span>
+<span class="n">keyboard</span><span class="o">.</span><span class="n">k_0</span>  <span class="c1"># La touche prinicipale &#39;0&#39;</span>
 </pre></div>
 </div>
-<p>The full set of key constants is given in the <a class="reference external" href="hooks.html#buttons-and-keys">Buttons and Keys</a>
-documentation, but the attributes are lowercase, because these are variables
-not constants.</p>
+<p>L’ensemble des constantes de touche est donné dans la documentation
+<a class="reference external" href="hooks.html#buttons-and-keys">Buttons and Keys</a>, mais les attributs sont en minuscule, parce que ceux
+sont des variables et non des constantes.</p>
 <div class="deprecated">
-<p><span class="versionmodified">Deprecated since version 1.1: </span>Uppercase and prefixed attribute names (eg. <code class="docutils literal notranslate"><span class="pre">keyboard.LEFT</span></code> or
-<code class="docutils literal notranslate"><span class="pre">keyboard.K_a</span></code>) are now deprecated; use lowercase attribute names
-instead.</p>
+<p><span class="versionmodified">Deprecated since version 1.1: </span>Le noms en majuscule ou préfixés (ie. <code class="docutils literal notranslate"><span class="pre">keyboard.LEFT</span></code> ou
+<code class="docutils literal notranslate"><span class="pre">keyboard.K_a</span></code>) sont maintenant dépréconisés: utilise plutôt
+des noms d’attributs en minuscule.</p>
 </div>
 <div class="versionadded">
-<p><span class="versionmodified">New in version 1.1: </span>You can now also query the state of the keys using the keyboard constants
-themselves:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">keyboard</span><span class="p">[</span><span class="n">keys</span><span class="o">.</span><span class="n">A</span><span class="p">]</span>  <span class="c1"># True if the &#39;A&#39; key is pressed</span>
-<span class="n">keyboard</span><span class="p">[</span><span class="n">keys</span><span class="o">.</span><span class="n">SPACE</span><span class="p">]</span>  <span class="c1"># True if the space bar is pressed</span>
+<p><span class="versionmodified">New in version 1.1: </span>Tu peux aussi interroger l’état des touches en utilisant les constantes des touches elles-même:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">keyboard</span><span class="p">[</span><span class="n">keys</span><span class="o">.</span><span class="n">A</span><span class="p">]</span>  <span class="c1"># Vrai si la touche &#39;A&#39; est pressée</span>
+<span class="n">keyboard</span><span class="p">[</span><span class="n">keys</span><span class="o">.</span><span class="n">SPACE</span><span class="p">]</span>  <span class="c1"># Vrai si la barre d&#39;espace est pressée</span>
 </pre></div>
 </div>
 </div>
 </div>
 <div class="section" id="animations">
 <h2>Animations<a class="headerlink" href="#animations" title="Permalink to this headline">¶</a></h2>
-<p>You can animate most things in pygame using the builtin <code class="docutils literal notranslate"><span class="pre">animate()</span></code>. For
-example, to move an <a class="reference internal" href="#actor"><span class="std std-ref">Actor</span></a> from its current position on the
-screen to the position <code class="docutils literal notranslate"><span class="pre">(100,</span> <span class="pre">100)</span></code>:</p>
+<p>Tu peux animer pratiquement tous dans pygame en utilisant la fonction
+pré-définie <code class="docutils literal notranslate"><span class="pre">animate()</span></code>. Par exemple, pour bouger un <a class="reference internal" href="#actor"><span class="std std-ref">acteur</span></a>
+depuis sa position courante à l’écran vers la position <code class="docutils literal notranslate"><span class="pre">(100,</span> <span class="pre">100)</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">animate</span><span class="p">(</span><span class="n">alien</span><span class="p">,</span> <span class="n">pos</span><span class="o">=</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">))</span>
 </pre></div>
 </div>
 <dl class="function">
 <dt id="animate">
-<code class="descname">animate</code><span class="sig-paren">(</span><em>object</em>, <em>tween='linear'</em>, <em>duration=1</em>, <em>on_finished=None</em>, <em>**targets</em><span class="sig-paren">)</span><a class="headerlink" href="#animate" title="Permalink to this definition">¶</a></dt>
-<dd><p>Animate the attributes on object from their current value to that
-specified in the targets keywords.</p>
+<code class="descname">animate</code><span class="sig-paren">(</span><em>objet</em>, <em>tween='linear'</em>, <em>duration=1</em>, <em>on_finished=None</em>, <em>**cibles</em><span class="sig-paren">)</span><a class="headerlink" href="#animate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Anime les attributs de <cite>objet</cite> depuis leurs valeurs courantes vers celles spécifiées
+par mots-clés dans <cite>cibles</cite>.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>tween</strong> – The type of <em>tweening</em> to use.</li>
-<li><strong>duration</strong> – The duration of the animation, in seconds.</li>
-<li><strong>on_finished</strong> – Function called when the animation finishes.</li>
-<li><strong>targets</strong> – The target values for the attributes to animate.</li>
+<li><strong>tween</strong> – Le type de <em>tweening</em> à utiliser.</li>
+<li><strong>duration</strong> – La durée de l’animation en secondes.</li>
+<li><strong>on_finished</strong> – Fonction appelée à la fin de l’animation.</li>
+<li><strong>targets</strong> – Le valeurs cibles des attributs à animer.</li>
 </ul>
 </td>
 </tr>
@@ -724,7 +730,7 @@ specified in the targets keywords.</p>
 </table>
 </dd></dl>
 
-<p>The tween argument can be one of the following:</p>
+<p>L’argument <cite>tween</cite> peut être l’un des suivants:</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="27%" />
@@ -732,51 +738,50 @@ specified in the targets keywords.</p>
 </colgroup>
 <tbody valign="top">
 <tr class="row-odd"><td>‘linear’</td>
-<td>Animate at a constant speed from start to finish</td>
+<td>Anime avec une vitesse constante du début à la fin</td>
 </tr>
 <tr class="row-even"><td>‘accelerate’</td>
-<td>Start slower and accelerate to finish</td>
+<td>Démarre doucement et accélère à la fin</td>
 </tr>
 <tr class="row-odd"><td>‘decelerate’</td>
-<td>Start fast and decelerate to finish</td>
+<td>Démarre rapidement et ralentit à la fin</td>
 </tr>
 <tr class="row-even"><td>‘accel_decel’</td>
-<td>Accelerate to mid point and decelerate to finish</td>
+<td>Accélère jusqu’à la moitié puis ralentit à la fin</td>
 </tr>
 <tr class="row-odd"><td>‘end_elastic’</td>
-<td>Give a little wobble at the end</td>
+<td>Oscille légèrement à la fin</td>
 </tr>
 <tr class="row-even"><td>‘start_elastic’</td>
-<td>Have a little wobble at the start</td>
+<td>Oscille légèrement au démarrage</td>
 </tr>
 <tr class="row-odd"><td>‘both_elastic’</td>
-<td>Have a wobble at both ends</td>
+<td>Oscille aux deux extrémités</td>
 </tr>
 <tr class="row-even"><td>‘bounce_end’</td>
-<td>Accelerate to the finish and bounce there</td>
+<td>Accélère jusqu’à la fin et rebondit</td>
 </tr>
 <tr class="row-odd"><td>‘bounce_start’</td>
-<td>Bounce at the start</td>
+<td>Rebondit au démarrage</td>
 </tr>
 <tr class="row-even"><td>‘bounce_start_end’</td>
-<td>Bounce at both ends</td>
+<td>Rebondit aux deux extrémités</td>
 </tr>
 </tbody>
 </table>
-<p>The <code class="docutils literal notranslate"><span class="pre">animate()</span></code> function returns an <code class="docutils literal notranslate"><span class="pre">Animation</span></code> instance:</p>
+<p>La fonction <code class="docutils literal notranslate"><span class="pre">animate()</span></code> retourne une instance de la classe <code class="docutils literal notranslate"><span class="pre">Animation</span></code>:</p>
 <dl class="class">
 <dt id="Animation">
 <em class="property">class </em><code class="descname">Animation</code><a class="headerlink" href="#Animation" title="Permalink to this definition">¶</a></dt>
 <dd><dl class="method">
 <dt id="Animation.stop">
 <code class="descname">stop</code><span class="sig-paren">(</span><em>complete=False</em><span class="sig-paren">)</span><a class="headerlink" href="#Animation.stop" title="Permalink to this definition">¶</a></dt>
-<dd><p>Stop the animation, optionally completing the transition to the final
-property values.</p>
+<dd><p>Arrête l’animation et la complète optionnellement jusqu’à sa valeur finale.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>complete</strong> – Set the animated attribute to the target value.</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>complete</strong> – Donne à l’attribut animé sa valeur cible.</td>
 </tr>
 </tbody>
 </table>
@@ -785,56 +790,55 @@ property values.</p>
 <dl class="attribute">
 <dt id="Animation.running">
 <code class="descname">running</code><a class="headerlink" href="#Animation.running" title="Permalink to this definition">¶</a></dt>
-<dd><p>This will be True if the animation is running. It will be False
-when the duration has run or the <code class="docutils literal notranslate"><span class="pre">stop()</span></code> method was called before
-then.</p>
+<dd><p>Vaut vrai si l’animation est en cours d’exécution. Il vaudra faux si la
+durée de l’animation est dépassée ou si la méthode <code class="docutils literal notranslate"><span class="pre">stop()</span></code> a été appelée avant.</p>
 </dd></dl>
 
 <dl class="attribute">
 <dt id="Animation.on_finished">
 <code class="descname">on_finished</code><a class="headerlink" href="#Animation.on_finished" title="Permalink to this definition">¶</a></dt>
-<dd><p>You may set this attribute to a function which will be called
-when the animation duration runs out. The <code class="docutils literal notranslate"><span class="pre">on_finished</span></code> argument
-to <code class="docutils literal notranslate"><span class="pre">animate()</span></code> also sets this attribute. It is not called when
-<code class="docutils literal notranslate"><span class="pre">stop()</span></code> is called. This function takes no arguments.</p>
+<dd><p>Tu peux définir cet attribut avec une fonction qui sera appelée
+à la fin normale de l’animation. Le paramètre <code class="docutils literal notranslate"><span class="pre">on_finished</span></code> de la
+fonction <code class="docutils literal notranslate"><span class="pre">animate()</span></code> défini aussi cet attribut. Elle ne sera pas appelée si
+<code class="docutils literal notranslate"><span class="pre">stop()</span></code> est appelée. Cette fonction ne prend pas de paramètres.</p>
 </dd></dl>
 
 </dd></dl>
 
 </div>
-<div class="section" id="tone-generator">
-<h2>Tone Generator<a class="headerlink" href="#tone-generator" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="generateur-de-sons">
+<h2>Générateur de sons<a class="headerlink" href="#generateur-de-sons" title="Permalink to this headline">¶</a></h2>
 <div class="versionadded">
 <p><span class="versionmodified">New in version 1.2.</span></p>
 </div>
-<p>Pygame Zero can play tones using a built-in synthesizer.</p>
+<p>Pygame Zero peut jouer des sons en utilisant un synthétiseur intégré.</p>
 <dl class="function">
 <dt id="tone.play">
-<code class="descclassname">tone.</code><code class="descname">play</code><span class="sig-paren">(</span><em>pitch</em>, <em>duration</em><span class="sig-paren">)</span><a class="headerlink" href="#tone.play" title="Permalink to this definition">¶</a></dt>
-<dd><p>Play a note at the given pitch for the given duration.</p>
-<p>Duration is in seconds.</p>
-<p>The <cite>pitch</cite> can be specified as a number in which case it is the frequency
-of the note in hertz.</p>
-<p>Alternatively, the pitch can be specified as a string representing a note
-name and octave. For example:</p>
+<code class="descclassname">tone.</code><code class="descname">play</code><span class="sig-paren">(</span><em>hauteur</em>, <em>duration</em><span class="sig-paren">)</span><a class="headerlink" href="#tone.play" title="Permalink to this definition">¶</a></dt>
+<dd><p>Joue une note à la hauteur donnée pour la durée donnée.</p>
+<p>La durée est en secondes.</p>
+<p>La <cite>hauteur</cite> peut être donnée comme un nombre, dans ce cas cela
+sera la fréquence de la note en hertz.</p>
+<p>Sinon, la hauteur peut être définie comme une chaîne représentant
+le nom d’une note et un octave. Par exemple:</p>
 <ul class="simple">
-<li><code class="docutils literal notranslate"><span class="pre">'E4'</span></code> would be E in octave 4.</li>
-<li><code class="docutils literal notranslate"><span class="pre">'A#5'</span></code> would be A-sharp in octave 5.</li>
-<li><code class="docutils literal notranslate"><span class="pre">'Bb3'</span></code> would be B-flat in octave 3.</li>
+<li><code class="docutils literal notranslate"><span class="pre">'E4'</span></code> sera un mi au 4ème octave.</li>
+<li><code class="docutils literal notranslate"><span class="pre">'A#5'</span></code> sera un la dièse au 5ème octave.</li>
+<li><code class="docutils literal notranslate"><span class="pre">'Bb3'</span></code> sera un si bémol au 3ème octave.</li>
 </ul>
 </dd></dl>
 
-<p>Creating notes, particularly long notes, takes time - up to several
-milliseconds. You can create your notes ahead of time so that this doesn’t slow
-your game down while it is running:</p>
+<p>Créer des notes, en particulier de longues notes, prend du temps (jusqu’à
+plusieurs millisecondes). Tu peux créer des notes à l’avance afin de ne pas
+ralentir ton jeu pendant qu’il s’exécute:</p>
 <dl class="function">
 <dt id="tone.create">
-<code class="descclassname">tone.</code><code class="descname">create</code><span class="sig-paren">(</span><em>pitch</em>, <em>duration</em><span class="sig-paren">)</span><a class="headerlink" href="#tone.create" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create and return a Sound object.</p>
-<p>The arguments are as for play(), above.</p>
+<code class="descclassname">tone.</code><code class="descname">create</code><span class="sig-paren">(</span><em>hauteur</em>, <em>duration</em><span class="sig-paren">)</span><a class="headerlink" href="#tone.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Crée et renvoie un objet <cite>Sound</cite>.</p>
+<p>Les paramètres sont les mêmes que ceux de <cite>play()</cite>, décrit au-dessus.</p>
 </dd></dl>
 
-<p>This could be used in a Pygame Zero program like this:</p>
+<p>Ceci peut être utilisé dans un programme Pygame Zero comme ceci:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">beep</span> <span class="o">=</span> <span class="n">tone</span><span class="o">.</span><span class="n">create</span><span class="p">(</span><span class="s1">&#39;A3&#39;</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">on_mouse_down</span><span class="p">():</span>
@@ -869,36 +873,36 @@ your game down while it is running:</p>
 <li class="toctree-l1"><a class="reference internal" href="from-scratch.html">Migrer depuis Scratch</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="hooks.html">Event Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="hooks.html">Les <em>hooks</em> d’évènements</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Objets pré-définis</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#screen">Screen</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="ptext.html">Text Formatting</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#rect">Rect</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#resource-loading">Resource Loading</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#chargement-de-resources">Chargement de resources</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#images">Images</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#image-surfaces">Image Surfaces</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sounds">Sounds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#surfaces-d-images">Surfaces d’images</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sons">Sons</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#music">Music</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#clock">Clock</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#actors">Actors</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#positioning-actors">Positioning Actors</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#anchor-point">Anchor point</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#musique">Musique</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#horloge">Horloge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#acteurs">Acteurs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#positionner-les-acteurs">Positionner les acteurs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#point-d-ancrage">Point d’ancrage</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#rotation">Rotation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#distance-and-angle-to">Distance and angle to</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#distance-et-angle">Distance et angle</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#the-keyboard">The Keyboard</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#le-clavier">Le clavier</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#animations">Animations</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#tone-generator">Tone Generator</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#generateur-de-sons">Générateur de sons</a></li>
 </ul>
 </li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installer Pygame Zero</a></li>
 <li class="toctree-l1"><a class="reference internal" href="repl.html">Using the REPL (Read-Evaluate-Print Loop)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ide-mode.html">Running Pygame Zero in IDLE and other IDEs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="other-libs.html">Other libraries like Pygame Zero</a></li>
@@ -909,7 +913,7 @@ your game down while it is running:</p>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
-<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles of Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Les principes de Pygame Zero</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Pygame Zero</a></li>
 </ul>
 
@@ -917,7 +921,7 @@ your game down while it is running:</p>
 <h3>Related Topics</h3>
 <ul>
   <li><a href="index.html">Documentation overview</a><ul>
-      <li>Previous: <a href="hooks.html" title="previous chapter">Event Hooks</a></li>
+      <li>Previous: <a href="hooks.html" title="previous chapter">Les <em>hooks</em> d’évènements</a></li>
       <li>Next: <a href="ptext.html" title="next chapter">Text Formatting</a></li>
   </ul></li>
 </ul>

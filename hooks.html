@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>Event Hooks &#8212; Pygame Zero 1.2 documentation</title>
+    <title>Les hooks d’évènements &#8212; Pygame Zero 1.2 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -34,46 +34,44 @@
 
           <div class="body" role="main">
             
-  <div class="section" id="event-hooks">
-<h1>Event Hooks<a class="headerlink" href="#event-hooks" title="Permalink to this headline">¶</a></h1>
-<p>Pygame Zero will automatically pick up and call event hooks that you define.
-This approach saves you from having to implement the event loop machinery
-yourself.</p>
-<div class="section" id="game-loop-hooks">
-<h2>Game Loop Hooks<a class="headerlink" href="#game-loop-hooks" title="Permalink to this headline">¶</a></h2>
-<p>A typical game loop looks a bit like this:</p>
+  <div class="section" id="les-hooks-d-evenements">
+<h1>Les <em>hooks</em> d’évènements<a class="headerlink" href="#les-hooks-d-evenements" title="Permalink to this headline">¶</a></h1>
+<p>Pygame Zero va automatiquement détecter et appeler les <em>hooks</em> (littéralement « crochet » ou « hameçon ») d’évènements que tu définis.
+Cette approche vous épargne d’écrire vous même la mécanique de boucle d’évènements.</p>
+<div class="section" id="les-hooks-d-une-boucle-de-jeu">
+<h2>Les <em>hooks</em> d’une boucle de jeu<a class="headerlink" href="#les-hooks-d-une-boucle-de-jeu" title="Permalink to this headline">¶</a></h2>
+<p>Une boucle de jeu typique ressemble à peu près à ça:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">while</span> <span class="n">game_has_not_ended</span><span class="p">():</span>
     <span class="n">process_input</span><span class="p">()</span>
     <span class="n">update</span><span class="p">()</span>
     <span class="n">draw</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>Input processing is a bit more complicated, but Pygame Zero allows you to
-easily define the <code class="docutils literal notranslate"><span class="pre">update()</span></code> and <code class="docutils literal notranslate"><span class="pre">draw()</span></code> functions within your game
-module.</p>
+<p>Le traitement des entrées est un peu plus complexe, mais Pygame Zero te permet facilement
+d’écrire les fonctions <code class="docutils literal notranslate"><span class="pre">update()</span></code> et <code class="docutils literal notranslate"><span class="pre">draw()</span></code> dans ton programme de jeu.</p>
 <dl class="function">
 <dt id="draw">
 <code class="descname">draw</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#draw" title="Permalink to this definition">¶</a></dt>
-<dd><p>Called by Pygame Zero when it needs to redraw your game window.</p>
-<p><code class="docutils literal notranslate"><span class="pre">draw()</span></code> must take no arguments.</p>
-<p>Pygame Zero attempts to work out when the game screen needs to be redrawn
-to avoid redrawing if nothing has changed. On each step of the game loop
-it will draw the screen in the following situations:</p>
+<dd><p>Elle est appelée par Pygame Zero quand il a besoin de redessiner l’écran de jeu.</p>
+<p><code class="docutils literal notranslate"><span class="pre">draw()</span></code> ne prend aucun argument.</p>
+<p>Pygame Zero tente de décider quand l’écran de jeu a besoin d’être redessiné
+afin d’éviter de le faire si rien n’a changé. À chaque pas de la boucle de jeu,
+il va dessiner l’écran dans les situations suivantes :</p>
 <ul class="simple">
-<li>If you have defined an <code class="docutils literal notranslate"><span class="pre">update()</span></code> function (see below).</li>
-<li>If a clock event fires.</li>
-<li>If an input event has been triggered.</li>
+<li>Si tu as défini une fonction <code class="docutils literal notranslate"><span class="pre">update()</span></code> (voir ci-dessous).</li>
+<li>Si un événement d’horloge est émis.</li>
+<li>Si un événement d’entrée a été déclenché.</li>
 </ul>
-<p>One way this can catch you out is if you attempt to modify or animate
-something within the draw function. For example, this code is wrong: the
-alien is not guaranteed to continue moving across the screen:</p>
+<p>Une façon de se faire piéger est lorsque tu tentes de modifier ou animer
+quelques chose dans la fonction <code class="docutils literal notranslate"><span class="pre">draw</span></code>. Par exemple, ce code est faux : l’extraterrestre
+n’est pas garanti de bouger tout le long de l’écran:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw</span><span class="p">():</span>
     <span class="n">alien</span><span class="o">.</span><span class="n">left</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="n">alien</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The correct code uses <code class="docutils literal notranslate"><span class="pre">update()</span></code> to modify or animate things and draw
-simply to paint the screen:</p>
+<p>Le code correct utilise la fonction <code class="docutils literal notranslate"><span class="pre">update()</span></code> pour modifier ou animer les objets et <code class="docutils literal notranslate"><span class="pre">draw</span></code>
+simplement pour dessiner à l’écran:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">draw</span><span class="p">():</span>
     <span class="n">alien</span><span class="o">.</span><span class="n">draw</span><span class="p">()</span>
 
@@ -85,34 +83,33 @@ simply to paint the screen:</p>
 
 <dl class="function">
 <dt id="update">
-<code class="descname">update</code><span class="sig-paren">(</span><em>) or update(dt</em><span class="sig-paren">)</span><a class="headerlink" href="#update" title="Permalink to this definition">¶</a></dt>
-<dd><p>Called by Pygame Zero to step your game logic. This will be called
-repeatedly, 60 times a second.</p>
-<p>There are two different approaches to writing an update function.</p>
-<p>In simple games you can assume a small time step (a fraction of a second)
-has elapsed between each call to <code class="docutils literal notranslate"><span class="pre">update()</span></code>. Perhaps you don’t even care
-how big that time step is: you can just move objects by a fixed number of
-pixels per frame (or accelerate them by a fixed constant, etc.)</p>
-<p>A more advanced approach is to base your movement and physics calculations
-on the actual amount of time that has elapsed between calls. This can give
-smoother animation, but the calculations involved can be harder and you
-must take more care to avoid unpredictable behaviour when the time steps
-grow larger.</p>
-<p>To use a time-based approach, you can change the update function to take a
-single parameter. If your update function takes an argument, Pygame Zero
-will pass it the elapsed time in seconds. You can use this to scale your
-movement calculations.</p>
+<code class="descname">update</code><span class="sig-paren">(</span><em>) ou update(dt</em><span class="sig-paren">)</span><a class="headerlink" href="#update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Elle est appelée par Pygame Zero pour faire progresser ta logique de jeu. Elle va être appelée
+continuellement 60 fois par seconde.</p>
+<p>Il y a deux façons d’écrire une fonction <code class="docutils literal notranslate"><span class="pre">update</span></code>.</p>
+<p>Dans les jeux simples, tu peux supposer qu’un court laps de temps (une fraction de seconde)
+est passé entre chaque appel à <code class="docutils literal notranslate"><span class="pre">update()</span></code>. Peut être que la durée de ce laps n’a pas
+d’importance : tu peux juste bouger les objets d’un nombre constant de pixels
+par images (ou les accélérer par une constante, etc.)</p>
+<p>Une approche plus sophistiquée est de baser le mouvement et les calculs physiques
+sur la quantité réelle de temps écoulée entre deux appels. Cela produit
+des animations plus fluides, mais les calculs induits peuvent être plus compliqués et tu
+dois être attentif à ne pas créer de comportements non-prédictibles lorsque le laps
+de temps écoulé devient plus grand.</p>
+<p>Pour utiliser l’approche basée sur le temps, tu peux changer la fonction <code class="docutils literal notranslate"><span class="pre">update</span></code> en ajoutant
+un paramètre unique. Si ta fonction <code class="docutils literal notranslate"><span class="pre">update</span></code> prend un argument, Pygame Zero
+va lui passer le temps écoulé en secondes. tu peux l’utiliser pour adapter le calcul des mouvements.</p>
 </dd></dl>
 
 </div>
-<div class="section" id="event-handling-hooks">
-<h2>Event Handling Hooks<a class="headerlink" href="#event-handling-hooks" title="Permalink to this headline">¶</a></h2>
-<p>Similar to the game loop hooks, your Pygame Zero program can respond to input
-events by defining functions with specific names.</p>
-<p>Somewhat like in the case of <code class="docutils literal notranslate"><span class="pre">update()</span></code>, Pygame Zero will inspect your
-event handler functions to determine how to call them. So you don’t need to
-make your handler functions take arguments. For example, Pygame Zero will
-be happy to call any of these variations of an <code class="docutils literal notranslate"><span class="pre">on_mouse_down</span></code> function:</p>
+<div class="section" id="les-hooks-de-gestion-d-evenements">
+<h2>Les <em>hooks</em> de gestion d’événements<a class="headerlink" href="#les-hooks-de-gestion-d-evenements" title="Permalink to this headline">¶</a></h2>
+<p>Comme pour les <em>hooks</em> de la boucle de jeu, ton programme Pygame Zero peut répondre aux événements d’entrée
+en définissant des fonctions avec des noms spécifiques.</p>
+<p>Comme pour la fonction <code class="docutils literal notranslate"><span class="pre">update()</span></code>, Pygame Zero va inspecter ta
+fonction de gestion d’événements pour déterminer comment l’appeler. Tu n’as donc pas besoin d’avoir
+d’arguments à ta fonction. Par exemple, Pygame Zero va être capable d’appeler toutes ces variantes
+de la fonction <code class="docutils literal notranslate"><span class="pre">on_mouse_down</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_mouse_down</span><span class="p">():</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mouse button clicked&quot;</span><span class="p">)</span>
 
@@ -126,22 +123,20 @@ be happy to call any of these variations of an <code class="docutils literal not
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mouse button&quot;</span><span class="p">,</span> <span class="n">button</span><span class="p">,</span> <span class="s2">&quot;clicked at&quot;</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>It does this by looking at the names of the parameters, so they must be spelled
-exactly as above. Each event hook has a different set of parameters that you
-can use, as described below.</p>
+<p>Il le fait en regardant le nom des paramètres, ils doivent donc être épelés exactement comme
+ci-dessus. Chaque <em>hook</em> d’événements a un ensemble différent de paramètres que tu peux
+utiliser comme décrit ci-dessous.</p>
 <dl class="function">
 <dt id="on_mouse_down">
 <code class="descname">on_mouse_down</code><span class="sig-paren">(</span><span class="optional">[</span><em>pos</em><span class="optional">]</span><span class="optional">[</span>, <em>button</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#on_mouse_down" title="Permalink to this definition">¶</a></dt>
-<dd><p>Called when a mouse button is depressed.</p>
+<dd><p>Appelée lorsqu’un bouton de la souris est pressé.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>pos</strong> – A tuple (x, y) that gives the location of the mouse pointer
-when the button was pressed.</li>
-<li><strong>button</strong> – A <a class="reference internal" href="#mouse" title="mouse"><code class="xref py py-class docutils literal notranslate"><span class="pre">mouse</span></code></a> enum value indicating the button that was
-pressed.</li>
+<li><strong>pos</strong> – un tuple (x, y) donnant la position du pointeur de souris lorsque le bouton a été pressé.</li>
+<li><strong>button</strong> – une valeur de l’énumération <a class="reference internal" href="#mouse" title="mouse"><code class="xref py py-class docutils literal notranslate"><span class="pre">mouse</span></code></a> indiquant quel bouton a été pressé.</li>
 </ul>
 </td>
 </tr>
@@ -152,16 +147,14 @@ pressed.</li>
 <dl class="function">
 <dt id="on_mouse_up">
 <code class="descname">on_mouse_up</code><span class="sig-paren">(</span><span class="optional">[</span><em>pos</em><span class="optional">]</span><span class="optional">[</span>, <em>button</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#on_mouse_up" title="Permalink to this definition">¶</a></dt>
-<dd><p>Called when a mouse button is released.</p>
+<dd><p>Appelée lorsqu’un un bouton de la souris est relâché.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>pos</strong> – A tuple (x, y) that gives the location of the mouse pointer
-when the button was released.</li>
-<li><strong>button</strong> – A <a class="reference internal" href="#mouse" title="mouse"><code class="xref py py-class docutils literal notranslate"><span class="pre">mouse</span></code></a> enum value indicating the button that was
-released.</li>
+<li><strong>pos</strong> – un tuple (x, y) donnant la position du pointeur de souris lorsque le bouton a été relâché.</li>
+<li><strong>button</strong> – une valeur de l’énumération <a class="reference internal" href="#mouse" title="mouse"><code class="xref py py-class docutils literal notranslate"><span class="pre">mouse</span></code></a> indiquant quel bouton a été relâché.</li>
 </ul>
 </td>
 </tr>
@@ -172,18 +165,16 @@ released.</li>
 <dl class="function">
 <dt id="on_mouse_move">
 <code class="descname">on_mouse_move</code><span class="sig-paren">(</span><span class="optional">[</span><em>pos</em><span class="optional">]</span><span class="optional">[</span>, <em>rel</em><span class="optional">]</span><span class="optional">[</span>, <em>buttons</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#on_mouse_move" title="Permalink to this definition">¶</a></dt>
-<dd><p>Called when the mouse is moved.</p>
+<dd><p>Appelée lorsque la souris est bougée.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>pos</strong> – A tuple (x, y) that gives the location that the mouse pointer
-moved to.</li>
-<li><strong>rel</strong> – A tuple (delta_x, delta_y) that represent the change in the
-mouse pointer’s position.</li>
-<li><strong>buttons</strong> – A set of <a class="reference internal" href="#mouse" title="mouse"><code class="xref py py-class docutils literal notranslate"><span class="pre">mouse</span></code></a> enum values indicating the buttons
-that were depressed during the move.</li>
+<li><strong>pos</strong> – un tuple (x, y) donnant la position du pointeur de souris à laquelle la souris a bougé.</li>
+<li><strong>rel</strong> – un tuple (delta_x, delta_y) représentant le déplacement relatif du pointeur de souris.</li>
+<li><strong>buttons</strong> – un ensemble de valeurs de l’énumération <a class="reference internal" href="#mouse" title="mouse"><code class="xref py py-class docutils literal notranslate"><span class="pre">mouse</span></code></a> indiquant quels boutons
+étaient pressés durant le déplacement.</li>
 </ul>
 </td>
 </tr>
@@ -191,29 +182,29 @@ that were depressed during the move.</li>
 </table>
 </dd></dl>
 
-<p>To handle mouse drags, use code such as the following:</p>
+<p>Pour gérer le glissement de la souris (mouvement avec bouton pressé), utilise un code tel que le suivant:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">on_mouse_move</span><span class="p">(</span><span class="n">rel</span><span class="p">,</span> <span class="n">buttons</span><span class="p">):</span>
     <span class="k">if</span> <span class="n">mouse</span><span class="o">.</span><span class="n">LEFT</span> <span class="ow">in</span> <span class="n">buttons</span><span class="p">:</span>
-        <span class="c1"># the mouse was dragged, do something with `rel`</span>
+        <span class="c1"># la souris a été glissée, faire quelque chose avec `rel`</span>
         <span class="o">...</span>
 </pre></div>
 </div>
 <dl class="function">
 <dt id="on_key_down">
 <code class="descname">on_key_down</code><span class="sig-paren">(</span><span class="optional">[</span><em>key</em><span class="optional">]</span><span class="optional">[</span>, <em>mod</em><span class="optional">]</span><span class="optional">[</span>, <em>unicode</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#on_key_down" title="Permalink to this definition">¶</a></dt>
-<dd><p>Called when a key is depressed.</p>
+<dd><p>Appelée lorsqu’une touche est pressée.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>key</strong> – An integer indicating the key that was pressed (see
-<a class="reference internal" href="#buttons-and-keys"><span class="std std-ref">below</span></a>).</li>
-<li><strong>unicode</strong> – Where relevant, the character that was typed. Not all keys
-will result in printable characters - many may be control
-characters. In the event that a key doesn’t correspond to
-a Unicode character, this will be the empty string.</li>
-<li><strong>mod</strong> – A bitmask of modifier keys that were depressed.</li>
+<li><strong>key</strong> – un entier indiquant quelle touche a été pressée (voir
+<a class="reference internal" href="#buttons-and-keys"><span class="std std-ref">ci-dessous</span></a>).</li>
+<li><strong>unicode</strong> – lorsque cela a du sens, le caractère qui a été entré. Toutes les touches
+ne produisent pas un caractère affichable - beaucoup sont des caractères
+de contrôle. Dans le cas où la touche ne correspond pas à un caractère Unicode,
+cela sera la chaîne vide.</li>
+<li><strong>mod</strong> – un masque de bits représentant les touches mortes également pressées.</li>
 </ul>
 </td>
 </tr>
@@ -224,15 +215,15 @@ a Unicode character, this will be the empty string.</li>
 <dl class="function">
 <dt id="on_key_up">
 <code class="descname">on_key_up</code><span class="sig-paren">(</span><span class="optional">[</span><em>key</em><span class="optional">]</span><span class="optional">[</span>, <em>mod</em><span class="optional">]</span><span class="sig-paren">)</span><a class="headerlink" href="#on_key_up" title="Permalink to this definition">¶</a></dt>
-<dd><p>Called when a key is released.</p>
+<dd><p>Appelée lorsqu’une touche est relâchée.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
-<li><strong>key</strong> – An integer indicating the key that was released (see
-<a class="reference internal" href="#buttons-and-keys"><span class="std std-ref">below</span></a>).</li>
-<li><strong>mod</strong> – A bitmask of modifier keys that were depressed.</li>
+<li><strong>key</strong> – un entier indiquant quelle touche a été relâchée (voir
+<a class="reference internal" href="#buttons-and-keys"><span class="std std-ref">ci-dessous</span></a>).</li>
+<li><strong>mod</strong> – un masque de bits représentant les touches mortes pressées.</li>
 </ul>
 </td>
 </tr>
@@ -243,21 +234,20 @@ a Unicode character, this will be the empty string.</li>
 <dl class="function">
 <dt id="on_music_end">
 <code class="descname">on_music_end</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#on_music_end" title="Permalink to this definition">¶</a></dt>
-<dd><p>Called when a <a class="reference internal" href="builtins.html#music"><span class="std std-ref">music track</span></a> finishes.</p>
-<p>Note that this will not be called if the track is configured to loop.</p>
+<dd><p>Appelée lorsque une <a class="reference internal" href="builtins.html#music"><span class="std std-ref">piste de musique</span></a> se termine.</p>
+<p>Note qu’elle ne sera pas appelée si la piste audio est configurée pour boucler.</p>
 </dd></dl>
 
-<div class="section" id="buttons-and-keys">
-<span id="id1"></span><h3>Buttons and Keys<a class="headerlink" href="#buttons-and-keys" title="Permalink to this headline">¶</a></h3>
-<p>Built-in objects <code class="docutils literal notranslate"><span class="pre">mouse</span></code> and <code class="docutils literal notranslate"><span class="pre">keys</span></code> can be used to determine which buttons
-or keys were pressed in the above events.</p>
-<p>Note that mouse scrollwheel events appear as button presses with the below
-<code class="docutils literal notranslate"><span class="pre">WHEEL_UP</span></code>/<code class="docutils literal notranslate"><span class="pre">WHEEL_DOWN</span></code> button constants.</p>
+<div class="section" id="boutons-et-touches">
+<span id="buttons-and-keys"></span><h3>Boutons et touches<a class="headerlink" href="#boutons-et-touches" title="Permalink to this headline">¶</a></h3>
+<p>Les objets pré-définis <code class="docutils literal notranslate"><span class="pre">mouse</span></code> et <code class="docutils literal notranslate"><span class="pre">keys</span></code> peuvent être utilisés pour déterminer quels boutons
+ou touches étaient pressés dans les événements ci-dessus.</p>
+<p>Note que les événements de la molette de la souris apparaissent comme des boutons pressés avec les constantes
+<code class="docutils literal notranslate"><span class="pre">WHEEL_UP</span></code>/<code class="docutils literal notranslate"><span class="pre">WHEEL_DOWN</span></code>.</p>
 <dl class="class">
 <dt id="mouse">
 <em class="property">class </em><code class="descname">mouse</code><a class="headerlink" href="#mouse" title="Permalink to this definition">¶</a></dt>
-<dd><p>A built-in enumeration of buttons that can be received by the
-<code class="docutils literal notranslate"><span class="pre">on_mouse_*</span></code> handlers.</p>
+<dd><p>Une énumération pré-défini de boutons qui peut être reçue par les <em>hooks</em> <code class="docutils literal notranslate"><span class="pre">on_mouse_*</span></code>.</p>
 <dl class="attribute">
 <dt id="mouse.LEFT">
 <code class="descname">LEFT</code><a class="headerlink" href="#mouse.LEFT" title="Permalink to this definition">¶</a></dt>
@@ -288,8 +278,7 @@ or keys were pressed in the above events.</p>
 <dl class="class">
 <dt id="keys">
 <em class="property">class </em><code class="descname">keys</code><a class="headerlink" href="#keys" title="Permalink to this definition">¶</a></dt>
-<dd><p>A built-in enumeration of keys that can be received by the <code class="docutils literal notranslate"><span class="pre">on_key_*</span></code>
-handlers.</p>
+<dd><p>Une énumération pré-défini de touches qui peut être reçue par les <em>hooks</em> <code class="docutils literal notranslate"><span class="pre">on_key_*</span></code>.</p>
 <dl class="attribute">
 <dt id="keys.BACKSPACE">
 <code class="descname">BACKSPACE</code><a class="headerlink" href="#keys.BACKSPACE" title="Permalink to this definition">¶</a></dt>
@@ -962,12 +951,12 @@ handlers.</p>
 
 </dd></dl>
 
-<p>Additionally you can access a set of constants that represent modifier keys:</p>
+<p>De plus, tu peux accéder a un ensemble de constantes représentant les touches mortes :</p>
 <dl class="class">
 <dt id="keymods">
 <em class="property">class </em><code class="descname">keymods</code><a class="headerlink" href="#keymods" title="Permalink to this definition">¶</a></dt>
-<dd><p>Constants representing modifier keys that may have been depressed during
-an <code class="docutils literal notranslate"><span class="pre">on_key_up</span></code>/<code class="docutils literal notranslate"><span class="pre">on_key_down</span></code> event.</p>
+<dd><p>Constantes représentant les touches mortes qui ont été pressées durant les événements
+<code class="docutils literal notranslate"><span class="pre">on_key_up</span></code>/<code class="docutils literal notranslate"><span class="pre">on_key_down</span></code>.</p>
 <dl class="attribute">
 <dt id="keymods.LSHIFT">
 <code class="descname">LSHIFT</code><a class="headerlink" href="#keymods.LSHIFT" title="Permalink to this definition">¶</a></dt>
@@ -1074,10 +1063,10 @@ an <code class="docutils literal notranslate"><span class="pre">on_key_up</span>
 <li class="toctree-l1"><a class="reference internal" href="from-scratch.html">Migrer depuis Scratch</a></li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Event Hooks</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#game-loop-hooks">Game Loop Hooks</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#event-handling-hooks">Event Handling Hooks</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#buttons-and-keys">Buttons and Keys</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Les <em>hooks</em> d’évènements</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#les-hooks-d-une-boucle-de-jeu">Les <em>hooks</em> d’une boucle de jeu</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#les-hooks-de-gestion-d-evenements">Les <em>hooks</em> de gestion d’événements</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#boutons-et-touches">Boutons et touches</a></li>
 </ul>
 </li>
 </ul>
@@ -1085,7 +1074,7 @@ an <code class="docutils literal notranslate"><span class="pre">on_key_up</span>
 <li class="toctree-l1"><a class="reference internal" href="builtins.html">Objets pré-définis</a></li>
 </ul>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installing Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installer Pygame Zero</a></li>
 <li class="toctree-l1"><a class="reference internal" href="repl.html">Using the REPL (Read-Evaluate-Print Loop)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ide-mode.html">Running Pygame Zero in IDLE and other IDEs</a></li>
 <li class="toctree-l1"><a class="reference internal" href="other-libs.html">Other libraries like Pygame Zero</a></li>
@@ -1096,7 +1085,7 @@ an <code class="docutils literal notranslate"><span class="pre">on_key_up</span>
 </ul>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="roadmap.html">Roadmap</a></li>
-<li class="toctree-l1"><a class="reference internal" href="principles.html">Principles of Pygame Zero</a></li>
+<li class="toctree-l1"><a class="reference internal" href="principles.html">Les principes de Pygame Zero</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing to Pygame Zero</a></li>
 </ul>
 
