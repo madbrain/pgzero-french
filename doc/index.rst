@@ -8,8 +8,10 @@ Bienvenue à Pygame Zero
 
 Pygame Zero permet de créer des jeux de façon simple et intuitive.
 
-Il est destiné à être utilisé dans l'éducation, afin que les professeurs puissent enseigner les bases
-de la programmation sans avoir besoin d'expliquer l':abbr:`API (Application Programming Interface)` de Pygame ni d'écrire une boucle d'événements.
+Il est destiné à être utilisé dans l'éducation, afin que les professeurs
+puissent enseigner les bases de la programmation sans avoir besoin d'expliquer
+l':abbr:`API (Application Programming Interface)` de Pygame
+ni d'écrire une boucle d'événements.
 
 
 Les cours
@@ -25,7 +27,7 @@ Les cours
 .. learn-programming
 .. flappy-bird
 
-Reference
+Référence
 ---------
 
 .. toctree::
@@ -34,8 +36,8 @@ Reference
     hooks
     builtins
 
-User Guide
-----------
+Guide Utilisateur
+-----------------
 
 .. toctree::
     :maxdepth: 2
@@ -47,16 +49,16 @@ User Guide
     changelog
 
 
-Stickers by |Sticker Mule|
---------------------------
+Autocollants par |Sticker Mule|
+-------------------------------
 
 .. |Sticker Mule| image:: _static/sticker-mule.svg
     :alt: Sticker Mule
     :height: 40
     :target: https://www.stickermule.com/supports/opensource
 
-`Sticker Mule`_ have graciously offered to provide Pygame Zero laptop stickers
-for learners.
+`Sticker Mule`_ a gracieusement offert de fournir des autocollants
+de portable Pygame Zero aux étudiants.
 
 .. _`Sticker Mule`: https://www.stickermule.com/supports/opensource
 
@@ -66,7 +68,7 @@ for learners.
     stickers
 
 
-Improving Pygame Zero
+Améliorer Pygame Zero
 ---------------------
 
 .. toctree::
