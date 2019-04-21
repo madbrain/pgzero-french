@@ -1,8 +1,8 @@
 Installer Pygame Zero
-======================
+=====================
 
 Inclus avec Mu
--------------
+--------------
 
 L'`éditeur Mu <https://codewith.mu>`_, qui est destiné aux débutants, inclus une
 version de Pygame Zero.

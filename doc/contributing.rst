@@ -1,166 +1,175 @@
-Contributing to Pygame Zero
-===========================
+Contribuer à Pygame Zero
+========================
 
 .. highlight:: none
 
-The Pygame Zero project is hosted on GitHub:
+Le projet Pygame Zero est hébergé sur GitHub:
 
     https://github.com/lordmauve/pgzero
 
 .. _report-issue:
 
-Reporting an bug or request
----------------------------
+Rapporter un bogue ou une demande
+---------------------------------
 
-You can report bugs, or request features that you think should be in Pygame
-Zero, using the `Github issue tracker`_.
+Vous pouvez rapporter un bogue ou une demande de fonctionnalité
+que vous pensez être nécessaire à Pygame Zero en utilisant
+le `Github issue tracker`_.
 
-Here are some things to bear in mind before you do this:
+Voici quelques conseils à garder à l'esprit avant de procéder :
 
-* It might not just be you! You should check if someone has already reported
-  the issue by searching through the existing issues - both open and closed.
+* Vous pourriez ne pas être le premier ! Vous devriez vérifier si
+  quelqu'un n'a pas déjà rapporté le problème en cherchant parmi la liste
+  des problèmes existants, à la fois ouverts ou fermés.
 
-* The developers need to know what version of Pygame Zero you are using, and
-  what operating system you are running (Windows, Mac, Linux etc) and version
-  (Windows 10, Ubuntu 16.04, etc).
+* Les développeurs ont besoin de savoir quelle version de Pygame Zero
+  vous utilisez et sur quel système d'exploitation (Windows, Mac, Linux, etc.)
+  et sa version (Windows 10, Ubuntu 16.04, etc.) vous le faites tourner.
 
 
 .. _`Github issue tracker`: https://github.com/lordmauve/pgzero/issues
 
 
-How to do a pull request
-------------------------
+Comment créer une `pull request`
+--------------------------------
 
-You can make changes to Pygame Zero by creating a pull request.
+Vous pouvez contribuer des changements à Pygame Zero en créant
+une `pull request`.
 
-It's a good idea to :ref:`report an issue <report-issue>` first, so that we can
-discuss whether your change makes sense.
+C'est une bonne idée de d'abord :ref:`rapporter un problème <report-issue>`
+afin de pouvoir discuter si votre changement a du sens.
 
-Github has `help on how to create a pull request`__, but here's the quick
-version:
+Github dispose `d'aide sur comment créer une pull request`__,
+mais voici une version rapide :
 
 .. __: https://help.github.com/articles/creating-a-pull-request/
 
-1. Make sure you are logged into Github.
-2. Go to the `Github page for Pygame Zero`_.
-3. Click "Fork" to create your own fork of the repository.
-4. Clone this fork to your own computer::
+1. Soyez sûr d'être authentifié sur Github.
+2. Allez à `page Github de Pygame Zero`_.
+3. Cliquez sur "Fork" pour créer votre copie personnelle du dépôt.
+4. Dupliquez ce dépôt sur votre ordinateur::
 
-        git clone git@github.com:yourusername/pgzero.git
+        git clone git@github.com:monlogin/pgzero.git
 
-   Remember to change ``yourusername`` to your Github username.
+   Rappelez vous de remplacer ``monlogin`` par votre login Github.
 
-5. Create a branch in which to do your changes. Pick a branch name that
-   describes the change you want to make. ::
+5. Créez une branche dans laquelle vous allez apporter les changements.
+   Choisissez un nom de branche qui décrit le changement que vous voulez apporter. ::
 
-        git checkout -b my-new-branch master
+        git checkout -b ma-nouvelle-branche master
 
-6. Make the changes you want.
-7. Add the files that you want to commit::
+6. Écrivez le changement que vous souhaitez apporter.
+7. Ajouter les fichiers que vous souhaitez valider::
 
         git add pgzero
 
-8. Commit the files with a clear commit message::
+8. Valider la révision des fichiers avec un message explicite::
 
-        git commit -m "Fixed issue #42 by renaming parameters"
+        git commit -m "Correction du problème #42 en renommant les paramètres"
 
-   You can do steps 6 to 8 as many times as you want until you're happy.
+   Vous pouvez répéter les étapes 6 à 8 autant de fois que nécessaires jusqu'à obtenir la fonctionnalité désirée.
 
-9. Push the commit back to your fork. ::
+9. Poussez la nouvelle révision sur votre dépôt distant. ::
 
-        git push --set-upstream origin my-new-branch
+        git push --set-upstream origin ma-nouvelle-branche
 
-10. Go to the Github page for your fork, and click on the "Create pull request"
-    button.
-
-
-.. _`Github page for Pygame Zero`: https://github.com/lordmauve/pgzero
+10. Aller sur la page Github de votre dépôt and cliquez sur
+    le bouton "Créer une pull request".
 
 
-Development installation
-------------------------
+.. _`page Github de Pygame Zero`: https://github.com/lordmauve/pgzero
 
-It's possible to create a locally-editable install using pip. From the root directory of the checked out source, run::
+
+Installer une version en développement
+--------------------------------------
+
+Il est possible d'installer une version en cours de développement
+en utilisant `pip`. Depuis le répertoire racine de votre copie locale des sources, lancez::
 
     pip3 install --editable .
 
-The installed version will now reflect any local changes you make.
+La version installée va maintenant contenir tous les changements que vous
+apporterez au code source.
 
-Alternatively, if you don't want to install it at all, it may be run with:
+Autrement, si vous ne voulez pas l'installer du tout, vous pouvez
+le lancer ainsi::
 
    python3 -m pgzero <name of pgzero script>
 
-For example:
+Par exemple::
 
    python3 -m pgzero examples/basic/demo1.py
 
 
-How to run tests
-----------------
+Comment lancer les tests
+------------------------
 
-The tests can be run with
+Les tests peuvent être exécutés avec::
 
     python3 setup.py test
 
 
 .. _translating:
 
-Helping to translate the documentation
---------------------------------------
+Aider à traduire la documentation
+---------------------------------
 
-Pygame Zero's APIs will always be English, but we can bring Pygame Zero to more
-users around the world if the documentation is available in their language.
+L'API de Pygame Zero sera toujours en anglais, mais vous pouvez
+diffuser Pygame Zero  à plus d'utilisateurs dans le monde si la
+documentation est disponible dans leur langue.
 
-If you are fluent in another language, please consider contributing by
-translating all or part of the documentation.
+Si vous parlez couramment une autre langue, vous pouvez contribuer
+en traduisant tout ou partie de la documentation.
 
-The documentation is written in reStructuredText_, which is a text-based markup
-language for technical documentation. As much as possible, the existing
-formatting should be preserved. reStructuredText isn't too difficult once you
-get used to it.
+La documentation est écrite en reStructuredText_, qui est un language textuel
+à balises destiné à la documentation technique. Essayez autant que possible de
+préserver le formatage actuel. reStructuredText n'est pas très difficile une
+fois que vous êtes habitué.
 
-Creating a translation is done by creating a separate repository on Github with
-a copy of the documentation, rewritten (at least in part) into the language you
-would like to support. One advantage of this is that you can work on
-translations at your own pace, without having to submit pull requests back to
-the ``pgzero`` project itself. Please see the `translation guide`_ on Read The
-Docs for details.
+Créer une traduction consiste à créer un dépôt séparé sur Github avec
+une copie de la documentation, réécrite (au moins en partie) dans
+la langue que vous souhaitez contribuer. L'avantage est que vous pouvez
+travailler sur la traduction à votre propre rythme, sans soumettre
+des pull requests au projet ``pgzero`` lui même.
+Consultez le `guide de traduction`_ sur `Read The Docs` pour plus de détails.
 
-If this sounds like something you could tackle, here's how you might go about
-it:
+Si cela vous semble abordable, voici comment vous pouvez procéder:
 
-1. First, open an issue on the `pgzero issue tracker`_. You should search for
-   an existing issue covering the translation you want to do, before opening a
-   new one. This will help ensure that you don't do translation work that has
-   already been done by someone else (perhaps you can collaborate instead).
-2. Create a new Github repository under your user, called pgzero-*language*,
-   eg. ``pgzero-spanish`` if you're going to translate into Spanish.
-3. Clone the repository to your own computer.
-4. Download the Pygame Zero ``doc/`` directory and commit it in your project.
-   You can do this by extracting them from `repository ZIP file`_. You only
-   need the ``doc/`` directory from the ZIP file. You can delete the other
-   files.
-5. Now, work through the .rst files in the docs directory, translating, using
-   your preferred editor. You should commit regularly, and push your commits to
-   Github.
-6. Post a link to your repository as a comment in the Github issue you created
-   in step 1. You can do this as soon as you have some progress to show; this
-   will help people collaborate with you on the translation if they are
-   interested.
-7. `Set up the documentation to build on Read The Docs`__. Again, post a
-   comment on the Github issue when you have this working.
-8. We can then link up the new, translated documentation with the Pygame Zero
-   documentation.
+1. D'abords, ouvrez un problème sur le `pgzero issue tracker`_.
+   Vous devriez chercher s'il n'existe pas un autre problème concernant
+   la traduction que vous voulez entreprendre, avant d'en ouvrir un nouveau.
+   Cela garantira que vous ne travaillerez pas sur une traduction que
+   quelqu'un d'autre aurait déjà faite (vous pourriez peut-être
+   plutôt collaborer).
+2. Créer a nouveau dépôt Github, appeler le pgzero-*langue*,
+   par exemple ``pgzero-spanish`` si vous aller traduire en espagnol.
+3. Dupliquez ce dépôt sur votre ordinateur.
+4. Téléchargez le répertoire ``doc/`` de Pygame Zero et valider une révision
+   dans votre projet. Vous pouvez le faire en l'extrayant du
+   `fichier ZIP du dépôt`_. Vous avez uniquement besoin du répertoire
+   ``doc/``, vous pouvez effacer les autres fichiers.
+5. Maintenant, vous pouvez travailler sur les fichiers .rst dans le
+   répertoire ``doc`` en les traduisant avec votre éditeur préféré.
+   Vous devriez valider des révision régulièrement et les pousser sur Github.
+6. Postez un commentaire avec un lien vers votre dépôt dans le problème Github
+   créer à l'étape 1. Vous pouvez le faire dès que vous avez de la matière
+   à montrer, cela va aider d'autres personnes à contribuer à vos traductions
+   s'ils sont intéressés.
+7. `Configurer la documentation pour la construire sur Read The Docs`__.
+   Encore une fois, postez un commentaire sur le problème Github quand
+   cela fonctionne.
+8. Nous pouvons alors relier la nouvelle documentation traduite avec
+   la documentation officielle de Pygame Zero.
 
 .. _reStructuredText: http://www.sphinx-doc.org/en/master/rest.html
-.. _`translation guide`: https://docs.readthedocs.io/en/latest
+.. _`guide de traduction`: https://docs.readthedocs.io/en/latest
                          /localization.html#project-with-multiple-translations
 .. _`pgzero issue tracker`: https://github.com/lordmauve/pgzero/issues/new
-.. _`repository ZIP file`: https://github.com/lordmauve/pgzero/archive/master.zip
+.. _`fichier ZIP du dépôt`: https://github.com/lordmauve/pgzero/archive/master.zip
 
 .. __: https://docs.readthedocs.io/en/latest/getting_started.html#import-your-docs
 
-Note that Pygame Zero will have updates, and the documentation will be changed
-accordingly. Using Git it is possible to see a diff of what changed in the
-English documentation, so that you can make corresponding changes in the
-translated documentation.
+Notez que Pygame Zero va être mis à jour et la documentation va être changée
+en conséquence. En utilisant Git il est possible de voir ce qui a changé dans
+la documentation originale, afin que vous puissiez apporter les changements
+nécessaires dans la documentation traduite.

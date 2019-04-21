@@ -1,23 +1,24 @@
-Other libraries like Pygame Zero
-================================
+Autres bibliothèques comme Pygame Zero
+======================================
 
-Pygame Zero started a trend for Python "zero" libraries. Our friends have
-created these great libraries. Some of these can be combined with Pygame Zero!
+Pygame Zero a démarré une tendance pour les bibliothèques "zéro" Python.
+Nos amis ont créé ces superbes bibliothèques. Certaines d'entre elles
+peuvent être combinées avec Pygame Zero!
 
 
 Network Zero
 ------------
 
-`Network Zero`_ makes it simpler to have several machines or several processes
-on one machine discovering each other and talking across a network.
+`Network Zero`_ simplifie la découverte et la communication en réseau
+de plusieurs machines ou processus sur une même machine.
 
 .. caution::
 
-    If you want to use Network Zero with Pygame Zero, make sure you don't let
-    it **block** (stop everything while waiting for messages). This will
-    interrupt Pygame Zero so that it stops animating the screen or even
-    responding to input.  Always set the ``wait_for_s`` or ``wait_for_reply_s``
-    options to ``0`` seconds.
+    Si vous voulez utiliser Network Zero avec Pygame Zero,
+    soyez sûr qu'il ne **bloque** pas (arrête tout en attendant des messages).
+    Cela va interrompre Pygame Zero qui va arrêter les animations
+    à l'écran ou même répondre aux entrées. Donnez toujours aux options
+    ``wait_for_s`` ou ``wait_for_reply_s`` la valeur de ``0`` secondes.
 
 
 .. _`Network Zero`: https://networkzero.readthedocs.io
@@ -26,11 +27,11 @@ on one machine discovering each other and talking across a network.
 GUI Zero
 --------
 
-`GUI Zero`_ is a library for creating Graphical User Interfaces (GUIs) with
-windows, buttons, sliders, textboxes and so on.
+`GUI Zero`_ est une bibliothèque pour créer des interfaces graphiques avec
+fenêtres, boutons, curseurs, champs texte, etc..
 
-Because GUI Zero and Pygame Zero both provide different approaches for drawing
-to the screen, they are not usable together.
+Parce que GUI Zero et Pygame Zero utilisent des approches différentes
+pour dessiner à l'écran, ils ne sont pas utilisables ensemble.
 
 
 .. _`GUI Zero`: https://lawsie.github.io/guizero/
@@ -39,19 +40,19 @@ to the screen, they are not usable together.
 GPIO Zero
 ---------
 
-`GPIO Zero`_ is a library for controlling devices connected to the General
-Purpose Input/Output (GPIO) pins on a `Raspberry Pi`_.
+`GPIO Zero`_ est une bibliothèque pour contrôler les appareils connectés
+aux broches d'entrées/sorties générales (GPIO) sur un `Raspberry Pi`_.
 
-GPIO Zero generally runs in its own thread, meaning that it will usually work
-very well with Pygame Zero.
+GPIO Zero marche généralement dans son propre *thread*, ce qui signifie
+qu'il va généralement bien fonctionner avec Pygame Zero.
 
 .. caution::
 
-    When copying GPIO Zero examples, do not copy the ``time.sleep()`` function
-    calls or ``while True:`` loops, as these will stop Pygame Zero animating
-    the screen or responding to input. Use :ref:`clock` functions instead to
-    call functions periodically, or the :func:`update()` function to check a
-    value every frame.
+    En copiant les exemples de GPIO Zero, ne copiez pas les appels de fonction ``time.sleep()``
+    ou les boucles ``while True:``, car ils vont empêcher Pygame Zero d'animer l'écran
+    ou répondre aux entrées. Utiliser plutôt les fonctions :ref:`clock` pour appeler
+    périodiquement des fonctions, ou la fonction :func:`update()` pour vérifier une
+    valeur à chaque *frame*.
 
 .. _`GPIO Zero`: https://gpiozero.readthedocs.io/
 .. _`Raspberry Pi`: https://www.raspberrypi.org/
@@ -60,14 +61,14 @@ very well with Pygame Zero.
 Adventurelib
 ------------
 
-`Adventurelib`_ is a library for creating making text-based games easier to
-write (and which doesn't do everything for you!).
+`Adventurelib`_ est une bibliothèque qui simplifie l'écriture de jeux
+orientés texte (mais qui ne fait pas tout à votre place!).
 
-Writing text-based games requires a very different set of skills to writing
-graphical games. Adventurelib is pitched at a slightly more advanced level of
-Python programmer than Pygame Zero.
+Écrire des jeux orientés texte demande des aptitudes différentes que d'écrire
+des jeux graphiques. Adventurelib est destiné à des développeurs Python d'un
+niveau légèrement plus avancé que celui de Pygame Zero.
 
-Adventurelib cannot currently be combined with Pygame Zero.
+Adventurelib ne peut actuellement pas être combiné avec Pygame Zero.
 
 
 .. _Adventurelib: https://adventurelib.readthedocs.io/
@@ -76,19 +77,20 @@ Adventurelib cannot currently be combined with Pygame Zero.
 Blue Dot
 --------
 
-`Blue Dot`_ allows you to control your Raspberry Pi projects wirelessly using
-an Android device as a Bluetooth remote.
+`Blue Dot`_ vous permet de contrôler vos projets Raspberry Pi sans fils en utilisant
+un appareil Android comme une télécommande Bluetooth.
 
-Blue Dot generally runs in its own thread, meaning that it will usually work
-very well with Pygame Zero.
+Blue Dot tourne généralement dans son propre *thread*, ce qui signifie
+qu'il va généralement bien fonctionner avec Pygame Zero.
 
 .. caution::
 
-    Avoid ``time.sleep()`` function calls, ``while True:`` loops and Blue Dot's
-    blocking ``wait_for_press`` and ``wait_for_release`` methods, as these will
-    stop Pygame Zero animating the screen or responding to input. Use
-    :ref:`clock` functions instead to call functions periodically, or the
-    :func:`update()` function to check a value every frame.
+    Évitez les appels à la fonction ``time.sleep()``, les boucles ``while True:``
+    et les méthodes bloquantes de Blue Dot ``wait_for_press`` et ``wait_for_release``,
+    car celles-ci vont empêcher Pygame Zero d'animer l'écran ou de répondre aux entrée.
+    Utiliser plutôt les fonctions :ref:`clock` pour appeler
+    périodiquement des fonctions, ou la fonction :func:`update()` pour vérifier une
+    valeur à chaque *frame*.
 
 
 .. _`Blue Dot`: https://bluedot.readthedocs.io/
@@ -96,7 +98,7 @@ very well with Pygame Zero.
 
 .. tip::
 
-    Know of another library that belongs here?
+    Vous connaissez d'autres bibliothèques qui ont leur place ici ?
 
-    `Open an issue <https://github.com/lordmauve/pgzero/issues/new>`_ on the
-    issue tracker to let us know!
+    `Ouvrer un problème <https://github.com/lordmauve/pgzero/issues/new>`_ sur le
+    *tracker* de problèmes pour nous le faire savoir !
